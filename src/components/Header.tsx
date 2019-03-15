@@ -9,7 +9,7 @@ type Props = {
 } & NavigationScreenProps
 
 export default (props: Props) =>
-    <View style={{ height: 50, backgroundColor: "#3F51B5" }}>
+    <View style={{ height: 50, backgroundColor: "#3F51B5", justifyContent: 'center' }}>
         <View style={{ flex: 1, flexDirection: "row", alignItems: 'center', justifyContent: 'space-between' }}>
             <TouchableOpacity style={{ flex: 1 }}
                 onPress={() => props.navigation.openDrawer()}

@@ -5,7 +5,7 @@ Apos baixar o projeto
 
 ```yarn```
 
-o comando para testa o projeto 
+o comando para testa o projeto no android
 
 ```yarn and```
 

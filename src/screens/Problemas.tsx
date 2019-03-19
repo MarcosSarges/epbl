@@ -4,10 +4,11 @@ import { NavigationScreenProps } from 'react-navigation';
 import Container from '../components/Container';
 import Header from '../components/Header';
 
+const Menu = require('./../assets/img/menu.png');
 
 type Props = {} & NavigationScreenProps
 
-class Disciplinas extends Component<Props> {
+class Problemas extends Component<Props> {
 
     state = {
         data: [
@@ -45,7 +46,7 @@ class Disciplinas extends Component<Props> {
     render() {
         return (
             <Container>
-                <Header titulo='Disciplinas' navigation={this.props.navigation} />
+                <Header titulo='Problemas' navigation={this.props.navigation} />
                 <View style={{ paddingVertical: 8, paddingHorizontal: 10, flex: 1 }}>
                     <TextInput
                         style={{ elevation: 1, width: '100%', height: 60, paddingLeft: 15 }}
@@ -65,6 +66,7 @@ class Disciplinas extends Component<Props> {
                                 })
                             }
                         }}
+
                     />
                     <FlatList
                         style={{ flex: 1 }}
@@ -79,10 +81,16 @@ class Disciplinas extends Component<Props> {
                         )}
                     />
                     <TouchableOpacity
-                        style={{ backgroundColor: '#3F51B5', height: 35, justifyContent: 'center', }}
-                        onPress={() => this.props.navigation.navigate('Nova Disciplina')}
+                        style={{ backgroundColor: '#3FB543', height: 35, justifyContent: 'center', marginBottom: 5 }}
+                        onPress={() => this.props.navigation.navigate('Novo Plano')}
                     >
-                        <Text style={{ color: '#fff', textAlign: 'center' }}>Nova disciplina</Text>
+                        <Text style={{ color: '#fff', textAlign: 'center' }}>Criar Plano de Aula</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity
+                        style={{ backgroundColor: '#3F51B5', height: 35, justifyContent: 'center', }}
+                        onPress={() => this.props.navigation.navigate('Novo Problema')}
+                    >
+                        <Text style={{ color: '#fff', textAlign: 'center' }}>Novo Problema</Text>
                     </TouchableOpacity>
                 </View>
             </Container>
@@ -90,4 +98,4 @@ class Disciplinas extends Component<Props> {
     }
 }
 
-export default Disciplinas;
+export default Problemas;

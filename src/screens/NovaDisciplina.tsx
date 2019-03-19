@@ -4,7 +4,6 @@ import { NavigationScreenProps } from 'react-navigation';
 import Container from '../components/Container';
 import Header from '../components/Header';
 
-const Menu = require('./../assets/img/menu.png');
 
 type Props = {} & NavigationScreenProps
 
@@ -22,6 +21,7 @@ class NovaDisciplina extends Component<Props> {
 
                     <TouchableOpacity
                         style={{ backgroundColor: '#3F51B5', height: 35, justifyContent: 'center', }}
+                        onPress={() => this.props.navigation.navigate('Problemas')}
                     >
                         <Text style={{ color: '#fff', textAlign: 'center' }}>Salvar disciplina</Text>
                     </TouchableOpacity>

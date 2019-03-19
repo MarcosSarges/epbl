@@ -9,7 +9,9 @@ class Inicial extends Component<Props> {
     render() {
         return (
             <Container>
-                <TouchableOpacity style={{ ...styles.buttonView, backgroundColor: '#3F51B5' }}>
+                <TouchableOpacity style={{ ...styles.buttonView, backgroundColor: '#3F51B5' }}
+                    onPress={() => this.props.navigation.navigate('Disciplinas')}
+                >
                     <Text style={styles.textButton}>Iniciar</Text>
                 </TouchableOpacity>
                 <TouchableOpacity style={{ ...styles.buttonView, backgroundColor: '#D0022D' }}

@@ -1,10 +1,13 @@
-import { createAppContainer, createDrawerNavigator } from 'react-navigation';
+import { createAppContainer, createDrawerNavigator, createStackNavigator, createSwitchNavigator } from 'react-navigation';
 import Inicial from './screens/Inicial';
 import Manual from './screens/Manual';
 import Disciplinas from './screens/Disciplinas';
 import NovaDisciplina from './screens/NovaDisciplina';
+import Problemas from './screens/Problemas';
+import NovoProblema from './screens/NovoProblema';
 
-const Router = createDrawerNavigator(
+
+const Drawer = createDrawerNavigator(
     {
         Inicial: {
             screen: Inicial
@@ -17,11 +20,17 @@ const Router = createDrawerNavigator(
         },
         'Nova Disciplina': {
             screen: NovaDisciplina
+        },
+        Problemas: {
+            screen: Problemas
+        },
+        'Novo Problema': {
+            screen: NovoProblema
         }
     },
     {
-        initialRouteName: 'Nova Disciplina'
+        initialRouteName: 'Inicial'
     }
-)
+);
 
-export default createAppContainer(Router);
+export default createAppContainer(Drawer);

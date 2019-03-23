@@ -1,11 +1,9 @@
 import React, { Component } from 'react'
-import { View, Text, TextInput, FlatList, TouchableOpacity } from 'react-native'
+import { View, FlatList, TouchableOpacity } from 'react-native'
 import { NavigationScreenProps } from 'react-navigation';
-import Container from '../components/Container';
-import Header from '../components/Header';
-import { Input, Icon, Button, Card } from 'react-native-elements';
-
-const Menu = require('./../assets/img/menu.png');
+import Container from '../../components/Container';
+import Header from '../../components/Header';
+import { Input, Icon, Card } from 'react-native-elements';
 
 type Props = {} & NavigationScreenProps
 
@@ -27,6 +25,10 @@ class Manual extends Component<Props> {
             { titulo: 'e', key: 'e' },
             { titulo: 'f', key: 'f' },
         ],
+    }
+
+    componentDidMount() {
+        console.log(this.context)
     }
 
     filter = (input: string) => {

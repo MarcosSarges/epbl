@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
-import { View, FlatList, TouchableOpacity, TouchableHighlight } from 'react-native'
+import { View, FlatList, TouchableOpacity } from 'react-native'
 import { NavigationScreenProps } from 'react-navigation';
-import Container from '../components/Container';
+import Container from '../../components/Container';
 import { Button, Icon, Input, Card } from 'react-native-elements'
-import Header from '../components/Header';
+import Header from '../../components/Header';
 
 
 type Props = {} & NavigationScreenProps

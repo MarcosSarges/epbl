@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
-import { View, Text, StatusBar, StyleSheet, TouchableOpacity } from 'react-native'
-import Container from '../components/Container';
+import { Text, StyleSheet, TouchableOpacity } from 'react-native'
+import Container from '../../components/Container';
 import { NavigationScreenProps } from 'react-navigation';
 
 type Props = {} & NavigationScreenProps

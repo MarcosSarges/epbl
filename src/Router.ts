@@ -1,10 +1,10 @@
 import { createAppContainer, createDrawerNavigator, createStackNavigator, createSwitchNavigator } from 'react-navigation';
-import Inicial from './screens/Inicial';
-import Manual from './screens/Manual';
-import Disciplinas from './screens/Disciplinas';
-import NovaDisciplina from './screens/NovaDisciplina';
-import Problemas from './screens/Problemas';
-import NovoProblema from './screens/NovoProblema';
+import Inicial from './screens/Inicial/Inicial';
+import Manual from './screens/Manual/Manual';
+import Disciplinas from './screens/Disciplina/Disciplinas';
+import NovaDisciplina from './screens/Disciplina/NovaDisciplina';
+import Problemas from './screens/Problema/Problemas';
+import NovoProblema from './screens/Problema/NovoProblema';
 
 
 const Drawer = createDrawerNavigator(
@@ -65,7 +65,7 @@ const Drawer = createDrawerNavigator(
         },
     },
     {
-        initialRouteName: 'Problemas'
+        initialRouteName: 'Manual'
     }
 );
 

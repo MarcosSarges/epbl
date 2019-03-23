@@ -1,8 +1,7 @@
 import React, { Component } from 'react'
-import { View, Text, TextInput, FlatList, TouchableOpacity } from 'react-native'
 import { NavigationScreenProps } from 'react-navigation';
-import Container from '../components/Container';
-import Header from '../components/Header';
+import Container from '../../components/Container';
+import Header from '../../components/Header';
 import { Card, Input, Icon, Button } from 'react-native-elements';
 
 

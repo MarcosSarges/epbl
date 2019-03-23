@@ -13,20 +13,54 @@ const Drawer = createDrawerNavigator(
             screen: Inicial
         },
         Manual: {
-            screen: Manual,
+            screen: createStackNavigator(
+                {
+                    Manual: {
+                        screen: Manual
+                    }
+                },
+                {
+                    defaultNavigationOptions: {
+                        header: null
+                    }
+                }
+            ),
         },
         Disciplinas: {
-            screen: Disciplinas
-        },
-        'Nova Disciplina': {
-            screen: NovaDisciplina
+            screen: createStackNavigator(
+                {
+                    Disciplinas: {
+                        screen: Disciplinas
+                    },
+                    'Nova Disciplina': {
+                        screen: NovaDisciplina
+                    },
+                },
+                {
+                    defaultNavigationOptions: {
+                        header: null
+                    }
+                }
+            )
         },
         Problemas: {
-            screen: Problemas
+            screen: createStackNavigator(
+                {
+                    Problemas: {
+                        screen: Problemas
+                    },
+                    'Novo Problema': {
+                        screen: NovoProblema
+                    }
+                }
+                ,
+                {
+                    defaultNavigationOptions: {
+                        header: null
+                    }
+                }
+            )
         },
-        'Novo Problema': {
-            screen: NovoProblema
-        }
     },
     {
         initialRouteName: 'Inicial'

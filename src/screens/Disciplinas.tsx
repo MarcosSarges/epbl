@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
-import { View, Text, TextInput, FlatList, TouchableOpacity } from 'react-native'
+import { View, FlatList, TouchableOpacity, TouchableHighlight } from 'react-native'
 import { NavigationScreenProps } from 'react-navigation';
 import Container from '../components/Container';
+import { Button, Icon, Input, Card } from 'react-native-elements'
 import Header from '../components/Header';
 
 
@@ -42,48 +43,61 @@ class Disciplinas extends Component<Props> {
         ]
     }
 
+    filter = (input: string) => {
+        const { data, dataOrigem } = this.state;
+
+        if (input.length == 0) {
+            this.setState({ data: dataOrigem });
+        } else {
+            this.setState({
+                data: data.filter((el) => el.titulo.toLowerCase().includes(input.toLowerCase()) && true)
+            })
+        }
+    }
+
+    renderItemList = ({ item, index }: any) =>
+        <TouchableOpacity
+            key={index}
+        >
+            <Card
+                title={`Título: ${item.titulo}`}
+                containerStyle={{ marginTop: 8 }}
+            >
+                <View style={{ flex: 1, justifyContent: 'space-around', flexDirection: 'row', }}>
+                    <Button
+                        type='outline'
+                        containerStyle={{ width: 50 }}
+                        icon={<Icon name='edit' color='#43CB87' />}
+                    />
+                    <Button
+                        type='outline'
+                        containerStyle={{ width: 50 }}
+                        icon={<Icon name='delete' color='#CB4343' />}
+                    />
+                </View>
+            </Card>
+        </TouchableOpacity>
+
     render() {
         return (
             <Container>
                 <Header titulo='Disciplinas' navigation={this.props.navigation} />
                 <View style={{ paddingVertical: 8, paddingHorizontal: 10, flex: 1 }}>
-                    <TextInput
-                        style={{ elevation: 1, width: '100%', height: 60, paddingLeft: 15 }}
-                        placeholder='Filtrar...'
-                        onChangeText={(input) => {
-                            if (input.length == 0) {
-                                this.setState({ data: this.state.dataOrigem });
-                            } else {
-                                this.setState({
-                                    data: this.state.data.filter(({ titulo }) => {
-                                        if (titulo.toLowerCase().includes(input.toLowerCase())) {
-                                            return true
-                                        } else {
-                                            return false
-                                        }
-                                    })
-                                })
-                            }
-                        }}
+                    <Input
+                        placeholder='Filtre as diciplinas'
+                        leftIcon={<Icon name='search' type='material' color='#000' size={20} />}
+                        onChangeText={this.filter}
                     />
                     <FlatList
                         style={{ flex: 1 }}
                         data={this.state.data}
-                        renderItem={({ item }) => (
-                            <TouchableOpacity style={{ margin: 4, height: 50, elevation: 1, borderWidth: 1, borderColor: 'rgba(0,0,0,0)' }}>
-                                <Text>{item.titulo}</Text>
-                                <TouchableOpacity>
-                                    <Text>Aqui via o icone para selecionar</Text>
-                                </TouchableOpacity>
-                            </TouchableOpacity>
-                        )}
+                        renderItem={this.renderItemList}
                     />
-                    <TouchableOpacity
-                        style={{ backgroundColor: '#3F51B5', height: 35, justifyContent: 'center', }}
+                    <Button
+                        title='Nova disciplina'
+                        icon={<Icon name='add' color='#fff' />}
                         onPress={() => this.props.navigation.navigate('Nova Disciplina')}
-                    >
-                        <Text style={{ color: '#fff', textAlign: 'center' }}>Nova disciplina</Text>
-                    </TouchableOpacity>
+                    />
                 </View>
             </Container>
         );

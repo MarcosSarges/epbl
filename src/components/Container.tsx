@@ -1,6 +1,5 @@
 import React from 'react'
 import { View, StatusBar } from 'react-native'
-import Header from './Header';
 
 type Props = {
     children: React.ReactNode,
@@ -8,6 +7,6 @@ type Props = {
 
 export default (props: Props) =>
     <View style={{ flex: 1 }}>
-        <StatusBar backgroundColor='#303F9F' />
+        <StatusBar backgroundColor='#4369cc' />
         {props.children}
     </View>

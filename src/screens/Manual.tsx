@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
-import { View, Text, TextInput, FlatList } from 'react-native'
+import { View, Text, TextInput, FlatList, TouchableOpacity } from 'react-native'
 import { NavigationScreenProps } from 'react-navigation';
 import Container from '../components/Container';
 import Header from '../components/Header';
+import { Input, Icon, Button, Card } from 'react-native-elements';
 
 const Menu = require('./../assets/img/menu.png');
 
@@ -14,22 +15,53 @@ class Manual extends Component<Props> {
             { titulo: 'a', key: 'a' },
             { titulo: 'b', key: 'b' },
             { titulo: 'c', key: 'c' },
-            { titulo: 'd', key: 'd' }
-        ]
+            { titulo: 'd', key: 'd' },
+            { titulo: 'e', key: 'e' },
+            { titulo: 'f', key: 'f' },
+        ],
+        dataOrigem: [
+            { titulo: 'a', key: 'a' },
+            { titulo: 'b', key: 'b' },
+            { titulo: 'c', key: 'c' },
+            { titulo: 'd', key: 'd' },
+            { titulo: 'e', key: 'e' },
+            { titulo: 'f', key: 'f' },
+        ],
+    }
+
+    filter = (input: string) => {
+        const { data, dataOrigem } = this.state;
+
+        if (input.length == 0) {
+            this.setState({ data: dataOrigem });
+        } else {
+            this.setState({
+                data: data.filter((el) => el.titulo.toLowerCase().includes(input.toLowerCase()) && true)
+            })
+        }
     }
 
     render() {
         return (
             <Container>
                 <Header titulo='Manual PBL' navigation={this.props.navigation} />
-                <View style={{ paddingVertical: 8, paddingHorizontal: 10 }}>
-                    <TextInput style={{ elevation: 1, width: '100%', height: 60, paddingLeft: 15 }} placeholder='Filtrar...' />
+                <View style={{ paddingVertical: 8, paddingHorizontal: 10, flex: 1 }}>
+                    <Input
+                        placeholder='Pesquise...'
+                        leftIcon={<Icon name='search' type='material' color='#000' size={20} />}
+                        onChangeText={this.filter}
+                    />
                     <FlatList
                         data={this.state.data}
-                        renderItem={({ item }) => (
-                            <View>
-                                <Text>{item.titulo}</Text>
-                            </View>
+                        renderItem={({ item, index }) => (
+                            <TouchableOpacity
+                                key={index}
+                            >
+                                <Card
+                                    title={item.titulo}
+                                >
+                                </Card>
+                            </TouchableOpacity>
                         )}
                     />
                 </View>

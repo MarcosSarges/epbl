@@ -82,7 +82,7 @@ class Disciplinas extends Component<Props> {
         return (
             <Container>
                 <Header titulo='Disciplinas' navigation={this.props.navigation} />
-                <View style={{ paddingVertical: 8, paddingHorizontal: 10, flex: 1 }}>
+                <View style={{ flex: 1 }}>
                     <Input
                         placeholder='Filtre as diciplinas'
                         leftIcon={<Icon name='search' type='material' color='#000' size={20} />}

@@ -20,6 +20,7 @@ const Drawer = createDrawerNavigator(
                     }
                 },
                 {
+                    initialRouteName: 'Manual',
                     defaultNavigationOptions: {
                         header: null
                     }
@@ -37,6 +38,7 @@ const Drawer = createDrawerNavigator(
                     },
                 },
                 {
+                    initialRouteName: 'Disciplinas',
                     defaultNavigationOptions: {
                         header: null
                     }
@@ -52,9 +54,9 @@ const Drawer = createDrawerNavigator(
                     'Novo Problema': {
                         screen: NovoProblema
                     }
-                }
-                ,
+                },
                 {
+                    initialRouteName:'Problemas',
                     defaultNavigationOptions: {
                         header: null
                     }
@@ -63,7 +65,7 @@ const Drawer = createDrawerNavigator(
         },
     },
     {
-        initialRouteName: 'Inicial'
+        initialRouteName: 'Problemas'
     }
 );
 

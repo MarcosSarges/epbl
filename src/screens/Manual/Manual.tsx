@@ -26,11 +26,6 @@ class Manual extends Component<Props> {
             { titulo: 'f', key: 'f' },
         ],
     }
-
-    componentDidMount() {
-        console.log(this.context)
-    }
-
     filter = (input: string) => {
         const { data, dataOrigem } = this.state;
 

@@ -9,6 +9,7 @@ type Props = {
 
 export default (props: Props) =>
     <Header
+        containerStyle={{ marginTop: -10 }}
         leftComponent={<Button
             type='clear'
             icon={<Icon name="menu" type='material' size={30} color="white" />}

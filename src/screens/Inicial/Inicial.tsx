@@ -8,7 +8,7 @@ type Props = {} & NavigationScreenProps
 class Inicial extends Component<Props> {
     render() {
         return (
-            <Container>
+            <Container hidder>
                 <TouchableOpacity style={{ ...styles.buttonView, backgroundColor: '#3F51B5' }}
                     onPress={() => this.props.navigation.navigate('Disciplinas')}
                 >

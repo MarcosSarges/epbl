@@ -3,29 +3,19 @@ import { View, FlatList, TouchableOpacity } from 'react-native'
 import { NavigationScreenProps } from 'react-navigation';
 import Container from '../../components/Container';
 import Header from '../../components/Header';
-import { Input, Icon, Card } from 'react-native-elements';
+import { Card, CardItem, Text, Body } from 'native-base';
+import { Input, Icon } from 'react-native-elements'
+import Conteudo from './Conteudo';
 
 type Props = {} & NavigationScreenProps
 
 class Manual extends Component<Props> {
+
     state = {
-        data: [
-            { titulo: 'a', key: 'a' },
-            { titulo: 'b', key: 'b' },
-            { titulo: 'c', key: 'c' },
-            { titulo: 'd', key: 'd' },
-            { titulo: 'e', key: 'e' },
-            { titulo: 'f', key: 'f' },
-        ],
-        dataOrigem: [
-            { titulo: 'a', key: 'a' },
-            { titulo: 'b', key: 'b' },
-            { titulo: 'c', key: 'c' },
-            { titulo: 'd', key: 'd' },
-            { titulo: 'e', key: 'e' },
-            { titulo: 'f', key: 'f' },
-        ],
+        data: Conteudo,
+        dataOrigem: Conteudo
     }
+
     filter = (input: string) => {
         const { data, dataOrigem } = this.state;
 
@@ -38,30 +28,25 @@ class Manual extends Component<Props> {
         }
     }
 
+    renderItem = (item: { titulo: string, conteudo: string, key: string }) =>
+        <Card key={item.key}>
+            <CardItem
+                header
+                bordered
+                button
+                onPress={() => this.props.navigation.navigate('DetalhesManual', item)}
+                style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+                <Text>{item.titulo}</Text>
+            </CardItem>
+        </Card >
+
     render() {
         return (
-            <Container>
-                <Header titulo='Manual PBL' navigation={this.props.navigation} />
-                <View style={{ paddingVertical: 8, paddingHorizontal: 10, flex: 1 }}>
-                    <Input
-                        placeholder='Pesquise...'
-                        leftIcon={<Icon name='search' type='material' color='#000' size={20} />}
-                        onChangeText={this.filter}
-                    />
-                    <FlatList
-                        data={this.state.data}
-                        renderItem={({ item, index }) => (
-                            <TouchableOpacity
-                                key={index}
-                            >
-                                <Card
-                                    title={item.titulo}
-                                >
-                                </Card>
-                            </TouchableOpacity>
-                        )}
-                    />
-                </View>
+            <Container title='Manual do PBL' navigation={this.props.navigation}>
+                <FlatList
+                    data={this.state.data}
+                    renderItem={({ item }) => this.renderItem(item)}
+                />
             </Container>
         );
     }

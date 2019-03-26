@@ -1,4 +1,5 @@
-import { createAppContainer, createDrawerNavigator, createStackNavigator, createSwitchNavigator, createMaterialTopTabNavigator, createBottomTabNavigator } from 'react-navigation';
+import React from 'react'
+import { createAppContainer, createDrawerNavigator, createStackNavigator, createBottomTabNavigator } from 'react-navigation';
 import Inicial from './screens/Inicial/Inicial';
 import Manual from './screens/Manual/Manual';
 import Disciplinas from './screens/Disciplina/Disciplinas';
@@ -9,7 +10,7 @@ import Objetivos from './screens/Objetivo/Objetivo';
 import Execucao from './screens/Passos/Execucao';
 import Monitoramento from './screens/Passos/Monitoramento';
 import TabNavigation from './components/TabNavigation';
-import React from 'react'
+import DetalhesManual from './screens/Manual/DetalhesManual';
 
 const Drawer = createDrawerNavigator(
     {
@@ -21,6 +22,9 @@ const Drawer = createDrawerNavigator(
                 {
                     Manual: {
                         screen: Manual
+                    },
+                    DetalhesManual: {
+                        screen: DetalhesManual
                     }
                 },
                 {
@@ -101,7 +105,7 @@ const Drawer = createDrawerNavigator(
         }
     },
     {
-        initialRouteName: 'Inicial'
+        initialRouteName: 'Inicial',
     }
 );
 

@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
-import { Text, StyleSheet, TouchableOpacity } from 'react-native'
-import Container from '../../components/Container';
+import { Text, StyleSheet, TouchableOpacity, View, StatusBar } from 'react-native'
 import { NavigationScreenProps } from 'react-navigation';
 
 type Props = {} & NavigationScreenProps
@@ -8,7 +7,8 @@ type Props = {} & NavigationScreenProps
 class Inicial extends Component<Props> {
     render() {
         return (
-            <Container hidder>
+            <View style={{ flex: 1 }}>
+                <StatusBar hidden />
                 <TouchableOpacity style={{ ...styles.buttonView, backgroundColor: '#3F51B5' }}
                     onPress={() => this.props.navigation.navigate('Disciplinas')}
                 >
@@ -19,7 +19,7 @@ class Inicial extends Component<Props> {
                 >
                     <Text style={styles.textButton}>Manual PBL</Text>
                 </TouchableOpacity>
-            </Container>
+            </View>
         );
     }
 }

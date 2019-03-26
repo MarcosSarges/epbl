@@ -1,6 +1,6 @@
 import React from 'react'
 import { NavigationScreenProps } from 'react-navigation';
-import { Header, Button, Icon } from 'react-native-elements';
+import { Header, Left, Button, Icon, Body, Title, Right } from 'native-base';
 
 type Props = {
     titulo: string
@@ -8,12 +8,20 @@ type Props = {
 
 
 export default (props: Props) =>
-    <Header
-        containerStyle={{ marginTop: -10 }}
-        leftComponent={<Button
-            type='clear'
-            icon={<Icon name="menu" type='material' size={30} color="white" />}
-            onPress={() => props.navigation.openDrawer()}
-        />}
-        centerComponent={{ text: props.titulo, style: { color: '#fff', fontSize: 20 } }}
-    />
+    <Header>
+        <Left>
+            <Button
+                transparent
+                icon={true}
+                onPress={() => props.navigation.openDrawer()}
+            >
+                <Icon name='menu' color='#fff' />
+            </Button>
+        </Left>
+        <Body>
+            <Title >
+                {props.titulo}
+            </Title>
+        </Body>
+        <Right />
+    </Header>

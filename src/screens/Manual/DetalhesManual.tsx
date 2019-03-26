@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { NavigationScreenProps } from 'react-navigation';
 import Container from '../../components/Container';
-import { Card, Body, Text, Title, CardItem } from 'native-base';
+import { Card, Body, Text, Title, CardItem, Content } from 'native-base';
 
 type Props = {
 
@@ -25,18 +25,20 @@ class DetalhesManual extends Component<Props, State> {
         title={this.state.titulo}
         navigation={this.props.navigation}
       >
-        <Text style={{ fontSize: 20, fontFamily: 'arial', fontWeight: 'bold', textAlign: 'center' }}>
-          {this.state.titulo}
-        </Text>
-        <Card >
-          <CardItem>
-            <Body>
-              <Text>
-                {this.state.conteudo}
-              </Text>
-            </Body>
-          </CardItem>
-        </Card>
+        <Content style={{ margin: 16 }}>
+          <Text style={{ fontSize: 20, fontFamily: 'arial', fontWeight: 'bold', textAlign: 'center' }}>
+            {this.state.titulo}
+          </Text>
+          <Card >
+            <CardItem>
+              <Body>
+                <Text>
+                  {this.state.conteudo}
+                </Text>
+              </Body>
+            </CardItem>
+          </Card>
+        </Content>
       </Container>
     );
   }

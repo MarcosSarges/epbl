@@ -2,8 +2,9 @@ import React, { Component } from 'react'
 import { View, FlatList, TouchableOpacity } from 'react-native'
 import { NavigationScreenProps } from 'react-navigation';
 import Container from '../../components/Container';
-import { Button, Icon, Input, Card } from 'react-native-elements'
-import Header from '../../components/Header';
+import { Button, Icon, Card, Text } from 'native-base'
+import { Input } from 'react-native-elements';
+
 
 
 type Props = {} & NavigationScreenProps
@@ -80,25 +81,27 @@ class Disciplinas extends Component<Props> {
 
     render() {
         return (
-            <Container>
-                <Header titulo='Disciplinas' navigation={this.props.navigation} />
-                <View style={{ flex: 1 }}>
-                    <Input
-                        placeholder='Filtre as diciplinas'
-                        leftIcon={<Icon name='search' type='material' color='#000' size={20} />}
-                        onChangeText={this.filter}
-                    />
-                    <FlatList
-                        style={{ flex: 1 }}
-                        data={this.state.data}
-                        renderItem={this.renderItemList}
-                    />
-                    <Button
-                        title='Nova disciplina'
-                        icon={<Icon name='add' color='#fff' />}
-                        onPress={() => this.props.navigation.navigate('Nova Disciplina')}
-                    />
-                </View>
+            <Container title='Disciplinas' navigation={this.props.navigation} >
+
+                <Input
+                    placeholder='Filtre as diciplinas'
+                    leftIcon={<Icon name='search' color='#000' />}
+                    onChangeText={this.filter}
+                />
+                <FlatList
+                    style={{ flex: 1, margin: 16 }}
+                    data={this.state.data}
+                    renderItem={this.renderItemList}
+                />
+                <Button
+                    style={{ marginHorizontal: 16, marginBottom: 16 }}
+                    full
+                    onPress={() => this.props.navigation.navigate('Nova Disciplina')}
+                >
+                    <Icon name='add' type='MaterialIcons' />
+                    <Text>Nova Disciplina</Text>
+                </Button>
+
             </Container>
         );
     }

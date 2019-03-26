@@ -1,5 +1,5 @@
 import React from 'react'
-import { View, StatusBar } from 'react-native'
+import { View, StatusBar, ViewStyle, TextStyle } from 'react-native'
 import { Container, Content } from 'native-base';
 import Header from './Header';
 import { NavigationScreenProps } from 'react-navigation';
@@ -8,6 +8,7 @@ type Props = {
     children: React.ReactNode,
     hidder?: boolean,
     title: string,
+
 } & NavigationScreenProps
 
 export default (props: Props) =>
@@ -21,8 +22,6 @@ export default (props: Props) =>
                 titulo={props.title}
                 navigation={props.navigation}
             />
-            <Content style={{ flex: 1, margin: 16 }}>
-                {props.children}
-            </Content>
+            {props.children}
         </Container>
     </View>

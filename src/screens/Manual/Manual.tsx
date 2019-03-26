@@ -24,7 +24,7 @@ const Manual = (props: Props) => {
 
     return (
         <Container title='Manual do PBL' navigation={props.navigation}>
-            <FlatList data={Conteudo} renderItem={({ item }) => renderItem(item)} />
+            <FlatList style={{ margin: 16 }} data={Conteudo} renderItem={({ item }) => renderItem(item)} />
         </Container>
     );
 

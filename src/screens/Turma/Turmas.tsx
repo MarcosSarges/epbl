@@ -1,15 +1,12 @@
 import React, { Component } from 'react'
-import { View, FlatList, TouchableOpacity } from 'react-native'
+import { FlatList, View } from 'react-native'
 import { NavigationScreenProps } from 'react-navigation';
 import Container from '../../components/Container';
-import { Button, Icon, Card, Text } from 'native-base'
-import { Input } from 'react-native-elements';
-
-
+import { Button, Input, Icon, Card, Text, CardItem, Item, Label } from 'native-base'
 
 type Props = {} & NavigationScreenProps
 
-class Disciplinas extends Component<Props> {
+class Turmas extends Component<Props> {
 
     state = {
         data: [
@@ -57,49 +54,36 @@ class Disciplinas extends Component<Props> {
     }
 
     renderItemList = ({ item, index }: any) =>
-        <TouchableOpacity
-            key={index}
-        >
-            <Card
-                title={`Título: ${item.titulo}`}
-                containerStyle={{ marginTop: 8 }}
-            >
-                <View style={{ flex: 1, justifyContent: 'space-around', flexDirection: 'row', }}>
-                    <Button
-                        type='outline'
-                        containerStyle={{ width: 50 }}
-                        icon={<Icon name='edit' color='#43CB87' />}
-                    />
-                    <Button
-                        type='outline'
-                        containerStyle={{ width: 50 }}
-                        icon={<Icon name='delete' color='#CB4343' />}
-                    />
-                </View>
-            </Card>
-        </TouchableOpacity>
+        <Card>
+            <CardItem header bordered button
+                onPress={() => this.props.navigation.navigate('')}
+                style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+                <Text>{item.titulo}</Text>
+            </CardItem>
+        </Card>
 
     render() {
         return (
-            <Container title='Disciplinas' navigation={this.props.navigation} >
-
-                <Input
-                    placeholder='Filtre as diciplinas'
-                    leftIcon={<Icon name='search' color='#000' />}
-                    onChangeText={this.filter}
-                />
+            <Container title='Turmas' navigation={this.props.navigation} >
+                <View style={{ marginTop: 10, marginHorizontal: 16 }}>
+                    <Item floatingLabel >
+                        <Label>Filtrar...</Label>
+                        <Input onChangeText={this.filter} />
+                    </Item>
+                </View>
                 <FlatList
                     style={{ flex: 1, margin: 16 }}
                     data={this.state.data}
                     renderItem={this.renderItemList}
                 />
                 <Button
-                    style={{ marginHorizontal: 16, marginBottom: 16 }}
                     full
-                    onPress={() => this.props.navigation.navigate('Nova Disciplina')}
+                    icon
+                    style={{ marginHorizontal: 16, marginBottom: 16 }}
+                    onPress={() => this.props.navigation.navigate('NovaTurma')}
                 >
-                    <Icon name='add' type='MaterialIcons' />
-                    <Text>Nova Disciplina</Text>
+                    <Icon name='add' type='MaterialIcons' fontSize={40} />
+                    <Text>Nova Turma</Text>
                 </Button>
 
             </Container>
@@ -107,4 +91,4 @@ class Disciplinas extends Component<Props> {
     }
 }
 
-export default Disciplinas;
+export default Turmas;

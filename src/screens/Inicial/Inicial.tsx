@@ -10,7 +10,7 @@ class Inicial extends Component<Props> {
             <View style={{ flex: 1 }}>
                 <StatusBar hidden />
                 <TouchableOpacity style={{ ...styles.buttonView, backgroundColor: '#3F51B5' }}
-                    onPress={() => this.props.navigation.navigate('Disciplinas')}
+                    onPress={() => this.props.navigation.navigate('Turmas')}
                 >
                     <Text style={styles.textButton}>Iniciar</Text>
                 </TouchableOpacity>

@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text } from 'react-native';
+import { View } from 'react-native';
 import { NavigationScreenProps, NavigationTabRouterConfig } from 'react-navigation';
 import { Button } from 'react-native-elements';
 
@@ -10,7 +10,6 @@ type Props = {
 
 export default (props: Props) => {
 
-  console.log(props.navigation.state)
   let action1 = {}
   let action2 = {}
   if (0 === props.navigation.state.index)

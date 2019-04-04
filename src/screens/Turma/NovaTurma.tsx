@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { NavigationScreenProps } from 'react-navigation';
 import Container from '../../components/Container';
-import { Card, Button, Text, Input, CardItem, Item, Label, View } from 'native-base';
+import { Card, Button, Text, Input, CardItem, Item, Label, View, Form } from 'native-base';
 import { Alert } from 'react-native';
 
 type Props = {} & NavigationScreenProps
@@ -16,32 +16,29 @@ class NovaTurma extends Component<Props> {
                 </Text>
 
                 <View style={{ marginHorizontal: 16 }}>
-                    <Card >
-                        <CardItem bordered>
-                            <Item floatingLabel>
-                                <Label>Identificação da turma</Label>
-                                <Input />
-                            </Item>
-                        </CardItem>
-                        <CardItem bordered>
-                            <Item floatingLabel>
-                                <Label>Ano</Label>
-                                <Input keyboardType='numeric' />
-                            </Item>
-                        </CardItem>
-                        <CardItem bordered>
-                            <Item floatingLabel>
-                                <Label>Semestre</Label>
-                                <Input keyboardType='numeric' />
-                            </Item>
-                        </CardItem>
-                    </Card>
+                    <Form >
+                        <Item floatingLabel>
+                            <Label>Identificação da turma</Label>
+                            <Input />
+                        </Item>
+
+                        <Item floatingLabel>
+                            <Label>Ano</Label>
+                            <Input keyboardType='numeric' />
+                        </Item>
+
+                        <Item floatingLabel>
+                            <Label>Semestre</Label>
+                            <Input keyboardType='numeric' />
+                        </Item>
+                    </Form>
                 </View>
                 <View
-                    style={{ margin: 16, justifyContent: 'space-around', flexDirection: 'row' }}
+                    style={{ justifyContent: 'space-around', flexDirection: 'row' }}
                 >
                     <Button
                         success
+                        style={{ marginTop: 16, marginHorizontal: 16, flex: 1, alignItems: 'center' }}
                         onPress={() => {
                             Alert.alert('Salvar', 'Você realmente deseja salvar a nova turma?',
                                 [
@@ -51,9 +48,10 @@ class NovaTurma extends Component<Props> {
                             )
                         }}
                     >
-                        <Text>Salvar</Text>
+                        <Text >Salvar</Text>
                     </Button>
                     <Button
+                        style={{ marginTop: 16, marginRight: 16, flex: 1, alignItems: 'center' }}
                         danger
                         onPress={() => {
                             Alert.alert('Cancelamento', 'Você realmente deseja cancelar o cadastro da turma?',
@@ -64,7 +62,7 @@ class NovaTurma extends Component<Props> {
                             )
                         }}
                     >
-                        <Text>Cancelar</Text>
+                        <Text >Cancelar</Text>
                     </Button>
                 </View>
             </Container>

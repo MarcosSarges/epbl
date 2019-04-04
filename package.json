@@ -35,7 +35,7 @@
   },
   "rnpm": {
     "assets": [
-      "./src/assets/fonts/"
+      "./node_module/native-base/Fonts"
     ]
   }
 }

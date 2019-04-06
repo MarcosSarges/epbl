@@ -8,7 +8,8 @@ type Props = {
     children: React.ReactNode,
     hidder?: boolean,
     title: string,
-    cad?: boolean
+    cad?: boolean,
+    destino?: string
 } & NavigationScreenProps
 
 export default (props: Props) =>
@@ -19,6 +20,7 @@ export default (props: Props) =>
         />
         <Container style={{ flex: 1 }}>
             <Header
+                destino={props.destino}
                 cad={props.cad ? true : false}
                 titulo={props.title}
                 navigation={props.navigation}

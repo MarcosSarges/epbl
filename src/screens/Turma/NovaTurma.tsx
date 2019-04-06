@@ -10,29 +10,28 @@ class NovaTurma extends Component<Props> {
 
     render() {
         return (
-            <Container cad title='Nova Turma' navigation={this.props.navigation} >
+            <Container cad title='Nova Turma' navigation={this.props.navigation} destino='Turmas' >
                 <Text style={{ fontSize: 20, fontFamily: 'arial', fontWeight: 'bold', textAlign: 'center' }}>
                     Turma
                 </Text>
 
-                <View style={{ marginHorizontal: 16 }}>
-                    <Form >
-                        <Item floatingLabel>
-                            <Label>Identificação da turma</Label>
-                            <Input />
-                        </Item>
+                <Form style={{ marginHorizontal: 16 }} >
+                    <Item floatingLabel>
+                        <Label>Identificação da turma</Label>
+                        <Input />
+                    </Item>
 
-                        <Item floatingLabel>
-                            <Label>Ano</Label>
-                            <Input keyboardType='numeric' />
-                        </Item>
+                    <Item floatingLabel>
+                        <Label>Ano</Label>
+                        <Input keyboardType='numeric' />
+                    </Item>
 
-                        <Item floatingLabel>
-                            <Label>Semestre</Label>
-                            <Input keyboardType='numeric' />
-                        </Item>
-                    </Form>
-                </View>
+                    <Item floatingLabel>
+                        <Label>Semestre</Label>
+                        <Input keyboardType='numeric' />
+                    </Item>
+                </Form>
+
                 <View
                     style={{ justifyContent: 'space-around', flexDirection: 'row' }}
                 >

@@ -914,6 +914,14 @@
   resolved "https://registry.yarnpkg.com/@types/prop-types/-/prop-types-15.7.0.tgz#4c48fed958d6dcf9487195a0ef6456d5f6e0163a"
   integrity sha512-eItQyV43bj4rR3JPV0Skpl1SncRCdziTEK9/v8VwXmV6d/qOUO8/EuWeHBbCZcsfSHfzI5UyMJLCSXtxxznyZg==
 
+"@types/react-native-vector-icons@^6.4.0":
+  version "6.4.0"
+  resolved "https://registry.yarnpkg.com/@types/react-native-vector-icons/-/react-native-vector-icons-6.4.0.tgz#3ff6b29c8e831f11364c12801ae7966dab8dcbe0"
+  integrity sha512-UNRMIMbqeryNDQvZVZoPyqXIKLWmLRInhN5gDySxquJcZvWNW+1NSm4lXQlRdzC9Da3mSU1QEppoeI438f2JRw==
+  dependencies:
+    "@types/react" "*"
+    "@types/react-native" "*"
+
 "@types/react-native@*", "@types/react-native@^0.57.40":
   version "0.57.40"
   resolved "https://registry.yarnpkg.com/@types/react-native/-/react-native-0.57.40.tgz#a227acb6b2c7372cb678202df4cfe716ace9ce94"
@@ -5217,6 +5225,11 @@ react-native-status-bar-height@^2.2.0:
   version "2.3.1"
   resolved "https://registry.yarnpkg.com/react-native-status-bar-height/-/react-native-status-bar-height-2.3.1.tgz#b92ce9112c2367290847ac11284d9d84a6330169"
   integrity sha512-m9nGKYfFn6ljF1abafzF5cFaD9JCzXwj7kNE9CuF+g0TgtItH70eY2uHaCV9moENTftqd5XIS3Cx0mf4WfistA==
+
+react-native-swipe-list-view@^1.5.3:
+  version "1.5.3"
+  resolved "https://registry.yarnpkg.com/react-native-swipe-list-view/-/react-native-swipe-list-view-1.5.3.tgz#6e5f0795ccfb9bf12b76ccbdfb7146c0ae2bd95b"
+  integrity sha512-6EVGOsSqKbkOhUmTbXsGZSlLNtwgFj5+/hp68Ho6ie/z8aop9RLsXZm9sziBj2fBF3+VyG7sX0QsLDSgJ4i2rw==
 
 react-native-tab-view@^1.0.0, react-native-tab-view@^1.2.0:
   version "1.3.2"

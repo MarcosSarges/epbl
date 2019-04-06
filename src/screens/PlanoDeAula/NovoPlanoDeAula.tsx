@@ -24,7 +24,7 @@ class NovoPlanoDeAula extends Component<Props> {
 
   render() {
     return (
-      <Container cad title='Novo Plano de Aula' navigation={this.props.navigation} >
+      <Container cad title='Novo Plano de Aula' navigation={this.props.navigation} destino='NovaTurma' >
         <ScrollView>
           <Form style={{ paddingHorizontal: 16 }}>
             <Item floatingLabel>

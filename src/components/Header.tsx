@@ -4,7 +4,8 @@ import { Header, Left, Button, Icon, Body, Title, Right, Text } from 'native-bas
 
 type Props = {
     titulo: string,
-    cad: boolean
+    cad: boolean,
+    destino?: string
 } & NavigationScreenProps
 
 
@@ -15,7 +16,7 @@ export default (props: Props) =>
                 <Button
                     transparent
                     icon={true}
-                    onPress={() => props.navigation.goBack()}
+                    onPress={() => props.destino ? props.navigation.navigate(props.destino) : false}
                 >
                     <Icon name='arrow-left' type='FontAwesome5' color='#fff' />
                 </Button> :

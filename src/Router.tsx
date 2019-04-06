@@ -7,31 +7,14 @@ import Manual from './screens/Manual/Manual';
 import DetalhesManual from './screens/Manual/DetalhesManual';
 import NovoPlanoDeAula from './screens/PlanoDeAula/NovoPlanoDeAula';
 import Passos from './screens/Passos/Passos';
+import CriarTarefa from './screens/Passos/CriarTarefa';
 
 const Drawer = createDrawerNavigator(
     {
         // Inicial: {
         //     screen: Inicial
         // },
-        Manual: {
-            screen: createStackNavigator(
-                {
-                    Manual: {
-                        screen: Manual
-                    },
-                    DetalhesManual: {
-                        screen: DetalhesManual
-                    }
-                },
-                {
-                    initialRouteName: 'Manual',
-                    defaultNavigationOptions: {
-                        header: null,
-                    }
-                }
-            ),
-        },
-        FluxoPrincipal: {
+        Turmas: {
             screen: createSwitchNavigator(
                 {
                     Turmas: {
@@ -58,13 +41,40 @@ const Drawer = createDrawerNavigator(
                             header: null
                         }
                     },
+                    CriarTarefa: {
+                        screen: CriarTarefa,
+                        navigationOptions: {
+                            header: null
+                        }
+                    }
                 },
                 {
-                    initialRouteName: 'NovoPlanoDeAula',
-
+                    initialRouteName: 'CriarTarefa',
+                    resetOnBlur: true,
+                    backBehavior: 'initialRoute',
                 }
             )
         },
+        Manual: {
+            screen: createStackNavigator(
+                {
+                    Manual: {
+                        screen: Manual
+                    },
+                    DetalhesManual: {
+                        screen: DetalhesManual
+                    }
+                },
+                {
+                    initialRouteName: 'Manual',
+                    defaultNavigationOptions: {
+                        header: null,
+                    },
+
+                }
+            ),
+        },
+
         //     Problemas: {
         //         screen: createStackNavigator(
         //             {
@@ -118,7 +128,7 @@ const Drawer = createDrawerNavigator(
         //     }
     },
     {
-        initialRouteName: 'FluxoPrincipal',
+        initialRouteName: 'Turmas',
     }
 );
 

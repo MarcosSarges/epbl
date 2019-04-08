@@ -11,26 +11,23 @@
 import React, { Component } from 'react';
 import Router from './Router';
 
-const Context = React.createContext({});
+import SQLite from 'react-native-sqlite-storage';
+SQLite.DEBUG(true);
+SQLite.enablePromise(true);
 
-class Provider extends Component {
+const database_name = "Test.db";
+const database_version = "1.0";
+const database_displayname = "SQLite Test Database";
+const database_size = 200000;
+let db;
 
-  state = {
-
-  }
-
-  render() {
-    return (
-      <Context.Provider value={{ ...this.state, }}>
-        {this.props.children}
-      </Context.Provider>
-    );
-  }
-}
 
 
 interface Props { }
 export default class App extends Component<Props> {
+
+  
+
   render() {
     return (
       <Router />

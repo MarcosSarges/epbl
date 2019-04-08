@@ -3,7 +3,7 @@ import { View, FlatList, Text, TouchableOpacity } from 'react-native';
 import { NavigationScreenProps } from 'react-navigation';
 import Container from '../../components/Container';
 import Icon from 'react-native-vector-icons/FontAwesome5';
-import ModalPassos from '../../components/Modal';
+import ModalPassos from '../../components/ModalPassos';
 
 type Props = {
 
@@ -12,9 +12,7 @@ type Props = {
 class Passos extends Component<Props> {
 
   state = {
-    data: [
-      { titulo: 'ab', key: 'a' },
-    ],
+    data: [],
     modalVisible: false,
   }
 
@@ -26,17 +24,30 @@ class Passos extends Component<Props> {
       <Container navigation={this.props.navigation} title='Passos' cad destino='NovoPlanoDeAula'>
         <ModalPassos modalVisible={this.state.modalVisible} hiddenModel={(titulo) => {
           const { data } = this.state;
-          data.push({ titulo, key: titulo })
+          data.push({ titulo: titulo, key: titulo })
           this.setState({ modalVisible: false, data })
         }} />
 
-        <FlatList
+        {this.state.data.length > 0 ? <FlatList
           data={this.state.data}
           renderItem={({ item, index }) => {
-            return <View><Text>{item.titulo}</Text></View>
+            return <View style={{ flexDirection: 'row', justifyContent: 'space-between', marginHorizontal: 8, marginVertical: 5 }}>
+              <TouchableOpacity
+                onPress={() => this.props.navigation.navigate('CriarTarefa', { nomePasso: `${item.titulo}` })}
+              >
+                <Text>{item.titulo}</Text>
+              </TouchableOpacity>
+
+              <TouchableOpacity
+                onPress={() => { }}
+                style={{ backgroundColor: 'red', padding: 10 }}
+              >
+                <Text style={{ color: '#FFF' }}>Deletar</Text>
+              </TouchableOpacity>
+            </View>
           }}
-        />
-        
+        /> : <Text style={{ flex: 1 }}>Você não possui nenhum passo</Text>}
+
         <TouchableOpacity
           activeOpacity={0.8}
           onPress={() => this.setState({ modalVisible: true })}

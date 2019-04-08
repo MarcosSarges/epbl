@@ -49,7 +49,7 @@ const Drawer = createDrawerNavigator(
                     }
                 },
                 {
-                    initialRouteName: 'CriarTarefa',
+                    initialRouteName: 'Turmas',
                     resetOnBlur: true,
                     backBehavior: 'initialRoute',
                 }

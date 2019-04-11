@@ -8,6 +8,10 @@ type Props = {} & NavigationScreenProps
 
 class Turmas extends Component<Props> {
 
+    componentDidMount() {
+
+    }
+
     state = {
         data: [
             { titulo: 'ab', key: 'a' },

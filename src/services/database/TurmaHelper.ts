@@ -31,11 +31,13 @@ const salvarTurma = (titulo: String, ano: String, semestre: String) => {
   );
 };
 
-const listarTodasAsTurmas = () => {
+const listarTodasAsTurmas = (): Promise<[]> => {
+  //for (let i = 0; i <= 10; i++) salvarTurma('a','1','1');
+
   return new Promise((res, rej) => {
     try {
       criarTabela();
-      const linha: any = [];
+      const linhas: any = [];
       db.transaction((tx: Transaction) => {
         tx.executeSql(
           "SELECT * FROM Turma",
@@ -43,12 +45,12 @@ const listarTodasAsTurmas = () => {
           (tx: Transaction, results: ResultSet) => {
             let len = results.rows.length;
             for (let i = 0; i < len; i++) {
-              linha.push(results.rows.item(i));
+              linhas.push(results.rows.item(i));
             }
+            res(linhas);
           }
         );
       });
-      res(linha);
     } catch (e) {
       console.log(e);
       rej(e);

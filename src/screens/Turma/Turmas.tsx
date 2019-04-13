@@ -13,9 +13,19 @@ import {
   Label
 } from "native-base";
 import sqlTurma from "../../services/database/TurmaHelper";
+import Provider, { Consumer } from "../../services/context/ContextApi";
 
 type Props = {} & NavigationScreenProps;
 
+interface ctx {
+  listaTurmas: [];
+  listaProblemas: [];
+  listaPlanoDeAula: [];
+  listaPassos: [];
+  listaTarefas: [];
+  listaObjetivos: [];
+  listaReferencias: [];
+}
 class Turmas extends Component<Props> {
   state = {
     data: [],
@@ -46,6 +56,7 @@ class Turmas extends Component<Props> {
   };
 
   renderItemList = ({ item }: any) => {
+    console.log(item);
     return (
       <Card>
         <CardItem
@@ -71,14 +82,25 @@ class Turmas extends Component<Props> {
             <Input onChangeText={this.filter} />
           </Item>
         </View>
-
-        <FlatList
-          style={{ flex: 1, margin: 16 }}
-          data={data}
-          //@ts-ignore
-          keyExtractor={item => `${item.turma_id}`}
-          renderItem={this.renderItemList}
-        />
+        <Provider>
+          <Consumer>
+            {ctx => {
+              if (ctx.listaTurmas.length > 0) {
+                return (
+                  <FlatList
+                    style={{ flex: 1, margin: 16 }}
+                    data={ctx.listaTurmas}
+                    //@ts-ignore
+                    keyExtractor={item => `${item.turma_id}`}
+                    renderItem={this.renderItemList}
+                  />
+                );
+              } else {
+                return false;
+              }
+            }}
+          </Consumer>
+        </Provider>
 
         <Button
           full

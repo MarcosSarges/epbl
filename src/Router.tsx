@@ -12,7 +12,6 @@ import NovaTurma from "./screens/Turma/NovaTurma";
 import Manual from "./screens/Manual/Manual";
 import DetalhesManual from "./screens/Manual/DetalhesManual";
 
-import NovoPlanoDeAula from "./screens/PlanoDeAula/NovoPlanoDeAula";
 
 import Problemas from "./screens/Problema/Problemas";
 import NovoProblema from "./screens/Problema/NovoProblema";
@@ -24,30 +23,29 @@ import Objetivos from "./screens/Objetivo/Objetivos";
 import NovoObjetivo from "./screens/Objetivo/NovoObjetivo";
 
 import Referencias from "./screens/Referencia/Referencias";
+
 import PlanosdeAula from "./screens/PlanoDeAula/PlanosdeAula";
+import NovoPlanoDeAula from "./screens/PlanoDeAula/NovoPlanoDeAula";
+
 
 const Drawer = createDrawerNavigator(
   {
-    // Inicial: {
-    //     screen: Inicial
-    // },
-    "Planos De Aula":{
-      screen: createSwitchNavigator(
-        {
-          PlanosDeAula: {
-            screen: PlanosdeAula,
-            navigationOptions: {
-              header: null
-            }
-          },
-          NovoPlanoDeAula: {
-            screen: NovoPlanoDeAula,
-            navigationOptions: {
-              header: null
-            }
+    "Planos De Aula": {
+      screen: createSwitchNavigator({
+        PlanosDeAula: {
+          screen: PlanosdeAula,
+          navigationOptions: {
+            header: null
           }
-        })
-      },
+        },
+        NovoPlanoDeAula: {
+          screen: NovoPlanoDeAula,
+          navigationOptions: {
+            header: null
+          }
+        }
+      })
+    },
     Turmas: {
       screen: createSwitchNavigator(
         {
@@ -89,53 +87,22 @@ const Drawer = createDrawerNavigator(
         }
       )
     },
-    Problemas:{
-      screen: createSwitchNavigator(
-        {
-          Problemas: {
-            screen: Problemas,
-            navigationOptions: {
-              header: null
-            }
-          },
-          NovoProblema: {
-            screen: NovoProblema,
-            navigationOptions: {
-              header: null
-            }
+    Problemas: {
+      screen: createSwitchNavigator({
+        Problemas: {
+          screen: Problemas,
+          navigationOptions: {
+            header: null
           }
-        })
-      },
-    // Referencias: {
-    //   screen: createStackNavigator(
-    //     {
-    //       Referncias: {
-    //         screen: Referencias
-    //       }
-    //     },
-    //     {
-    //       initialRouteName: "Referencias",
-    //       defaultNavigationOptions: {
-    //         header: null
-    //       }
-    //     }
-    //   )
-    // },
-    // Objetivos: {
-    //   screen: createStackNavigator(
-    //     {
-    //       Objetivos: {
-    //         screen: Objetivos
-    //       }
-    //     },
-    //     {
-    //       initialRouteName: "Objetivos",
-    //       defaultNavigationOptions: {
-    //         header: null
-    //       }
-    //     }
-    //   )
-    // },
+        },
+        NovoProblema: {
+          screen: NovoProblema,
+          navigationOptions: {
+            header: null
+          }
+        }
+      })
+    },
     Manual: {
       screen: createStackNavigator(
         {
@@ -154,61 +121,10 @@ const Drawer = createDrawerNavigator(
         }
       )
     }
-
-    //     Problemas: {
-    //         screen: createStackNavigator(
-    //             {
-    //                 Problemas: {
-    //                     screen: Problemas
-    //                 },
-    //                 'NovoProblema': {
-    //                     screen: NovoProblema
-    //                 },
-    //                 FluxoPassos: {
-    //                     screen: createBottomTabNavigator(
-    //                         {
-    //                             Execucao: {
-    //                                 screen: Execucao,
-    //                             },
-    //                             Monitoramento: {
-    //                                 screen: Monitoramento,
-    //                             }
-    //                         },
-    //                         {
-    //                             initialRouteName: 'Execucao',
-    //                             tabBarComponent: ({ navigation }) => <TabNavigation navigation={navigation} />
-    //                         }
-    //                     )
-    //                 }
-    //             },
-    //             {
-    //                 initialRouteName: 'FluxoPassos',
-    //                 defaultNavigationOptions: {
-    //                     header: null
-    //                 }
-    //             }
-    //         )
-    //     },
-    //     Objetivos: {
-    //         screen: createStackNavigator(
-    //             {
-    //                 Objetivos: {
-    //                     screen: Objetivos
-    //                 },
-
-    //             },
-    //             {
-    //                 initialRouteName: 'Objetivos',
-    //                 defaultNavigationOptions: {
-    //                     header: null,
-
-    //                 }
-    //             }
-    //         )
-    //     }
   },
   {
-    initialRouteName: "Turmas"
+    initialRouteName: "Planos De Aula",
+    backBehavior: "initialRoute",
   }
 );
 

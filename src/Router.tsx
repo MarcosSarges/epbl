@@ -11,17 +11,43 @@ import NovaTurma from "./screens/Turma/NovaTurma";
 
 import Manual from "./screens/Manual/Manual";
 import DetalhesManual from "./screens/Manual/DetalhesManual";
+
 import NovoPlanoDeAula from "./screens/PlanoDeAula/NovoPlanoDeAula";
+
+import Problemas from "./screens/Problema/Problemas";
+import NovoProblema from "./screens/Problema/NovoProblema";
+
 import Passos from "./screens/Passos/Passos";
 import CriarTarefa from "./screens/Passos/CriarTarefa";
+
 import Objetivos from "./screens/Objetivo/Objetivos";
+import NovoObjetivo from "./screens/Objetivo/NovoObjetivo";
+
 import Referencias from "./screens/Referencia/Referencias";
+import PlanosdeAula from "./screens/PlanoDeAula/PlanosdeAula";
 
 const Drawer = createDrawerNavigator(
   {
     // Inicial: {
     //     screen: Inicial
     // },
+    "Planos De Aula":{
+      screen: createSwitchNavigator(
+        {
+          PlanosDeAula: {
+            screen: PlanosdeAula,
+            navigationOptions: {
+              header: null
+            }
+          },
+          NovoPlanoDeAula: {
+            screen: NovoPlanoDeAula,
+            navigationOptions: {
+              header: null
+            }
+          }
+        })
+      },
     Turmas: {
       screen: createSwitchNavigator(
         {
@@ -63,6 +89,23 @@ const Drawer = createDrawerNavigator(
         }
       )
     },
+    Problemas:{
+      screen: createSwitchNavigator(
+        {
+          Problemas: {
+            screen: Problemas,
+            navigationOptions: {
+              header: null
+            }
+          },
+          NovoProblema: {
+            screen: NovoProblema,
+            navigationOptions: {
+              header: null
+            }
+          }
+        })
+      },
     // Referencias: {
     //   screen: createStackNavigator(
     //     {

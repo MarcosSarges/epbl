@@ -57,7 +57,7 @@ const Drawer = createDrawerNavigator(
           }
         },
         {
-          initialRouteName: "Turmas",
+          initialRouteName: "Passos",
           resetOnBlur: true,
           backBehavior: "initialRoute"
         }

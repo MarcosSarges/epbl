@@ -15,7 +15,8 @@ type Props = { modalVisible: boolean; hiddenModel: (titulo: string) => void };
 
 class ModalPassos extends Component<Props> {
   state = {
-    titulo: ""
+    titulo: "",
+    descricao: ""
   };
   render() {
     return (
@@ -39,13 +40,24 @@ class ModalPassos extends Component<Props> {
           style={{
             flex: 1,
             justifyContent: "center",
-            backgroundColor: "rgba(0,0,0,0.5)"
+            backgroundColor: "rgba(0,0,0,0.5)",
+            position: "relative"
           }}
         >
           <View
+            style={{ position: "absolute", left: 270, top: 150, zIndex: 10 }}
+          >
+            <TouchableHighlight
+              underlayColor="red"
+              onPress={() => this.props.hiddenModel(this.state.titulo)}
+            >
+              <Icon name="times-circle" size={30} color="red" />
+            </TouchableHighlight>
+          </View>
+          <View
             style={{
               backgroundColor: "#FFF",
-              height: Dimensions.get("window").height / 3,
+              height: Dimensions.get("window").height / 2,
               marginHorizontal: 40
             }}
           >
@@ -65,6 +77,14 @@ class ModalPassos extends Component<Props> {
                 placeholder="Titulo do passo"
                 style={{ borderBottomWidth: 1 }}
                 onChangeText={text => this.setState({ titulo: text })}
+              />
+            </View>
+            <View style={{ marginHorizontal: 8, flex: 1 }}>
+              <TextInput
+                multiline
+                placeholder="descriçao"
+                style={{ borderBottomWidth: 1 }}
+                onChangeText={text => this.setState({ descricao: text })}
               />
             </View>
             <TouchableHighlight

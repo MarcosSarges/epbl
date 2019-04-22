@@ -10,3 +10,4 @@ o comando para testa o projeto no android
 
 ```yarn and```
 
+#Esse cara tava bugado... não consiguia executar ele

@@ -1,45 +1,36 @@
 {
-  "name": "ePBL",
+  "name": "e_pbl",
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "and": "react-native run-android",
+    "and": "react-native run-android && yarn start",
     "start": "node node_modules/react-native/local-cli/cli.js start",
     "test": "jest"
   },
   "dependencies": {
-    "native-base": "^2.12.1",
     "react": "16.8.3",
-    "react-native": "^0.59.4",
-    "react-native-elements": "^1.1.0",
+    "react-native": "0.59.5",
     "react-native-gesture-handler": "^1.1.0",
     "react-native-sqlite-storage": "^3.3.10",
-    "react-native-swipe-list-view": "^1.5.3",
     "react-native-vector-icons": "^6.4.2",
-    "react-navigation": "^3.3.2"
+    "react-navigation": "^3.8.1"
   },
   "devDependencies": {
-    "@babel/core": "^7.3.4",
-    "@babel/runtime": "^7.3.4",
+    "@babel/core": "^7.4.3",
+    "@babel/runtime": "^7.4.3",
     "@types/jest": "^24.0.11",
-    "@types/react": "^16.8.8",
-    "@types/react-native": "^0.57.40",
+    "@types/react": "^16.8.14",
+    "@types/react-native": "^0.57.47",
     "@types/react-native-sqlite-storage": "^3.3.1",
     "@types/react-native-vector-icons": "^6.4.0",
-    "@types/react-navigation": "^3.0.5",
     "@types/react-test-renderer": "^16.8.1",
-    "babel-jest": "^24.5.0",
-    "jest": "^24.5.0",
-    "metro-react-native-babel-preset": "^0.53.0",
+    "babel-jest": "^24.7.1",
+    "jest": "^24.7.1",
+    "metro-react-native-babel-preset": "^0.53.1",
     "react-test-renderer": "16.8.3",
-    "typescript": "^3.3.3333"
+    "typescript": "^3.4.4"
   },
   "jest": {
     "preset": "react-native"
-  },
-  "rnpm": {
-    "assets": [
-      "./node_module/native-base/Fonts"
-    ]
   }
 }

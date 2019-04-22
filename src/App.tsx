@@ -1,13 +1,4 @@
+import React from "react";
+import Stacks from "./Stacks";
 
-import React, { Component } from 'react';
-import Router from './Router';
-
-interface Props { }
-export default class App extends Component<Props> {
-
-  render() {
-    return (
-      <Router />
-    );
-  }
-}
+export default () => <Stacks />;

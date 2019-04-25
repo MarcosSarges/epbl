@@ -6,17 +6,27 @@ import CardFlatList from "../../Components/CardFlatList";
 import Input from "../../Components/Input";
 import ButtonPlus from "../../Components/ButtonPlus";
 import Header from "../../Components/Header";
+import ProblemaSQLite from "../../Database/ProblemaSQLite";
+import { Context } from "../../Provider/GlobalState";
 
 type Props = {} & NavigationScreenProps;
 
 export default class Problemas extends Component<Props> {
   state = {
-    data: [{ turma_id: 1, titulo: "UEPA-TADS-2016" }],
-    dataOrigem: [{ turma_id: 1, titulo: "UEPA-TADS-2016" }]
+    data: [],
+    dataOrigem: []
+  };
+
+  componentDidMount = () => {
+    this.context.listarProblemas();
+    this.setState({
+      
+    })
   };
 
   filter = (input: string) => {
     const { data, dataOrigem } = this.state;
+   
     if (input.length == 0) {
       this.setState({ data: dataOrigem });
     } else {
@@ -39,12 +49,29 @@ export default class Problemas extends Component<Props> {
         <Header {...this.props} />
         <View style={styles.container}>
           <Input onChangeText={this.filter} placeholder="Filtrar..." />
-          {this.state.data.length > 0 ? (
+          {this.context.listaProblema.length > 0 ? (
             <FlatList
               contentContainerStyle={styles.flatlist}
-              keyExtractor={item => `${item.turma_id}`}
-              data={this.state.data}
-              renderItem={({ item }) => <CardFlatList item={item} />}
+              //@ts-ignore
+              keyExtractor={item => `${item.problema_id}`}
+              data={this.context.listaProblema}
+              renderItem={({ item }) => (
+                
+                <CardFlatList
+                  deletar={() => {
+                    //@ts-ignore
+                    ProblemaSQLite.deletarProblema(item.problema_id);
+                    this.context.listarProblemas();
+                  }}
+                  item={item}
+                  onPress={() => {
+                    this.props.navigation.navigate("Cadastrar problema", {
+                      problema: item,
+                      editar: true
+                    });
+                  }}
+                />
+              )}
             />
           ) : (
             <Text style={{ textAlign: "center", fontSize: fonts.bigger }}>
@@ -53,7 +80,9 @@ export default class Problemas extends Component<Props> {
           )}
           <ButtonPlus
             onPress={() => {
-              this.props.navigation.navigate("Cadastrar problema");
+              this.props.navigation.navigate("Cadastrar problema", {
+                editar: false
+              });
             }}
           />
         </View>
@@ -61,6 +90,8 @@ export default class Problemas extends Component<Props> {
     );
   }
 }
+
+Problemas.contextType = Context;
 
 const styles = StyleSheet.create({
   container: {

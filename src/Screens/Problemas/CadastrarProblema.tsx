@@ -16,14 +16,34 @@ import Header from "../../Components/Header";
 import FontAwesome5Icon from "react-native-vector-icons/FontAwesome5";
 import Button from "../../Components/Button";
 import ProblemaSQLite from "../../Database/ProblemaSQLite";
+import { Context } from "../../Provider/GlobalState";
 
 type Props = {} & NavigationScreenProps;
 
 export default class CadastrarProblemas extends Component<Props> {
   state = {
+    id: 0,
     titulo: "",
-    historia: ""
+    historia: "",
+    editar: false
   };
+
+  componentDidMount() {
+    //bool
+    console.log(this.props.navigation.state.params);
+    const { editar }: any = this.props.navigation.state.params;
+    if (typeof editar != "undefined") {
+      if (editar) {
+        const { problema }: any = this.props.navigation.state.params;
+        this.setState({
+          id: problema.problema_id,
+          titulo: problema.titulo,
+          historia: problema.historia,
+          editar: true
+        });
+      }
+    }
+  }
 
   render() {
     return (
@@ -32,7 +52,7 @@ export default class CadastrarProblemas extends Component<Props> {
           barStyle="light-content"
           backgroundColor={colors.primaryDarkColor}
         />
-        <Header {...this.props} />
+        <Header {...this.props} back />
 
         <ScrollView contentContainerStyle={styles.container}>
           <Input
@@ -53,7 +73,7 @@ export default class CadastrarProblemas extends Component<Props> {
             <Button
               type="success"
               typeIcon="save"
-              title="Salvar"
+              title={this.state.editar ? "Editar" : "Salvar"}
               onPress={() => {
                 if (
                   this.state.titulo.length > 0 &&
@@ -63,11 +83,39 @@ export default class CadastrarProblemas extends Component<Props> {
                     "Confirmação",
                     `Titulo: ${
                       this.state.titulo
-                    } - Hitoria: ${this.state.historia.slice(0, 40)}...`
-                  );
-                  ProblemaSQLite.saveProblema(
-                    this.state.titulo,
-                    this.state.historia
+                    } - Hitoria: ${this.state.historia.slice(0, 40)}...`,
+                    [
+                      {
+                        text: "Confirmar",
+                        onPress: () => {
+                          if (this.state.editar) {
+                            
+                            ProblemaSQLite.atualizarProblema(
+                              this.state.titulo,
+                              this.state.historia,
+                              this.state.id
+                            ).then(res => {
+                              console.log(res);
+                            });
+
+                            this.context.listarProblemas();
+                            this.props.navigation.goBack();
+                          } else {
+                            
+                            ProblemaSQLite.saveProblema(
+                              this.state.titulo,
+                              this.state.historia
+                            );
+                            
+                            this.context.listarProblemas();
+                            this.props.navigation.goBack();
+                          }
+                        }
+                      },
+                      {
+                        text: "Cancelar"
+                      }
+                    ]
                   );
                 } else {
                   Alert.alert("Ops!", "Você deve preencer todos os campos");
@@ -96,6 +144,8 @@ export default class CadastrarProblemas extends Component<Props> {
     );
   }
 }
+
+CadastrarProblemas.contextType = Context;
 
 const styles = StyleSheet.create({
   container: {

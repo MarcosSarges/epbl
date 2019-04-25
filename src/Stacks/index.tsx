@@ -39,7 +39,7 @@ const Router = createDrawerNavigator(
       screen: createStackNavigator(
         {
           Problemas: Problemas,
-          'Cadastrar problema': CadastrarProblemas
+          "Cadastrar problema": CadastrarProblemas
         },
         {
           defaultNavigationOptions: { header: null }
@@ -115,7 +115,7 @@ const Router = createDrawerNavigator(
     }
   },
   {
-    initialRouteName: "Turmas",
+    initialRouteName: "Problemas",
     backBehavior: "initialRoute",
     drawerPosition: "right",
     drawerBackgroundColor: colors.backgroundColor,

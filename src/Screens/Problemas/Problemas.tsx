@@ -3,7 +3,6 @@ import { View, StyleSheet, FlatList, Text, StatusBar } from "react-native";
 import { colors, fonts, metrics } from "../../Styles";
 import { NavigationScreenProps } from "react-navigation";
 import CardFlatList from "../../Components/CardFlatList";
-import Input from "../../Components/Input";
 import ButtonPlus from "../../Components/ButtonPlus";
 import Header from "../../Components/Header";
 import ProblemaSQLite from "../../Database/ProblemaSQLite";

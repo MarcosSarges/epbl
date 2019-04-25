@@ -22,7 +22,7 @@ export default ({ item, onPress = () => {}, deletar = () => {} }: any) => (
         margin: metrics.baseMargin
       }}
     >
-      {item.titulo}
+      {item.titulo.substring(0, 20)}...
     </Text>
     <TouchableOpacity
       onPress={onPress}

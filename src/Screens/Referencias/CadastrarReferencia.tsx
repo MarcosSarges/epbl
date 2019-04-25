@@ -7,14 +7,14 @@ import Header from "../../Components/Header";
 import Button from "../../Components/Button";
 import ProblemaSQLite from "../../Database/ProblemaSQLite";
 import { Context } from "../../Provider/GlobalState";
+import ReferenciaSQLite from "../../Database/ReferenciaSQLite";
 
 type Props = {} & NavigationScreenProps;
 
-export default class CadastrarProblemas extends Component<Props> {
+export default class CadastrarReferencia extends Component<Props> {
   state = {
     id: 0,
     titulo: "",
-    historia: "",
     editar: false
   };
 
@@ -24,11 +24,10 @@ export default class CadastrarProblemas extends Component<Props> {
     const { editar }: any = this.props.navigation.state.params;
     if (typeof editar != "undefined") {
       if (editar) {
-        const { problema }: any = this.props.navigation.state.params;
+        const { referencia }: any = this.props.navigation.state.params;
         this.setState({
-          id: problema.problema_id,
-          titulo: problema.titulo,
-          historia: problema.historia,
+          id: referencia.problema_id,
+          titulo: referencia.titulo,
           editar: true
         });
       }
@@ -46,11 +45,13 @@ export default class CadastrarProblemas extends Component<Props> {
 
         <ScrollView contentContainerStyle={styles.container}>
           <Input
+            custom={{ marginBottom: metrics.baseMargin }}
             value={this.state.titulo}
-            placeholder="Titulo do problema"
+            multiline={true}
+            placeholder="Descrição da referencia"
             onChangeText={(txt: string) => this.setState({ titulo: txt })}
           />
-          <View style={styles.viewInput}>
+          {/* <View style={styles.viewInput}>
             <TextInput
               placeholder="Historia do problema, basicamente descrever o problema..."
               style={styles.textInput}
@@ -58,53 +59,39 @@ export default class CadastrarProblemas extends Component<Props> {
               onChangeText={txt => this.setState({ historia: txt })}
               multiline
             />
-          </View>
+          </View> */}
           <View style={styles.viewButton}>
             <Button
               type="success"
               typeIcon="save"
               title={this.state.editar ? "Editar" : "Salvar"}
               onPress={() => {
-                if (
-                  this.state.titulo.length > 0 &&
-                  this.state.historia.length > 0
-                ) {
-                  Alert.alert(
-                    "Confirmação",
-                    `Titulo: ${
-                      this.state.titulo
-                    } - Hitoria: ${this.state.historia.slice(0, 40)}...`,
-                    [
-                      {
-                        text: "Confirmar",
-                        onPress: () => {
-                          if (this.state.editar) {
-                            ProblemaSQLite.atualizarProblema(
-                              this.state.titulo,
-                              this.state.historia,
-                              this.state.id
-                            ).then(res => {
-                              console.log(res);
-                            });
+                if (this.state.titulo.length > 0) {
+                  Alert.alert("Confirmação", `Titulo: ${this.state.titulo}`, [
+                    {
+                      text: "Confirmar",
+                      onPress: () => {
+                        if (this.state.editar) {
+                          ReferenciaSQLite.atualizarReferencias(
+                            this.state.titulo,
+                            this.state.id
+                          ).then(res => {
+                            console.log(res);
+                          });
 
-                            this.context.listarProblemas();
-                            this.props.navigation.goBack();
-                          } else {
-                            ProblemaSQLite.saveProblema(
-                              this.state.titulo,
-                              this.state.historia
-                            );
-
-                            this.context.listarProblemas();
-                            this.props.navigation.goBack();
-                          }
+                          this.context.listarProblemas();
+                          this.props.navigation.goBack();
+                        } else {
+                          ReferenciaSQLite.saveReferencia(this.state.titulo);
+                          this.context.listarReferencias();
+                          this.props.navigation.goBack();
                         }
-                      },
-                      {
-                        text: "Cancelar"
                       }
-                    ]
-                  );
+                    },
+                    {
+                      text: "Cancelar"
+                    }
+                  ]);
                 } else {
                   Alert.alert("Ops!", "Você deve preencer todos os campos");
                 }
@@ -133,7 +120,7 @@ export default class CadastrarProblemas extends Component<Props> {
   }
 }
 
-CadastrarProblemas.contextType = Context;
+CadastrarReferencia.contextType = Context;
 
 const styles = StyleSheet.create({
   container: {

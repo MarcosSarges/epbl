@@ -1,15 +1,12 @@
 import {
   createAppContainer,
   createStackNavigator,
-  createDrawerNavigator,
-  NavigationDrawerScreenOptions
+  createDrawerNavigator
 } from "react-navigation";
 import React from "react";
 import Turmas from "../Screens/Turmas/Turmas";
-import { colors, fonts, metrics } from "../Styles";
-import { View, Text } from "react-native";
+import { colors } from "../Styles";
 import Icon from "react-native-vector-icons/FontAwesome5";
-import Header from "./../Components/Header";
 import Problemas from "../Screens/Problemas/Problemas";
 import Referencias from "../Screens/Referencias/Referencias";
 import Objetivos from "../Screens/Objetivos/Objetivos";
@@ -17,6 +14,7 @@ import Manual from "../Screens/Manual/Manual";
 import DetalhesManual from "../Screens/Manual/DetalhesManual";
 import Sobre from "../Screens/Sobre/Sobre";
 import CadastrarProblemas from "../Screens/Problemas/CadastrarProblema";
+import CadastrarReferencia from "../Screens/Referencias/CadastrarReferencia";
 
 const Router = createDrawerNavigator(
   {
@@ -54,7 +52,8 @@ const Router = createDrawerNavigator(
     Referencias: {
       screen: createStackNavigator(
         {
-          Referencias: Referencias
+          Referencias: Referencias,
+          "Cadastrar referencia": CadastrarReferencia
         },
         {
           defaultNavigationOptions: { header: null }
@@ -115,7 +114,7 @@ const Router = createDrawerNavigator(
     }
   },
   {
-    initialRouteName: "Problemas",
+    initialRouteName: "Turmas",
     backBehavior: "initialRoute",
     drawerPosition: "right",
     drawerBackgroundColor: colors.backgroundColor,

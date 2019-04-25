@@ -19,14 +19,11 @@ export default class Problemas extends Component<Props> {
 
   componentDidMount = () => {
     this.context.listarProblemas();
-    this.setState({
-      
-    })
   };
 
   filter = (input: string) => {
     const { data, dataOrigem } = this.state;
-   
+
     if (input.length == 0) {
       this.setState({ data: dataOrigem });
     } else {
@@ -48,7 +45,7 @@ export default class Problemas extends Component<Props> {
         />
         <Header {...this.props} />
         <View style={styles.container}>
-          <Input onChangeText={this.filter} placeholder="Filtrar..." />
+          {/* <Input onChangeText={this.filter} placeholder="Filtrar..." /> */}
           {this.context.listaProblema.length > 0 ? (
             <FlatList
               contentContainerStyle={styles.flatlist}
@@ -56,7 +53,6 @@ export default class Problemas extends Component<Props> {
               keyExtractor={item => `${item.problema_id}`}
               data={this.context.listaProblema}
               renderItem={({ item }) => (
-                
                 <CardFlatList
                   deletar={() => {
                     //@ts-ignore

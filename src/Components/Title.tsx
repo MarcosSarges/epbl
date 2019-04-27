@@ -4,16 +4,18 @@ import { colors, metrics, fonts } from "./../Styles";
 
 type Props = {
   title: string;
+  custom?: {};
 };
 
-export default ({ title = "" }: Props) => (
+export default ({ title = "", custom = {} }: Props) => (
   <Text
     style={{
       fontSize: fonts.bigger,
       color: colors.primaryTextColor,
       textAlign: "center",
       fontWeight: "bold",
-      fontFamily: "Arial"
+      fontFamily: "Arial",
+      ...custom
     }}
   >
     {title}

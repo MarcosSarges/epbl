@@ -4,9 +4,7 @@ import ReferenciaSQLite from "../Database/ReferenciaSQLite";
 import ObjetivoSQLite from "../Database/ObjetivoSQLite";
 import TurmaSQLite from "../Database/TurmaSQLite";
 
-export const Context = React.createContext({
-  listaProblema: []
-});
+export const Context = React.createContext({});
 
 export const Consumer = Context.Consumer;
 
@@ -56,7 +54,8 @@ export default class Provider extends Component {
         ...this.state,
         listarProblemas: this.listarProblemas,
         listarReferencias: this.listarReferencias,
-        listarObjetivos: this.listarObjetivos
+        listarObjetivos: this.listarObjetivos,
+        listarTurmas: this.listarTurmas
       }}
     >
       {this.props.children}

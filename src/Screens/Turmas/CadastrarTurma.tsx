@@ -1,18 +1,22 @@
 import React, { Component } from "react";
 
-import { View, StatusBar, StyleSheet } from "react-native";
+import { View, StatusBar, StyleSheet, Alert } from "react-native";
 import { colors, metrics } from "../../Styles";
 import Header from "../../Components/Header";
 import { ScrollView } from "react-native-gesture-handler";
 import Input from "../../Components/Input";
 import { NavigationScreenProps } from "react-navigation";
+import Button from "../../Components/Button";
+import TurmaSQLite from "../../Database/TurmaSQLite";
 
 // import { Container } from './styles';
 
 type Props = {} & NavigationScreenProps;
 export default class CadastrarTurma extends Component<Props> {
   state = {
-    titulo: ""
+    titulo: "",
+    semetre: "",
+    ano: ""
   };
 
   render() {
@@ -22,40 +26,101 @@ export default class CadastrarTurma extends Component<Props> {
           barStyle="light-content"
           backgroundColor={colors.primaryDarkColor}
         />
-
         <Header navigation={this.props.navigation} back />
-        <ScrollView contentContainerStyle={style.container}>
+        <ScrollView contentContainerStyle={styles.container}>
           <Input
-            custom={style.inputMargin}
+            custom={styles.inputStyle}
             onChangeText={text => this.setState({ titulo: text })}
             placeholder="Titulo da turma"
             value={this.state.titulo}
           />
           <Input
-            custom={style.inputMargin}
-            onChangeText={text => this.setState({ titulo: text })}
+            keyboardType="numeric"
+            custom={styles.inputStyle}
+            onChangeText={text => this.setState({ semetre: text })}
             placeholder="Semetre da turma"
-            value={this.state.titulo}
+            value={this.state.semetre}
           />
           <Input
-            custom={style.inputMargin}
-            onChangeText={text => this.setState({ titulo: text })}
+            keyboardType="numeric"
+            custom={styles.inputStyle}
+            onChangeText={text => this.setState({ ano: text })}
             placeholder="Ano da turma"
-            value={this.state.titulo}
+            value={this.state.ano}
           />
+          <View style={styles.viewButton}>
+            <Button
+              type="danger"
+              typeIcon="times"
+              title="Cancelar"
+              onPress={() => {
+                Alert.alert("Ops!", "Você quer realmente sair?", [
+                  {
+                    text: "Sim",
+                    onPress: () => {
+                      this.props.navigation.goBack();
+                    }
+                  },
+                  { text: "Não" }
+                ]);
+              }}
+            />
+            <Button
+              type="success"
+              typeIcon="next"
+              title={"Avançar"}
+              onPress={() => {
+                if (
+                  this.state.titulo.length > 0 &&
+                  this.state.semetre.length > 0 &&
+                  this.state.ano.length > 0
+                ) {
+                  Alert.alert(
+                    "Confirmação",
+                    `Titulo: ${this.state.titulo} - Semestre: ${
+                      this.state.semetre
+                    } - Ano: ${this.state.ano}.`,
+                    [
+                      {
+                        text: "Confirmar",
+                        onPress: () => {
+                          this.props.navigation.navigate(
+                            "Criar plano de aula",
+                            {
+                              turma: this.state
+                            }
+                          );
+                        }
+                      },
+                      {
+                        text: "Cancelar"
+                      }
+                    ]
+                  );
+                } else {
+                  Alert.alert("Ops!", "Você deve preencer todos os campos");
+                }
+              }}
+            />
+          </View>
         </ScrollView>
       </View>
     );
   }
 }
 
-const style = StyleSheet.create({
+const styles = StyleSheet.create({
   container: {
     padding: metrics.basePadding,
     backgroundColor: colors.backgroundColor,
     flex: 1
   },
-  inputMargin: {
+  inputStyle: {
     marginTop: metrics.baseMargin
+  },
+  viewButton: {
+    marginTop: metrics.baseMargin,
+    flexDirection: "row",
+    justifyContent: "space-between"
   }
 });

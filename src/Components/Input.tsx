@@ -1,19 +1,32 @@
 import React from "react";
-import { TextInput, KeyboardTypeOptions } from "react-native";
+import {
+  TextInput,
+  KeyboardTypeOptions,
+  TextInputSubmitEditingEventData,
+  NativeSyntheticEvent,
+  ViewStyle,
+  TextStyle
+} from "react-native";
 import { colors, fonts, metrics } from "../Styles";
 import { string } from "prop-types";
 
 interface Props {
   onChangeText: (input: string) => void;
+  onSubmitEditing?: (
+    event: NativeSyntheticEvent<TextInputSubmitEditingEventData>
+  ) => void;
   placeholder: string;
   value: string;
-  custom?: {};
+  custom?: TextStyle & ViewStyle;
   multiline?: boolean;
   keyboardType?: KeyboardTypeOptions;
 }
 
 export default ({
   onChangeText = (input: string) => {},
+  onSubmitEditing = (
+    event: NativeSyntheticEvent<TextInputSubmitEditingEventData>
+  ) => {},
   placeholder = "",
   value = "",
   custom = {},
@@ -22,6 +35,8 @@ export default ({
 }: Props) => {
   return (
     <TextInput
+      onSubmitEditing={onSubmitEditing}
+      selectionColor={colors.success}
       keyboardType={keyboardType}
       multiline={multiline}
       value={value}

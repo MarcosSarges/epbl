@@ -28,7 +28,13 @@ export default ({
     }}
     onPress={onPress}
   >
-    {typeIcon === "save" ? (
+    {typeIcon === "next" ? (
+      <FontAwesome5Icon
+        name="arrow-right"
+        size={fonts.small}
+        color={colors.secondaryTextColor}
+      />
+    ) : typeIcon === "save" ? (
       <FontAwesome5Icon
         name="save"
         size={fonts.small}

@@ -26,7 +26,7 @@ const salvarTurma = (titulo: String, ano: String, semestre: String) => {
   );
 };
 
-const listarTodasAsTurmas = (): Promise<[]> => {
+const listarTurmas = (): Promise<[]> => {
   //for (let i = 0; i <= 10; i++) salvarTurma('a','1','1');
 
   return new Promise((res, rej) => {
@@ -53,7 +53,39 @@ const listarTodasAsTurmas = (): Promise<[]> => {
   });
 };
 
+const deletarTurma = async (id: number) => {
+  createTable();
+  return new Promise((res, rej) => {
+    db.transaction(
+      (tx: Transaction) => {
+        tx.executeSql("DELETE FROM `Turma` WHERE turma_id = :id", [id]);
+      },
+      (err: any) => console.log("DeletarTurma" + err)
+    );
+  });
+};
+
+const atualizarTurma = async (
+  titulo: String,
+  ano: String,
+  semestre: String,
+  id: number
+) => {
+  createTable();
+  db.transaction(
+    (tx: Transaction) => {
+      tx.executeSql(
+        "UPDATE `Turma` SET titulo=:titulo, ano=:ano, semestre= :semestre WHERE turma_id = :id",
+        [titulo, ano, semestre, id]
+      );
+    },
+    (err: any) => console.warn("Atualização :" + JSON.stringify(err))
+  );
+};
+
 export default {
   salvarTurma,
-  listarTodasAsTurmas
+  listarTurmas,
+  atualizarTurma,
+  deletarTurma
 };

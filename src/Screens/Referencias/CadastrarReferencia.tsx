@@ -41,7 +41,7 @@ export default class CadastrarReferencia extends Component<Props> {
           barStyle="light-content"
           backgroundColor={colors.primaryDarkColor}
         />
-        <Header {...this.props} back />
+        <Header navigation={this.props.navigation} back />
 
         <ScrollView contentContainerStyle={styles.container}>
           <Input

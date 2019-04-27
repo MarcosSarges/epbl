@@ -42,7 +42,7 @@ export default class Problemas extends Component<Props> {
           barStyle="light-content"
           backgroundColor={colors.primaryDarkColor}
         />
-        <Header {...this.props} />
+        <Header navigation={this.props.navigation} />
         <View style={styles.container}>
           {/* <Input onChangeText={this.filter} placeholder="Filtrar..." /> */}
           {this.context.listaProblema.length > 0 ? (

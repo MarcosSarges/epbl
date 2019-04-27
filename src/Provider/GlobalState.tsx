@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import ProblemaSQLite from "../Database/ProblemaSQLite";
 import ReferenciaSQLite from "../Database/ReferenciaSQLite";
 import ObjetivoSQLite from "../Database/ObjetivoSQLite";
+import TurmaSQLite from "../Database/TurmaSQLite";
 
 export const Context = React.createContext({
   listaProblema: []
@@ -13,7 +14,16 @@ export default class Provider extends Component {
   state = {
     listaProblema: [],
     listaReferencias: [],
-    listaObjetivos: []
+    listaObjetivos: [],
+    listaTurmas: []
+  };
+
+  setListTurmas = (array: []) => this.setState({ listaTurmas: array });
+
+  listarTurmas = () => {
+    TurmaSQLite.listarTurmas().then(res => {
+      this.setState({ listaTurmas: res });
+    });
   };
 
   setListObjetivos = (array: []) => this.setState({ listaObjetivos: array });

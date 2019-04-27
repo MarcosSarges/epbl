@@ -16,12 +16,14 @@ import Sobre from "../Screens/Sobre/Sobre";
 import CadastrarProblemas from "../Screens/Problemas/CadastrarProblema";
 import CadastrarReferencia from "../Screens/Referencias/CadastrarReferencia";
 import CadastrarObjetivo from "../Screens/Objetivos/CadastrarObjetivo";
+import CadastrarTurma from "../Screens/Turmas/CadastrarTurma";
 
 const Router = createDrawerNavigator(
   {
     Turmas: {
       screen: createStackNavigator(
         {
+          "Cadastrar turma": CadastrarTurma,
           Turmas: Turmas
         },
         {

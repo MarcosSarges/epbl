@@ -2,8 +2,13 @@ import React from "react";
 import { View, Text, Alert } from "react-native";
 import Icon from "react-native-vector-icons/FontAwesome5";
 import { colors, metrics, fonts } from "./../Styles";
+import { NavigationScreenProps } from "react-navigation";
 
-export default (props: any) => {
+type Props = {
+  back?: boolean;
+};
+
+export default (props: Props & NavigationScreenProps) => {
   return (
     <View
       style={{
@@ -44,15 +49,19 @@ export default (props: any) => {
       >
         {props.navigation.state.routeName}
       </Text>
-      <Icon
-        style={{ marginRight: metrics.baseMargin }}
-        name="bars"
-        color={colors.primaryTextColor}
-        size={fonts.regular}
-        onPress={() => {
-          props.navigation.openDrawer();
-        }}
-      />
+      {props.back ? (
+        false
+      ) : (
+        <Icon
+          style={{ marginRight: metrics.baseMargin }}
+          name="bars"
+          color={colors.primaryTextColor}
+          size={fonts.regular}
+          onPress={() => {
+            props.navigation.openDrawer();
+          }}
+        />
+      )}
     </View>
   );
 };

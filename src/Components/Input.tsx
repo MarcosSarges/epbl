@@ -1,16 +1,28 @@
 import React from "react";
-import { TextInput } from "react-native";
+import { TextInput, KeyboardTypeOptions } from "react-native";
 import { colors, fonts, metrics } from "../Styles";
+import { string } from "prop-types";
+
+interface Props {
+  onChangeText: (input: string) => void;
+  placeholder: string;
+  value: string;
+  custom?: {};
+  multiline?: boolean;
+  keyboardType?: KeyboardTypeOptions;
+}
 
 export default ({
   onChangeText = (input: string) => {},
   placeholder = "",
-  value,
+  value = "",
   custom = {},
-  multiline = false
-}: any) => {
+  multiline = false,
+  keyboardType = "default"
+}: Props) => {
   return (
     <TextInput
+      keyboardType={keyboardType}
       multiline={multiline}
       value={value}
       style={{

@@ -9,6 +9,8 @@ import CardFlatList from "./../../Components/CardFlatList";
 import Input from "./../../Components/Input";
 import ButtonPlus from "./../../Components/ButtonPlus";
 import Header from "../../Components/Header";
+import { Context } from "../../Provider/GlobalState";
+import TurmaSQLite from "../../Database/TurmaSQLite";
 
 type Props = {} & NavigationScreenProps;
 
@@ -38,28 +40,51 @@ export default class Turmas extends Component<Props> {
           barStyle="light-content"
           backgroundColor={colors.primaryDarkColor}
         />
-        <Header {...this.props} />
-
+        <Header navigation={this.props.navigation} />
         <View style={styles.container}>
-          <Input onChangeText={this.filter} placeholder="Filtrar..." />
-          {this.state.data.length > 0 ? (
+          {/* <Input onChangeText={this.filter} placeholder="Filtrar..." /> */}
+          {this.context.listaTurmas.length > 0 ? (
             <FlatList
               contentContainerStyle={styles.flatlist}
-              keyExtractor={item => `${item.turma_id}`}
-              data={this.state.data}
-              renderItem={({ item }) => <CardFlatList item={item} />}
+              //@ts-ignore
+              keyExtractor={item => `${item.problema_id}`}
+              data={this.context.listaTurmas}
+              renderItem={({ item }) => (
+                <CardFlatList
+                  deletar={() => {
+                    //@ts-ignore
+                    TurmaSQLite.deletarTurma(item.problema_id);
+                    this.context.listarTurmas();
+                  }}
+                  item={item}
+                  onPress={() => {
+                    this.props.navigation.navigate("Cadastrar turma", {
+                      problema: item,
+                      editar: true
+                    });
+                  }}
+                />
+              )}
             />
           ) : (
-            <Text style={styles.textAlert}>
+            <Text style={{ textAlign: "center", fontSize: fonts.bigger }}>
               Você não possui nenhuma turma cadastrada
             </Text>
           )}
-          <ButtonPlus onPress={() => {}} />
+          <ButtonPlus
+            onPress={() => {
+              this.props.navigation.navigate("Cadastrar turma", {
+                editar: false
+              });
+            }}
+          />
         </View>
       </View>
     );
   }
 }
+
+Turmas.contextType = Context;
 
 const styles = StyleSheet.create({
   container: {
@@ -67,6 +92,7 @@ const styles = StyleSheet.create({
     backgroundColor: colors.backgroundColor,
     flex: 1
   },
-  flatlist: { paddingVertical: metrics.basePadding },
-  textAlert: { textAlign: "center", fontSize: fonts.bigger }
+  flatlist: {
+    paddingVertical: metrics.basePadding
+  }
 });

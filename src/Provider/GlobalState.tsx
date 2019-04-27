@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import ProblemaSQLite from "../Database/ProblemaSQLite";
 import ReferenciaSQLite from "../Database/ReferenciaSQLite";
+import ObjetivoSQLite from "../Database/ObjetivoSQLite";
 
 export const Context = React.createContext({
   listaProblema: []
@@ -11,7 +12,16 @@ export const Consumer = Context.Consumer;
 export default class Provider extends Component {
   state = {
     listaProblema: [],
-    listaReferencias: []
+    listaReferencias: [],
+    listaObjetivos: []
+  };
+
+  setListObjetivos = (array: []) => this.setState({ listaObjetivos: array });
+
+  listarObjetivos = () => {
+    ObjetivoSQLite.listarObjetivos().then(res => {
+      this.setState({ listaObjetivos: res });
+    });
   };
 
   setListReferencia = (array: []) => this.setState({ listaReferencias: array });
@@ -35,7 +45,8 @@ export default class Provider extends Component {
       value={{
         ...this.state,
         listarProblemas: this.listarProblemas,
-        listarReferencias: this.listarReferencias
+        listarReferencias: this.listarReferencias,
+        listarObjetivos: this.listarObjetivos
       }}
     >
       {this.props.children}

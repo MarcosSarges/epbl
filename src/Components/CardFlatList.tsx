@@ -1,7 +1,9 @@
 import React from "react";
-import { View, TouchableOpacity, Text, Alert } from "react-native";
+import { View, TouchableOpacity, Text, Alert, Image } from "react-native";
 import { colors, fonts, metrics } from "../Styles";
 import FontAwesome5Icon from "react-native-vector-icons/FontAwesome5";
+//@ts-ignore
+import view_edit from "./../Assets/img/view-edit.gif";
 
 export default ({ item, onPress = () => {}, deletar = () => {} }: any) => (
   <View
@@ -19,10 +21,13 @@ export default ({ item, onPress = () => {}, deletar = () => {} }: any) => (
         flex: 1,
         textAlign: "center",
         color: colors.primaryTextColor,
-        margin: metrics.baseMargin
+        margin: metrics.baseMargin,
+        fontSize: fonts.regular
       }}
     >
-      {item.titulo.substring(0, 20)}...
+      {item.titulo.length > 17
+        ? `${item.titulo.substring(0, 17)}...`
+        : item.titulo}
     </Text>
     <TouchableOpacity
       onPress={onPress}
@@ -30,16 +35,28 @@ export default ({ item, onPress = () => {}, deletar = () => {} }: any) => (
         width: 60,
         backgroundColor: colors.success,
         borderColor: colors.border,
-        elevation: 1
+        elevation: 1,
+        justifyContent: "center",
+        alignItems: "center"
       }}
     >
-      <FontAwesome5Icon
+      {/* <FontAwesome5Icon
         name="edit"
         style={{
           textAlign: "center",
+          textAlignVertical: "center",
           color: colors.secondaryTextColor,
           margin: metrics.baseMargin,
           fontSize: fonts.regular
+        }}
+      /> */}
+      <Image
+        resizeMode="cover"
+        source={view_edit}
+        style={{
+          width: 22,
+          height: 22,
+          margin: metrics.baseMargin
         }}
       />
     </TouchableOpacity>
@@ -48,7 +65,9 @@ export default ({ item, onPress = () => {}, deletar = () => {} }: any) => (
         width: 60,
         backgroundColor: colors.danger,
         borderColor: colors.border,
-        elevation: 1
+        elevation: 1,
+        justifyContent: "center",
+        alignItems: "center"
       }}
       onPress={deletar}
     >

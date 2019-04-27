@@ -70,7 +70,7 @@ export default class Referencias extends Component<Props> {
             />
           ) : (
             <Text style={{ textAlign: "center", fontSize: fonts.bigger }}>
-              Você não possui nenhuma referencia cadastrada cadastrada
+              Você não possui nenhuma referencia cadastrada
             </Text>
           )}
           <ButtonPlus

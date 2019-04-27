@@ -38,6 +38,7 @@ export default (props: any) => {
           color: colors.primaryTextColor,
           fontSize: fonts.regular,
           fontWeight: "bold",
+          fontFamily: "Gugi",
           flex: 1
         }}
       >

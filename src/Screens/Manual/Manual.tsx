@@ -2,10 +2,10 @@ import React, { Component } from "react";
 import { View, StyleSheet, FlatList, StatusBar } from "react-native";
 import { colors, metrics } from "../../Styles";
 import { NavigationScreenProps } from "react-navigation";
-import CardFlatList from "./../../Components/CardFlatList";
 
 import Conteudo from "./Conteudo";
 import Header from "../../Components/Header";
+import CardFlatListManual from "../../Components/CardFlatListManual";
 
 type Props = {} & NavigationScreenProps;
 
@@ -29,7 +29,7 @@ export default class Manual extends Component<Props> {
             keyExtractor={item => `${item.key}`}
             data={this.state.data}
             renderItem={({ item }) => (
-              <CardFlatList
+              <CardFlatListManual
                 item={item}
                 onPress={() =>
                   this.props.navigation.navigate("Manual - Detalhes", { item })

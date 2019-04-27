@@ -15,6 +15,7 @@ import DetalhesManual from "../Screens/Manual/DetalhesManual";
 import Sobre from "../Screens/Sobre/Sobre";
 import CadastrarProblemas from "../Screens/Problemas/CadastrarProblema";
 import CadastrarReferencia from "../Screens/Referencias/CadastrarReferencia";
+import CadastrarObjetivo from "../Screens/Objetivos/CadastrarObjetivo";
 
 const Router = createDrawerNavigator(
   {
@@ -68,7 +69,8 @@ const Router = createDrawerNavigator(
     Objetivos: {
       screen: createStackNavigator(
         {
-          Objetivos: Objetivos
+          Objetivos: Objetivos,
+          "Cadastrar objetivo": CadastrarObjetivo
         },
         {
           defaultNavigationOptions: { header: null }

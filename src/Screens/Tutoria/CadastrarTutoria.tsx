@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 
 import {
   View,
@@ -6,7 +6,8 @@ import {
   StyleSheet,
   Alert,
   Modal,
-  ScrollView
+  ScrollView,
+  ActivityIndicator
 } from "react-native";
 import { NavigationScreenProps, FlatList } from "react-navigation";
 import { colors, metrics, fonts } from "../../Styles";
@@ -77,204 +78,217 @@ export default class CadastrarTutoria extends Component<Props> {
           backgroundColor={colors.primaryDarkColor}
         />
         <Header navigation={this.props.navigation} back />
-        <Modal
-          visible={this.state.modal}
-          animated
-          animationType="fade"
-          transparent
-          onRequestClose={() => this.setState({ modal: !this.state.modal })}
-        >
-          <View
-            style={{
-              backgroundColor: "rgba(0,0,0,0.3)",
-              flex: 1,
-              justifyContent: "center",
-              paddingHorizontal: metrics.basePadding
-            }}
-          >
-            {this.state.item ? (
+        {this.state.load ? (
+          <ActivityIndicator size="large" color={colors.primaryColor} />
+        ) : (
+          <Fragment>
+            <Modal
+              visible={this.state.modal}
+              animated
+              animationType="fade"
+              transparent
+              onRequestClose={() => this.setState({ modal: !this.state.modal })}
+            >
               <View
                 style={{
-                  backgroundColor: colors.backgroundColor,
-                  position: "relative",
-                  // borderBottomColor: colors.border,
-                  // borderWidth: 1,
-                  elevation: 2
+                  backgroundColor: "rgba(0,0,0,0.3)",
+                  flex: 1,
+                  justifyContent: "center",
+                  paddingHorizontal: metrics.basePadding
                 }}
               >
-                <View
-                  style={{
-                    backgroundColor: colors.primaryColor,
-                    padding: metrics.basePadding
-                  }}
-                >
-                  <Title
-                    title={this.state.item.titulo.toUpperCase()}
-                    custom={{ textAlign: "justify" }}
-                  />
-                </View>
-                <View
-                  style={{
-                    padding: metrics.basePadding
-                  }}
-                >
-                  <Input
-                    maxLength={17}
-                    placeholder="Titulo da Tarefa"
-                    value={this.state.addTarefa}
-                    onChangeText={text => this.setState({ addTarefa: text })}
-                  />
+                {this.state.item ? (
                   <View
                     style={{
-                      flexDirection: "row",
-                      justifyContent: "space-around",
-                      marginTop: metrics.baseMargin
+                      backgroundColor: colors.backgroundColor,
+                      position: "relative",
+                      // borderBottomColor: colors.border,
+                      // borderWidth: 1,
+                      elevation: 2
                     }}
                   >
-                    <Button
-                      title="Cancelar"
-                      typeIcon="times"
-                      type="danger"
-                      onPress={() =>
-                        this.setState({
-                          modal: false,
-                          item: false,
-                          addTarefa: ""
-                        })
-                      }
-                    />
-                    <Button
-                      title="Adicionar"
-                      typeIcon="save"
-                      onPress={() => {
-                        if (this.state.addTarefa.length > 0) {
-                          const { listaTutoria } = this.state;
-                          const novaLista = listaTutoria.map(
-                            (el: any, index: number) => {
-                              if (index === this.state.index) {
-                                el.subTarefas.push({
-                                  titulo: this.state.addTarefa
-                                });
-                                return el;
-                              }
-                              return el;
-                            }
-                          );
-                          this.setState({
-                            listaTutoria: novaLista,
-                            modal: false,
-                            item: false,
-                            addTarefa: ""
-                          });
-                        } else {
-                          Alert.alert("Ops!", "Digite alguma coisa");
+                    <View
+                      style={{
+                        backgroundColor: colors.primaryColor,
+                        padding: metrics.basePadding
+                      }}
+                    >
+                      <Title
+                        //@ts-ignore
+                        title={this.state.item.titulo.toUpperCase()}
+                        custom={{ textAlign: "justify" }}
+                      />
+                    </View>
+                    <View
+                      style={{
+                        padding: metrics.basePadding
+                      }}
+                    >
+                      <Input
+                        maxLength={17}
+                        placeholder="Titulo da Tarefa"
+                        value={this.state.addTarefa}
+                        onChangeText={text =>
+                          this.setState({ addTarefa: text })
                         }
+                      />
+                      <View
+                        style={{
+                          flexDirection: "row",
+                          justifyContent: "space-around",
+                          marginTop: metrics.baseMargin
+                        }}
+                      >
+                        <Button
+                          title="Cancelar"
+                          typeIcon="times"
+                          type="danger"
+                          onPress={() =>
+                            this.setState({
+                              modal: false,
+                              item: false,
+                              addTarefa: ""
+                            })
+                          }
+                        />
+                        <Button
+                          title="Adicionar"
+                          typeIcon="save"
+                          onPress={() => {
+                            if (this.state.addTarefa.length > 0) {
+                              const { listaTutoria } = this.state;
+                              const novaLista = listaTutoria.map(
+                                (el: any, index: number) => {
+                                  if (index === this.state.index) {
+                                    el.subTarefas.push({
+                                      titulo: this.state.addTarefa
+                                    });
+                                    return el;
+                                  }
+                                  return el;
+                                }
+                              );
+                              this.setState({
+                                listaTutoria: novaLista,
+                                modal: false,
+                                item: false,
+                                addTarefa: ""
+                              });
+                            } else {
+                              Alert.alert("Ops!", "Digite alguma coisa");
+                            }
+                          }}
+                        />
+                      </View>
+                    </View>
+                  </View>
+                ) : (
+                  false
+                )}
+              </View>
+            </Modal>
+            <ScrollView style={styles.container}>
+              <Title title="Tutorias" />
+              {this.state.listaTutoria.length > 0 ? (
+                <FlatList
+                  keyExtractor={(item, index) => `${index}${Math.random()}`}
+                  data={this.state.listaTutoria}
+                  renderItem={({ item, index }) => (
+                    <CardFlatListTutoria
+                      item={item}
+                      addTask={() => {
+                        this.setState({
+                          modal: !this.state.modal,
+                          item,
+                          index
+                        });
+                      }}
+                      deletar={() => {
+                        const { listaTutoria } = this.state;
+                        const novaLista: any = [];
+                        listaTutoria.forEach((el, i) => {
+                          if (index != i) {
+                            novaLista.push(el);
+                          }
+                        });
+                        this.setState({
+                          listaTutoria: novaLista
+                        });
                       }}
                     />
-                  </View>
-                </View>
-              </View>
-            ) : (
-              false
-            )}
-          </View>
-        </Modal>
-        <ScrollView style={styles.container}>
-          <Title title="Tutorias" />
-          {this.state.listaTutoria.length > 0 ? (
-            <FlatList
-              keyExtractor={(item, index) => `${index}${Math.random()}`}
-              data={this.state.listaTutoria}
-              renderItem={({ item, index }) => (
-                <CardFlatListTutoria
-                  item={item}
-                  addTask={() => {
-                    this.setState({ modal: !this.state.modal, item, index });
-                  }}
-                  deletar={() => {
-                    const { listaTutoria } = this.state;
-                    const novaLista: any = [];
-                    listaTutoria.forEach((el, i) => {
-                      if (index != i) {
-                        novaLista.push(el);
-                      }
-                    });
-                    this.setState({
-                      listaTutoria: novaLista
-                    });
-                  }}
+                  )}
                 />
+              ) : (
+                <Title title="Você deve adcionar pelo menos uma tutoria" />
               )}
-            />
-          ) : (
-            <Title title="Você deve adcionar pelo menos uma tutoria" />
-          )}
-        </ScrollView>
+            </ScrollView>
 
-        <View style={styles.viewInput}>
-          <Input
-            maxLength={17}
-            custom={styles.input}
-            onSubmitEditing={this.onSubmit}
-            value={this.state.addTutoria}
-            placeholder="Adicionar tutoria rapidamente"
-            onChangeText={text => this.setState({ addTutoria: text })}
-          />
-          <Icon
-            name="check-circle"
-            solid
-            color={colors.success}
-            size={fonts.regular}
-            onPress={this.onSubmit}
-            style={{ marginRight: metrics.baseMargin }}
-          />
-        </View>
-        <View style={styles.viewButton}>
-          <Button
-            type="danger"
-            typeIcon="times"
-            title="Cancelar"
-            onPress={() => {
-              Alert.alert("Ops!", "Você quer realmente sair?", [
-                {
-                  text: "Sim",
-                  onPress: () => {
-                    this.props.navigation.pop(3);
+            <View style={styles.viewInput}>
+              <Input
+                maxLength={17}
+                custom={styles.input}
+                onSubmitEditing={this.onSubmit}
+                value={this.state.addTutoria}
+                placeholder="Adicionar tutoria rapidamente"
+                onChangeText={text => this.setState({ addTutoria: text })}
+              />
+              <Icon
+                name="check-circle"
+                solid
+                color={colors.success}
+                size={fonts.regular}
+                onPress={this.onSubmit}
+                style={{ marginRight: metrics.baseMargin }}
+              />
+            </View>
+            <View style={styles.viewButton}>
+              <Button
+                type="danger"
+                typeIcon="times"
+                title="Cancelar"
+                onPress={() => {
+                  Alert.alert("Ops!", "Você quer realmente sair?", [
+                    {
+                      text: "Sim",
+                      onPress: () => {
+                        this.props.navigation.pop(3);
+                      }
+                    },
+                    { text: "Não" }
+                  ]);
+                }}
+              />
+              <Button
+                type="success"
+                typeIcon="save"
+                title={"Finalizar"}
+                onPress={() => {
+                  if (this.state.listaTutoria.length > 0) {
+                    Alert.alert("Confirmação", `Deseja finzalizar?`, [
+                      {
+                        text: "Sim",
+                        onPress: () => {
+                          this.setState({ load: true });
+                          // this.props.navigation.navigate("Criar plano de aula", {
+                          //   turma: this.state
+                          // });
+                        }
+                      },
+                      {
+                        text: "Não"
+                      }
+                    ]);
+                  } else {
+                    Alert.alert(
+                      "Ops!",
+                      "Você deve adicionar pelo menos uma tutoria"
+                    );
                   }
-                },
-                { text: "Não" }
-              ]);
-            }}
-          />
-          <Button
-            type="success"
-            typeIcon="save"
-            title={"Finalizar"}
-            onPress={() => {
-              if (this.state.listaTutoria.length > 0) {
-                Alert.alert("Confirmação", `Deseja finzalizar?`, [
-                  {
-                    text: "Sim",
-                    onPress: () => {
-                      this.setState({ load: true });
-                      // this.props.navigation.navigate("Criar plano de aula", {
-                      //   turma: this.state
-                      // });
-                    }
-                  },
-                  {
-                    text: "Não"
-                  }
-                ]);
-              } else {
-                Alert.alert(
-                  "Ops!",
-                  "Você deve adicionar pelo menos uma tutoria"
-                );
-              }
-            }}
-          />
-        </View>
+                }}
+              />
+            </View>
+          </Fragment>
+        )}
       </View>
     );
   }

@@ -25,8 +25,8 @@ const Router = createDrawerNavigator(
     Turmas: {
       screen: createStackNavigator(
         {
-          Tutoria: CadastrarTutoria,
           Turmas: Turmas,
+          Tutoria: CadastrarTutoria,
           "Criar plano de aula": CadastroPlanoDeAula,
           "Cadastrar turma": CadastrarTurma,
           "Plano - Cadastrar problema": CadastrarProblemas,

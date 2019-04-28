@@ -1,7 +1,6 @@
 import React from "react";
-import { TouchableOpacity } from "react-native-gesture-handler";
 import FontAwesome5Icon from "react-native-vector-icons/FontAwesome5";
-import { Text } from "react-native";
+import { Text, TouchableOpacity } from "react-native";
 import { colors, fonts, metrics } from "../Styles";
 
 export default ({
@@ -22,9 +21,9 @@ export default ({
       flexDirection: "row",
       justifyContent: "space-around",
       alignItems: "center",
-      width: 160,
-      height: 60,
-      padding: metrics.basePadding
+      // width: 160,
+      // height: 60,
+      padding: metrics.basePadding + 4
     }}
     onPress={onPress}
   >
@@ -53,7 +52,8 @@ export default ({
       style={{
         fontSize: fonts.small,
         color: colors.secondaryTextColor,
-        fontWeight: "bold"
+        fontWeight: "bold",
+        marginLeft: metrics.baseMargin
       }}
     >
       {title}

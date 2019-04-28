@@ -1,10 +1,10 @@
 import React from "react";
-import { Text } from "react-native";
+import { Text, TextStyle } from "react-native";
 import { colors, metrics, fonts } from "./../Styles";
 
 type Props = {
   title: string;
-  custom?: {};
+  custom?: TextStyle;
 };
 
 export default ({ title = "", custom = {} }: Props) => (

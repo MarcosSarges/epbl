@@ -20,6 +20,7 @@ interface Props {
   custom?: TextStyle & ViewStyle;
   multiline?: boolean;
   keyboardType?: KeyboardTypeOptions;
+  maxLength?: number;
 }
 
 export default ({
@@ -31,10 +32,12 @@ export default ({
   value = "",
   custom = {},
   multiline = false,
-  keyboardType = "default"
+  keyboardType = "default",
+  maxLength = 1000
 }: Props) => {
   return (
     <TextInput
+      maxLength={maxLength}
       onSubmitEditing={onSubmitEditing}
       selectionColor={colors.success}
       keyboardType={keyboardType}

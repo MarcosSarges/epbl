@@ -17,6 +17,8 @@ import Icon from "react-native-vector-icons/FontAwesome5";
 import Title from "../../Components/Title";
 import Button from "../../Components/Button";
 import CardFlatListTutoria from "../../Components/CardFlatListTutoria";
+import PlanodeAula from "../../Database/PlanodeAula";
+import TurmaSQLite from "../../Database/TurmaSQLite";
 
 // import { Container } from './styles';
 
@@ -267,8 +269,25 @@ export default class CadastrarTutoria extends Component<Props> {
                     Alert.alert("Confirmação", `Deseja finzalizar?`, [
                       {
                         text: "Sim",
-                        onPress: () => {
+                        onPress: async () => {
                           this.setState({ load: true });
+
+                          const {
+                            turma,
+                            problemas,
+                            referencias,
+                            objetivos
+                          } = this.props.navigation.state.params;
+
+                          await PlanodeAula.salvarPlano(
+                            turma,
+                            problemas,
+                            objetivos,
+                            referencias,
+                            this.state.listaTutoria
+                          );
+                          //await PlanodeAula.listarTudo();
+
                           // this.props.navigation.navigate("Criar plano de aula", {
                           //   turma: this.state
                           // });

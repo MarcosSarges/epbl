@@ -13,22 +13,28 @@ const createTable = () => {
   });
 };
 
-const salvarTurma = (titulo: String, ano: String, semestre: String) => {
+const salvarTurma = (titulo: string, ano: string, semestre: string) => {
   createTable();
+
+  let id;
   db.transaction(
     (tx: Transaction) => {
       tx.executeSql(
-        "INSERT INTO Turma (titulo,ano,semestre) VALUES (:titulo,:ano,:semestre)",
-        [titulo, ano, semestre]
+        "INSERT INTO Turmas (titulo,ano,semestre) VALUES (:titulo,:ano,:semestre)",
+        [titulo, ano, semestre],
+        (tx, rs) => {
+          id = rs.insertId;
+        }
       );
     },
     (err: any) => console.log("Turma " + err)
   );
+
+  return id;
 };
 
 const listarTurmas = (): Promise<[]> => {
   //for (let i = 0; i <= 10; i++) salvarTurma('a','1','1');
-
   return new Promise((res, rej) => {
     try {
       createTable();

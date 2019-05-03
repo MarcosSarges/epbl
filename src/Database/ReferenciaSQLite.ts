@@ -20,7 +20,8 @@ const saveReferencia = (titulo: String) => {
         titulo
       ]);
     },
-    (err: any) => console.log("Referencias " + err)
+    (err: any) => console.log("Referencias " + err),
+    (a: any) => console.log("Refe", a)
   );
 };
 

@@ -7,6 +7,8 @@ const names = {
   tamanhoDB: 200000
 };
 
+SQLite.enablePromise(true);
+
 const db = SQLite.openDatabase(
   names.nomeDB,
   names.versaoDB,

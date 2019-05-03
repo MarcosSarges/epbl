@@ -11,6 +11,7 @@ import ButtonPlus from "./../../Components/ButtonPlus";
 import Header from "../../Components/Header";
 import { Context } from "../../Provider/GlobalState";
 import TurmaSQLite from "../../Database/TurmaSQLite";
+import PlanodeAula from "../../Database/PlanodeAula";
 
 type Props = {} & NavigationScreenProps;
 
@@ -32,6 +33,12 @@ export default class Turmas extends Component<Props> {
       });
     }
   };
+
+  componentDidMount() {
+    PlanodeAula.listarTudo(15).then(el => {
+      console.log(el);
+    });
+  }
 
   render() {
     return (

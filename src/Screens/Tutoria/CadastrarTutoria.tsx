@@ -19,6 +19,7 @@ import Button from "../../Components/Button";
 import CardFlatListTutoria from "../../Components/CardFlatListTutoria";
 import PlanodeAula from "../../Database/PlanodeAula";
 import TurmaSQLite from "../../Database/TurmaSQLite";
+import { Context } from "../../Provider/GlobalState";
 
 // import { Container } from './styles';
 
@@ -291,7 +292,7 @@ export default class CadastrarTutoria extends Component<Props> {
                             //@ts-ignore
                             this.state.listaTutoria
                           );
-                          this.context.listarTurmas().then(el => {});
+                          this.context.listarTurmas();
                           this.props.navigation.pop(3);
                         }
                       },
@@ -314,6 +315,7 @@ export default class CadastrarTutoria extends Component<Props> {
     );
   }
 }
+CadastrarTutoria.contextType = Context;
 
 const styles = StyleSheet.create({
   container: {

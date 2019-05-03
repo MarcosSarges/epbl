@@ -5,7 +5,12 @@ import FontAwesome5Icon from "react-native-vector-icons/FontAwesome5";
 //@ts-ignore
 import view_edit from "./../Assets/img/view-edit.gif";
 
-export default ({ item, onPress = () => {}, deletar = () => {} }: any) => (
+export default ({
+  item,
+  onPress = () => {},
+  deletar = () => {},
+  turmas = false
+}: any) => (
   <View
     style={{
       borderWidth: 1,
@@ -50,15 +55,28 @@ export default ({ item, onPress = () => {}, deletar = () => {} }: any) => (
           fontSize: fonts.regular
         }}
       /> */}
-      <Image
-        resizeMode="cover"
-        source={view_edit}
-        style={{
-          width: 22,
-          height: 22,
-          margin: metrics.baseMargin
-        }}
-      />
+      {turmas ? (
+        <FontAwesome5Icon
+          name="tasks"
+          style={{
+            textAlign: "center",
+            textAlignVertical: "center",
+            color: colors.secondaryTextColor,
+            margin: metrics.baseMargin,
+            fontSize: fonts.regular
+          }}
+        />
+      ) : (
+        <Image
+          resizeMode="cover"
+          source={view_edit}
+          style={{
+            width: 22,
+            height: 22,
+            margin: metrics.baseMargin
+          }}
+        />
+      )}
     </TouchableOpacity>
     <TouchableOpacity
       style={{

@@ -54,13 +54,16 @@ export default class Turmas extends Component<Props> {
               data={this.context.listaTurmas}
               renderItem={({ item }) => (
                 <CardFlatList
+                  turmas={true}
                   deletar={() => {
                     //@ts-ignore
                     TurmaSQLite.deletarTurma(item.turma_id);
                     this.context.listarTurmas();
                   }}
                   item={item}
-                  onPress={() => {}}
+                  onPress={() =>
+                    this.props.navigation.navigate("Plano - Visualizar")
+                  }
                 />
               )}
             />

@@ -19,6 +19,7 @@ import CadastrarObjetivo from "../Screens/Objetivos/CadastrarObjetivo";
 import CadastrarTurma from "../Screens/Turmas/CadastrarTurma";
 import CadastroPlanoDeAula from "../Screens/PlanoDeAula/CadastroPlanoDeAula";
 import CadastrarTutoria from "../Screens/Tutoria/CadastrarTutoria";
+import VisualizarPlano from "../Screens/PlanoDeAula/VisualizarPlano";
 
 const Router = createDrawerNavigator(
   {
@@ -31,7 +32,8 @@ const Router = createDrawerNavigator(
           "Cadastrar turma": CadastrarTurma,
           "Plano - Cadastrar problema": CadastrarProblemas,
           "Plano - Cadastrar referencia": CadastrarReferencia,
-          "Plano - Cadastrar objetivo": CadastrarObjetivo
+          "Plano - Cadastrar objetivo": CadastrarObjetivo,
+          "Plano - Visualizar": VisualizarPlano
         },
         {
           defaultNavigationOptions: { header: null }

@@ -1,10 +1,7 @@
 import React, { Component } from "react";
 import { View, StyleSheet, FlatList, Text, StatusBar } from "react-native";
 import { colors, fonts, metrics } from "../../Styles";
-import {
-  NavigationScreenProps,
-  NavigationStackScreenOptions
-} from "react-navigation";
+import { NavigationScreenProps } from "react-navigation";
 import CardFlatList from "./../../Components/CardFlatList";
 import Input from "./../../Components/Input";
 import ButtonPlus from "./../../Components/ButtonPlus";
@@ -12,6 +9,7 @@ import Header from "../../Components/Header";
 import { Context } from "../../Provider/GlobalState";
 import TurmaSQLite from "../../Database/TurmaSQLite";
 import PlanodeAula from "../../Database/PlanodeAula";
+import Icon from "react-native-vector-icons/FontAwesome5";
 
 type Props = {} & NavigationScreenProps;
 
@@ -35,9 +33,7 @@ export default class Turmas extends Component<Props> {
   };
 
   componentDidMount() {
-    PlanodeAula.listarTudo(15).then(el => {
-      console.log(el);
-    });
+    this.context.listarTurmas();
   }
 
   render() {
@@ -60,23 +56,25 @@ export default class Turmas extends Component<Props> {
                 <CardFlatList
                   deletar={() => {
                     //@ts-ignore
-                    TurmaSQLite.deletarTurma(item.problema_id);
+                    TurmaSQLite.deletarTurma(item.turma_id);
                     this.context.listarTurmas();
                   }}
                   item={item}
-                  onPress={() => {
-                    this.props.navigation.navigate("Cadastrar turma", {
-                      problema: item,
-                      editar: true
-                    });
-                  }}
+                  onPress={() => {}}
                 />
               )}
             />
           ) : (
-            <Text style={{ textAlign: "center", fontSize: fonts.bigger }}>
-              Você não possui nenhuma turma cadastrada
-            </Text>
+            <View style={{ alignItems: "center", justifyContent: "center" }}>
+              <Icon
+                name="exclamation-circle"
+                size={50}
+                color={colors.secondaryColor}
+              />
+              <Text style={{ textAlign: "center", fontSize: fonts.bigger }}>
+                Você não possui nenhuma turma cadastrada
+              </Text>
+            </View>
           )}
           <ButtonPlus
             onPress={() => {

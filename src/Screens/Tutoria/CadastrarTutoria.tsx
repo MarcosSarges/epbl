@@ -273,9 +273,13 @@ export default class CadastrarTutoria extends Component<Props> {
                           this.setState({ load: true });
 
                           const {
+                            //@ts-ignore
                             turma,
+                            //@ts-ignore
                             problemas,
+                            //@ts-ignore
                             referencias,
+                            //@ts-ignore
                             objetivos
                           } = this.props.navigation.state.params;
 
@@ -284,13 +288,11 @@ export default class CadastrarTutoria extends Component<Props> {
                             problemas,
                             objetivos,
                             referencias,
+                            //@ts-ignore
                             this.state.listaTutoria
                           );
-                          //await PlanodeAula.listarTudo();
-
-                          // this.props.navigation.navigate("Criar plano de aula", {
-                          //   turma: this.state
-                          // });
+                          this.context.listarTurmas().then(el => {});
+                          this.props.navigation.pop(3);
                         }
                       },
                       {

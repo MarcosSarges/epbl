@@ -122,8 +122,6 @@ const salvarPlano = (
           });
 
           Tutorias.forEach(el => {
-            console.log(el);
-
             tx.executeSql(
               "INSERT INTO PlanoTutoria (titulo,estado,turma_id) VALUES (:titulo,0,:turma_id)",
               [el.titulo, rs.insertId],
@@ -177,17 +175,47 @@ const listarTudo = (id: number): any => {
                     "SELECT * FROM `PlanoTutoria` where turma_id = :id",
                     [id],
                     async (tx, rs) => {
-                      const Tutorias = [];
+                      const Tutorias: any = [];
 
                       for (let i = 0; i < rs.rows.length; i++) {
                         Tutorias.push(rs.rows.item(i));
                       }
 
-                      res({
-                        Problemas,
-                        Referencias,
-                        Objetivos
-                      });
+                      await tx.executeSql(
+                        "SELECT * FROM `PlanoTarefas`",
+                        [],
+                        (tx, rs) => {
+                          const tarefas: any = [];
+                          for (let i = 0; i < rs.rows.length; i++) {
+                            tarefas.push(rs.rows.item(i));
+                          }
+
+                          const newTutos: any = [];
+                          Tutorias.forEach((tutoria: any) => {
+                            const SubTarefaArray: any = [];
+
+                            tarefas.forEach((SubTarefa: any) => {
+                              if (
+                                tutoria.planoTuto_id == SubTarefa.planoTuto_id
+                              ) {
+                                SubTarefaArray.push(SubTarefa);
+                              }
+                            });
+
+                            newTutos.push({
+                              ...tutoria,
+                              subTarefas: SubTarefaArray
+                            });
+                            console.log(newTutos);
+                          });
+                          res({
+                            Problemas,
+                            Referencias,
+                            Objetivos,
+                            Tutorias: newTutos
+                          });
+                        }
+                      );
                     }
                   );
                 }

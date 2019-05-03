@@ -41,7 +41,7 @@ const listarTurmas = (): Promise<[]> => {
       const linhas: any = [];
       db.transaction((tx: Transaction) => {
         tx.executeSql(
-          "SELECT * FROM Turma",
+          "SELECT * FROM Turmas",
           [],
           (tx: Transaction, results: ResultSet) => {
             let len = results.rows.length;
@@ -64,7 +64,7 @@ const deletarTurma = async (id: number) => {
   return new Promise((res, rej) => {
     db.transaction(
       (tx: Transaction) => {
-        tx.executeSql("DELETE FROM `Turma` WHERE turma_id = :id", [id]);
+        tx.executeSql("DELETE FROM `Turmas` WHERE turma_id = :id", [id]);
       },
       (err: any) => console.log("DeletarTurma" + err)
     );

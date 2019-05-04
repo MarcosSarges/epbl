@@ -3,6 +3,7 @@ import ProblemaSQLite from "../Database/ProblemaSQLite";
 import ReferenciaSQLite from "../Database/ReferenciaSQLite";
 import ObjetivoSQLite from "../Database/ObjetivoSQLite";
 import TurmaSQLite from "../Database/TurmaSQLite";
+import PlanodeAula from "../Database/PlanodeAula";
 
 export const Context = React.createContext({});
 
@@ -13,7 +14,27 @@ export default class Provider extends Component {
     listaProblema: [],
     listaReferencias: [],
     listaObjetivos: [],
-    listaTurmas: []
+    listaTurmas: [],
+    planoDeAula: {},
+    listaTutorias: []
+  };
+
+  buscarTutorias = async (id: any) => {
+    await PlanodeAula.listarTutorias(id).then(el => {
+      this.setState({
+        listaTutorias: el
+      });
+      return true;
+    });
+    return false;
+  };
+
+  buscarPlanoDeAula = async (id: number) => {
+    await PlanodeAula.listarTudo(id).then((el: any) => {
+      this.setState({ planoDeAula: el, listaTutorias: el.Tutorias });
+      return true;
+    });
+    return false;
   };
 
   setListTurmas = (array: []) => this.setState({ listaTurmas: array });
@@ -56,7 +77,9 @@ export default class Provider extends Component {
         listarProblemas: this.listarProblemas,
         listarReferencias: this.listarReferencias,
         listarObjetivos: this.listarObjetivos,
-        listarTurmas: this.listarTurmas
+        listarTurmas: this.listarTurmas,
+        buscarPlanoDeAula: this.buscarPlanoDeAula,
+        buscarTutorias: this.buscarTutorias
       }}
     >
       {this.props.children}

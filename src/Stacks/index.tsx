@@ -22,11 +22,12 @@ import CadastrarTurma from "../Screens/Turmas/CadastrarTurma";
 import CadastroPlanoDeAula from "../Screens/PlanoDeAula/CadastroPlanoDeAula";
 import CadastrarTutoria from "../Screens/Tutoria/CadastrarTutoria";
 import VisualizarPlano from "../Screens/PlanoDeAula/VisualizarPlano";
+import VisualizarTutoria from "../Screens/Tutoria/VisualizarTutoria";
 
 const planoTab = createBottomTabNavigator(
   {
     Detalhes: VisualizarPlano,
-    Tutoria: VisualizarPlano
+    Tutoria: VisualizarTutoria
   },
   {
     initialRouteName: "Detalhes",

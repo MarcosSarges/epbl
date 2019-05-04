@@ -81,7 +81,7 @@ const atualizarTurma = async (
   db.transaction(
     (tx: Transaction) => {
       tx.executeSql(
-        "UPDATE `Turma` SET titulo=:titulo, ano=:ano, semestre= :semestre WHERE turma_id = :id",
+        "UPDATE `Turma` SET titulo=:titulo, ano=:ano, semestre=:semestre WHERE turma_id = :id",
         [titulo, ano, semestre, id]
       );
     },

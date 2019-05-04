@@ -207,7 +207,6 @@ const listarTudo = (id: number): any => {
                               ...tutoria,
                               subTarefas: SubTarefaArray
                             });
-                            console.log(newTutos);
                           });
                           res({
                             Problemas,
@@ -229,7 +228,88 @@ const listarTudo = (id: number): any => {
   });
 };
 
+const updateTutoria = (id: any, estado: 1 | 0) => {
+  return new Promise((res, rej) => {
+    db.transaction((tx: Transaction) => {
+      tx.executeSql(
+        "UPDATE `PlanoTutoria` SET estado=:estado WHERE planoTuto_id=:id ",
+        [estado, id],
+        (tx: Transaction, rs: ResultSet) => {
+          tx.executeSql(
+            "UPDATE `PlanoTarefas` SET estado=:estado WHERE planoTuto_id=:id ",
+            [estado, id],
+            (tx, rs) => {
+              res(rs);
+            }
+          );
+        }
+      );
+    });
+  });
+};
+
+const updateTarefa = (id: any, estado: 1 | 0) => {
+  return new Promise((res, rej) => {
+    db.transaction((tx: Transaction) => {
+      tx.executeSql(
+        "UPDATE `PlanoTarefas` SET estado=:estado WHERE planoTarefas_id=:id ",
+        [estado, id],
+        (tx: Transaction, rs: ResultSet) => {
+          res(rs);
+        }
+      );
+    });
+  });
+};
+
+const listarTutorias = (id: any) => {
+  return new Promise((res, rej) => {
+    db.transaction((tx: Transaction) => {
+      tx.executeSql(
+        "SELECT * FROM `PlanoTutoria` where turma_id = :id",
+        [id],
+        async (tx, rs) => {
+          const Tutorias: any = [];
+
+          for (let i = 0; i < rs.rows.length; i++) {
+            Tutorias.push(rs.rows.item(i));
+          }
+
+          await tx.executeSql("SELECT * FROM `PlanoTarefas`", [], (tx, rs) => {
+            const tarefas: any = [];
+            for (let i = 0; i < rs.rows.length; i++) {
+              tarefas.push(rs.rows.item(i));
+            }
+
+            const newTutos: any = [];
+            Tutorias.forEach((tutoria: any) => {
+              const SubTarefaArray: any = [];
+
+              tarefas.forEach((SubTarefa: any) => {
+                if (tutoria.planoTuto_id == SubTarefa.planoTuto_id) {
+                  SubTarefaArray.push(SubTarefa);
+                }
+              });
+
+              newTutos.push({
+                ...tutoria,
+                subTarefas: SubTarefaArray
+              });
+            });
+            res({
+              Tutorias: newTutos
+            });
+          });
+        }
+      );
+    });
+  });
+};
+
 export default {
   salvarPlano,
-  listarTudo
+  listarTudo,
+  listarTutorias,
+  updateTutoria,
+  updateTarefa
 };

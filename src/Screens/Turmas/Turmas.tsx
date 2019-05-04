@@ -66,7 +66,7 @@ export default class Turmas extends Component<Props> {
                 <FlatList
                   contentContainerStyle={styles.flatlist}
                   //@ts-ignore
-                  keyExtractor={item => `${item.problema_id}`}
+                  keyExtractor={item => `${item.turma_id}`}
                   data={this.context.listaTurmas}
                   renderItem={({ item }) => (
                     <CardFlatList

@@ -15,7 +15,7 @@ type Props = {} & NavigationScreenProps;
 export default class CadastrarTurma extends Component<Props> {
   state = {
     titulo: "",
-    semetre: "",
+    semestre: "",
     ano: ""
   };
 
@@ -37,9 +37,9 @@ export default class CadastrarTurma extends Component<Props> {
           <Input
             keyboardType="numeric"
             custom={styles.inputStyle}
-            onChangeText={text => this.setState({ semetre: text })}
+            onChangeText={text => this.setState({ semestre: text })}
             placeholder="Semetre da turma"
-            value={this.state.semetre}
+            value={this.state.semestre}
           />
           <Input
             keyboardType="numeric"
@@ -72,13 +72,13 @@ export default class CadastrarTurma extends Component<Props> {
               onPress={() => {
                 if (
                   this.state.titulo.length > 0 &&
-                  this.state.semetre.length > 0 &&
+                  this.state.semestre.length > 0 &&
                   this.state.ano.length > 0
                 ) {
                   Alert.alert(
                     "Confirmação",
                     `Titulo: ${this.state.titulo} - Semestre: ${
-                      this.state.semetre
+                      this.state.semestre
                     } - Ano: ${this.state.ano}.`,
                     [
                       {

@@ -1,7 +1,9 @@
 import {
   createAppContainer,
   createStackNavigator,
-  createDrawerNavigator
+  createDrawerNavigator,
+  createTabNavigator,
+  createBottomTabNavigator
 } from "react-navigation";
 import React from "react";
 import Turmas from "../Screens/Turmas/Turmas";
@@ -21,6 +23,23 @@ import CadastroPlanoDeAula from "../Screens/PlanoDeAula/CadastroPlanoDeAula";
 import CadastrarTutoria from "../Screens/Tutoria/CadastrarTutoria";
 import VisualizarPlano from "../Screens/PlanoDeAula/VisualizarPlano";
 
+const planoTab = createBottomTabNavigator(
+  {
+    Detalhes: VisualizarPlano,
+    Tutoria: VisualizarPlano
+  },
+  {
+    initialRouteName: "Detalhes",
+    backBehavior: "initialRoute",
+    animationEnabled: true,
+    tabBarOptions: {
+      tabStyle: {
+        backgroundColor: colors.primaryColor
+      }
+    }
+  }
+);
+
 const Router = createDrawerNavigator(
   {
     Turmas: {
@@ -33,7 +52,7 @@ const Router = createDrawerNavigator(
           "Plano - Cadastrar problema": CadastrarProblemas,
           "Plano - Cadastrar referencia": CadastrarReferencia,
           "Plano - Cadastrar objetivo": CadastrarObjetivo,
-          "Plano - Visualizar": VisualizarPlano
+          "Plano - Visualizar": planoTab
         },
         {
           defaultNavigationOptions: { header: null }

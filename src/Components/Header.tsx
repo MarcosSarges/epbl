@@ -6,6 +6,7 @@ import { NavigationScreenProps } from "react-navigation";
 
 type Props = {
   back?: boolean;
+  onPress?: () => void;
 };
 
 export default (props: Props & NavigationScreenProps) => {
@@ -29,10 +30,15 @@ export default (props: Props & NavigationScreenProps) => {
           color={colors.primaryTextColor}
           size={fonts.regular}
           onPress={() => {
-            Alert.alert("Você está saindo?", "Tem certeza?", [
-              { text: "Sim", onPress: () => props.navigation.goBack() },
-              { text: "Não" }
-            ]);
+            if (typeof props.onPress === "undefined") {
+              props.navigation.goBack();
+            } else {
+              props.onPress();
+            }
+            // Alert.alert("Você está saindo?", "Tem certeza?", [
+            //   { text: "Sim", onPress: () => props.navigation.goBack() },
+            //   { text: "Não" }
+            // ]);
           }}
         />
       ) : (

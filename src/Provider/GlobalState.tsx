@@ -18,10 +18,11 @@ export default class Provider extends Component {
 
   setListTurmas = (array: []) => this.setState({ listaTurmas: array });
 
-  listarTurmas = () => {
-    TurmaSQLite.listarTurmas().then(res => {
+  listarTurmas = async () => {
+    await TurmaSQLite.listarTurmas().then(res => {
       this.setState({ listaTurmas: res });
     });
+    return true;
   };
 
   setListObjetivos = (array: []) => this.setState({ listaObjetivos: array });

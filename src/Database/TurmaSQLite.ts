@@ -13,25 +13,25 @@ const createTable = () => {
   });
 };
 
-const salvarTurma = (titulo: string, ano: string, semestre: string) => {
-  createTable();
+// const salvarTurma = (titulo: string, ano: string, semestre: string) => {
+//   createTable();
 
-  let id;
-  db.transaction(
-    (tx: Transaction) => {
-      tx.executeSql(
-        "INSERT INTO Turmas (titulo,ano,semestre) VALUES (:titulo,:ano,:semestre)",
-        [titulo, ano, semestre],
-        (tx, rs) => {
-          id = rs.insertId;
-        }
-      );
-    },
-    (err: any) => console.log("Turma " + err)
-  );
+//   let id;
+//   db.transaction(
+//     (tx: Transaction) => {
+//       tx.executeSql(
+//         "INSERT INTO Turmas (titulo,ano,semestre) VALUES (:titulo,:ano,:semestre)",
+//         [titulo, ano, semestre],
+//         (tx, rs) => {
+//           id = rs.insertId;
+//         }
+//       );
+//     },
+//     (err: any) => console.log("Turma " + err)
+//   );
 
-  return id;
-};
+//   return id;
+// };
 
 const listarTurmas = (): Promise<[]> => {
   //for (let i = 0; i <= 10; i++) salvarTurma('a','1','1');
@@ -60,7 +60,7 @@ const listarTurmas = (): Promise<[]> => {
 };
 
 const deletarTurma = async (id: number) => {
-  createTable();
+  // createTable();
   return new Promise((res, rej) => {
     db.transaction(
       (tx: Transaction) => {
@@ -77,7 +77,7 @@ const atualizarTurma = async (
   semestre: String,
   id: number
 ) => {
-  createTable();
+  // createTable();
   db.transaction(
     (tx: Transaction) => {
       tx.executeSql(
@@ -90,7 +90,7 @@ const atualizarTurma = async (
 };
 
 export default {
-  salvarTurma,
+  // salvarTurma,
   listarTurmas,
   atualizarTurma,
   deletarTurma

@@ -96,6 +96,7 @@ const salvarPlano = (
   createTable();
   db.transaction(
     (tx: Transaction) => {
+      console.log(Turma);
       tx.executeSql(
         "INSERT INTO Turmas (titulo,ano,semestre) VALUES (:titulo,:ano,:semestre)",
         [Turma.titulo, Turma.ano, Turma.semestre],

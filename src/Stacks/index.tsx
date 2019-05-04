@@ -23,8 +23,9 @@ import CadastroPlanoDeAula from "../Screens/PlanoDeAula/CadastroPlanoDeAula";
 import CadastrarTutoria from "../Screens/Tutoria/CadastrarTutoria";
 import VisualizarPlano from "../Screens/PlanoDeAula/VisualizarPlano";
 import VisualizarTutoria from "../Screens/Tutoria/VisualizarTutoria";
+import { createMaterialBottomTabNavigator } from "react-navigation-material-bottom-tabs";
 
-const planoTab = createBottomTabNavigator(
+const planoTab = createMaterialBottomTabNavigator(
   {
     Detalhes: VisualizarPlano,
     Tutoria: VisualizarTutoria
@@ -32,12 +33,7 @@ const planoTab = createBottomTabNavigator(
   {
     initialRouteName: "Detalhes",
     backBehavior: "initialRoute",
-    animationEnabled: true,
-    tabBarOptions: {
-      tabStyle: {
-        backgroundColor: colors.primaryColor
-      }
-    }
+    barStyle: { backgroundColor: colors.primaryColor }
   }
 );
 

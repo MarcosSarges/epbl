@@ -10,16 +10,27 @@ import {
 import { Context } from "../../Provider/GlobalState";
 import { colors, fonts, metrics } from "../../Styles";
 import Header from "../../Components/Header";
-import { NavigationScreenProps } from "react-navigation";
+import {
+  NavigationScreenProps,
+  NavigationBottomTabScreenOptions
+} from "react-navigation";
 import { FlatList } from "react-native-gesture-handler";
 import Title from "../../Components/Title";
 import PlanodeAula from "../../Database/PlanodeAula";
+import FontAwesome5Icon from "react-native-vector-icons/FontAwesome5";
 
 type Props = {} & NavigationScreenProps;
 
 export default class VisualizarTutoria extends Component<Props> {
   state = {
     Tutorias: []
+  };
+
+  static navigationOptions: NavigationBottomTabScreenOptions = {
+    tabBarIcon: ({ tintColor }) => (
+      //@ts-ignore
+      <FontAwesome5Icon name="brain" color={tintColor} size={20} />
+    )
   };
 
   componentWillMount() {
@@ -31,7 +42,7 @@ export default class VisualizarTutoria extends Component<Props> {
   checkBoxTutoria = (index, planoTuto_id, value) => {
     const newList: any = [];
     //@ts-ignore
-    this.state.Tutorias.forEach((el, i) => {
+    this.state.Tutorias.forEach((el: any, i) => {
       if (index === i) {
         newList.push({
           turma_id: el.turma_id,
@@ -65,7 +76,7 @@ export default class VisualizarTutoria extends Component<Props> {
   checkBoxTarefa = (indexPai, indexFilho, planoTarefas_id, value) => {
     const newList: any = [];
     //@ts-ignore
-    this.state.Tutorias.forEach((el, x) => {
+    this.state.Tutorias.forEach((el: any, x) => {
       const subList: any = [];
       //@ts-ignore
       el.subTarefas.forEach((el, i) => {

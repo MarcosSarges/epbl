@@ -10,8 +10,12 @@ import {
 } from "react-native";
 import { colors, metrics, fonts } from "../../Styles";
 import Header from "../../Components/Header";
-import { NavigationScreenProps } from "react-navigation";
+import {
+  NavigationScreenProps,
+  NavigationBottomTabScreenOptions
+} from "react-navigation";
 import { Context } from "../../Provider/GlobalState";
+import FontAwesome5Icon from "react-native-vector-icons/FontAwesome5";
 
 type Props = {} & NavigationScreenProps;
 
@@ -21,6 +25,13 @@ export default class VisualizarPlano extends Component<Props> {
     turma: this.props.navigation.state.params.turma,
     planoAula: {},
     load: true
+  };
+
+  static navigationOptions: NavigationBottomTabScreenOptions = {
+    tabBarIcon: ({ tintColor }) => (
+      //@ts-ignore
+      <FontAwesome5Icon name="chalkboard-teacher" color={tintColor} size={20} />
+    )
   };
 
   componentDidMount() {

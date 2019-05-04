@@ -7,7 +7,7 @@ const createTable = () => {
   db.transaction((txn: any) => {
     //txn.executeSql("DROP TABLE IF EXISTS Turma", []);
     txn.executeSql(
-      "CREATE TABLE IF NOT EXISTS Turmas(turma_id INTEGER PRIMARY KEY NOT NULL, titulo VARCHAR(40),ano VARCHAR(10),semestre VARCHAR(10))",
+      "CREATE TABLE IF NOT EXISTS Turmas(turma_id INTEGER PRIMARY KEY AUTOINCREMENT, titulo VARCHAR(40),ano VARCHAR(10),semestre VARCHAR(10))",
       []
     );
   });
@@ -48,6 +48,7 @@ const listarTurmas = (): Promise<[]> => {
             for (let i = 0; i < len; i++) {
               linhas.push(results.rows.item(i));
             }
+            console.log(linhas);
             res(linhas);
           }
         );

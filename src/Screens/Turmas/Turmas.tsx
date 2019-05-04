@@ -22,22 +22,7 @@ type Props = {} & NavigationScreenProps;
 
 export default class Turmas extends Component<Props> {
   state = {
-    data: [{ turma_id: 1, titulo: "UEPA-TADS-2016" }],
-    dataOrigem: [{ turma_id: 1, titulo: "UEPA-TADS-2016" }],
     load: true
-  };
-
-  filter = (input: string) => {
-    const { data, dataOrigem } = this.state;
-    if (input.length == 0) {
-      this.setState({ data: dataOrigem });
-    } else {
-      this.setState({
-        data: data.filter(
-          el => el.titulo.toLowerCase().includes(input.toLowerCase()) && true
-        )
-      });
-    }
   };
 
   componentDidMount() {
@@ -95,7 +80,7 @@ export default class Turmas extends Component<Props> {
                     color={colors.secondaryColor}
                   />
                   <Text style={{ textAlign: "center", fontSize: fonts.bigger }}>
-                    Você não possui nenhuma turma cadastrada
+                    Você não possui nenhuma turma cadastrada.
                   </Text>
                 </View>
               )}

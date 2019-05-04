@@ -7,6 +7,7 @@ import ButtonPlus from "../../Components/ButtonPlus";
 import Header from "../../Components/Header";
 import ProblemaSQLite from "../../Database/ProblemaSQLite";
 import { Context } from "../../Provider/GlobalState";
+import Icon from "react-native-vector-icons/FontAwesome5";
 
 type Props = {} & NavigationScreenProps;
 
@@ -69,9 +70,16 @@ export default class Problemas extends Component<Props> {
               )}
             />
           ) : (
-            <Text style={{ textAlign: "center", fontSize: fonts.bigger }}>
-              Você não possui nenhuma turma cadastrada
-            </Text>
+            <View style={{ alignItems: "center", justifyContent: "center" }}>
+              <Icon
+                name="exclamation-circle"
+                size={50}
+                color={colors.secondaryColor}
+              />
+              <Text style={{ textAlign: "center", fontSize: fonts.bigger }}>
+                Você não possui nenhum problema cadastrado.
+              </Text>
+            </View>
           )}
           <ButtonPlus
             onPress={() => {

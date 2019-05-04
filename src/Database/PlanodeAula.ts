@@ -42,32 +42,32 @@ let db = SQLiteConfig;
 const createTable = () => {
   db.transaction((txn: any) => {
     txn.executeSql(
-      "CREATE TABLE IF NOT EXISTS Turmas(turma_id INTEGER PRIMARY KEY NOT NULL, titulo VARCHAR(40),ano VARCHAR(10),semestre VARCHAR(10))",
+      "CREATE TABLE IF NOT EXISTS Turmas(turma_id INTEGER PRIMARY KEY AUTOINCREMENT, titulo VARCHAR(40),ano VARCHAR(10),semestre VARCHAR(10))",
       [],
       (tx: Transaction, rs: ResultSet) => {
         console.log(rs);
         tx.executeSql(
-          "CREATE TABLE IF NOT EXISTS PlanoProb(planoProb_id INTEGER PRIMARY KEY NOT NULL, titulo VARCHAR(40),historia VARCHAR(5000),turma_id INTEGER NOT NULL)",
+          "CREATE TABLE IF NOT EXISTS PlanoProb(planoProb_id INTEGER PRIMARY KEY AUTOINCREMENT, titulo VARCHAR(40),historia VARCHAR(5000),turma_id INTEGER NOT NULL)",
           [],
           (tx: Transaction, rs: ResultSet) => {
             console.log(rs);
             tx.executeSql(
-              "CREATE TABLE IF NOT EXISTS PlanoRef(planoRef_id INTEGER PRIMARY KEY NOT NULL, titulo VARCHAR(400),turma_id INTEGER NOT NULL)",
+              "CREATE TABLE IF NOT EXISTS PlanoRef(planoRef_id INTEGER PRIMARY KEY AUTOINCREMENT, titulo VARCHAR(400),turma_id INTEGER NOT NULL)",
               [],
               (tx, rs) => {
                 console.log(rs);
                 tx.executeSql(
-                  "CREATE TABLE IF NOT EXISTS PlanoObj(planoObj_id INTEGER PRIMARY KEY NOT NULL, titulo VARCHAR(400),turma_id INTEGER NOT NULL)",
+                  "CREATE TABLE IF NOT EXISTS PlanoObj(planoObj_id INTEGER PRIMARY KEY AUTOINCREMENT, titulo VARCHAR(400),turma_id INTEGER NOT NULL)",
                   [],
                   (tx, rs) => {
                     console.log(rs);
                     tx.executeSql(
-                      "CREATE TABLE IF NOT EXISTS PlanoTutoria(planoTuto_id INTEGER PRIMARY KEY NOT NULL, titulo VARCHAR(400), estado INTEGER,turma_id INTEGER NOT NULL)",
+                      "CREATE TABLE IF NOT EXISTS PlanoTutoria(planoTuto_id INTEGER PRIMARY KEY AUTOINCREMENT, titulo VARCHAR(400), estado INTEGER,turma_id INTEGER NOT NULL)",
                       [],
                       (tx, rs) => {
                         console.log(rs);
                         tx.executeSql(
-                          "CREATE TABLE IF NOT EXISTS PlanoTarefas(planoTarefas_id INTEGER PRIMARY KEY NOT NULL, titulo VARCHAR(400), estado INTEGER,planoTuto_id INTEGER NOT NULL)",
+                          "CREATE TABLE IF NOT EXISTS PlanoTarefas(planoTarefas_id INTEGER PRIMARY KEY AUTOINCREMENT, titulo VARCHAR(400), estado INTEGER,planoTuto_id INTEGER NOT NULL)",
                           [],
                           (tx, rs) => {
                             console.log(rs);
@@ -101,6 +101,7 @@ const salvarPlano = (
         "INSERT INTO Turmas (titulo,ano,semestre) VALUES (:titulo,:ano,:semestre)",
         [Turma.titulo, Turma.ano, Turma.semestre],
         (tx, rs) => {
+          console.log(rs.insertId);
           Problemas.forEach(el => {
             tx.executeSql(
               "INSERT INTO PlanoProb (titulo,historia,turma_id) VALUES (:titulo, :historia,:turma_id)",

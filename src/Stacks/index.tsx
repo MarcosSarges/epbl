@@ -24,6 +24,7 @@ import CadastrarTutoria from "../Screens/Tutoria/CadastrarTutoria";
 import VisualizarPlano from "../Screens/PlanoDeAula/VisualizarPlano";
 import VisualizarTutoria from "../Screens/Tutoria/VisualizarTutoria";
 import { createMaterialBottomTabNavigator } from "react-navigation-material-bottom-tabs";
+import WebView from "../Screens/WebView";
 
 const planoTab = createMaterialBottomTabNavigator(
   {
@@ -139,6 +140,14 @@ const Router = createDrawerNavigator(
         drawerIcon: (props: any) => (
           <Icon name="question" size={16} color={props.tintColor} />
         )
+      }
+    },
+    WebView: {
+      screen: WebView,
+      navigationOptions: {
+        drawerLabel: null,
+        drawerIcon: null,
+        title: ""
       }
     }
   },

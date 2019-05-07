@@ -6,7 +6,12 @@ import {
   Text,
   StyleSheet,
   ActivityIndicator,
-  ScrollView
+  ScrollView,
+  ToastAndroid,
+  PermissionsAndroid,
+  Rationale,
+  Alert,
+  Button
 } from "react-native";
 import { colors, metrics, fonts } from "../../Styles";
 import Header from "../../Components/Header";
@@ -16,6 +21,8 @@ import {
 } from "react-navigation";
 import { Context } from "../../Provider/GlobalState";
 import FontAwesome5Icon from "react-native-vector-icons/FontAwesome5";
+import RNHTMLtoPDF from "react-native-html-to-pdf";
+import templetePDF from "../../util/templetePDF";
 
 type Props = {} & NavigationScreenProps;
 
@@ -76,6 +83,43 @@ export default class VisualizarPlano extends Component<Props> {
     });
     return Objs;
   };
+  createPDF = async () => {
+    try {
+      const request: Rationale = {
+        title: "Solicitação para armazenamento",
+        message: "Essa permição é necessaria para salvar o PDF.",
+        buttonPositive: "Okay"
+      };
+
+      const granted = await PermissionsAndroid.request(
+        PermissionsAndroid.PERMISSIONS.WRITE_EXTERNAL_STORAGE,
+        request
+      );
+      if (granted === PermissionsAndroid.RESULTS.GRANTED) {
+        const { turma, planoAula } = this.state;
+        console.log(planoAula);
+
+        this.context.buscarTutorias(turma.turma_id).then(async el => {
+          let options = {
+            html: templetePDF(turma, planoAula, el.Tutorias),
+            fileName: turma.titulo,
+            directory: "E-PBL"
+          };
+          const file = await RNHTMLtoPDF.convert(options);
+          ToastAndroid.show(
+            `Foi salvo em: ${file.filePath}`,
+            ToastAndroid.SHORT
+          );
+        });
+
+        // console.log(file.filePath);
+      } else {
+        Alert.alert("Ops!", "Permisão negada.");
+      }
+    } catch (e) {
+      console.log("Catch", e);
+    }
+  };
 
   renderReferencias = () => {
     //@ts-ignore
@@ -115,7 +159,9 @@ export default class VisualizarPlano extends Component<Props> {
             <React.Fragment>
               <View style={styles.viewCard}>
                 <Text style={styles.title}>Plano de aula</Text>
-                <Text style={styles.detalhes}>Titulo: {turma.titulo}</Text>
+                <Text style={styles.detalhes}>
+                  Titulo da turma: {turma.titulo}
+                </Text>
                 <Text style={styles.detalhes}>Ano: {turma.ano}</Text>
                 <Text style={styles.detalhes}>Semestre: {turma.semestre}</Text>
               </View>
@@ -133,6 +179,13 @@ export default class VisualizarPlano extends Component<Props> {
               </View>
             </React.Fragment>
           )}
+          <View style={{ margin: metrics.baseMargin }}>
+            <Button
+              title="Exporta em PDF"
+              onPress={this.createPDF}
+              color={colors.primaryColor}
+            />
+          </View>
         </ScrollView>
       </View>
     );

@@ -5,7 +5,8 @@ import {
   StatusBar,
   ScrollView,
   Text,
-  Image
+  Image,
+  TouchableOpacity
 } from "react-native";
 import { colors, metrics, fonts } from "../../Styles";
 import { NavigationScreenProps } from "react-navigation";
@@ -53,10 +54,18 @@ export default (props: Props) => {
         </Text>
 
         <Text style={styles.title}>Referencias</Text>
-        <Text style={styles.texto}>
-          Logo:Fundo vetor criado por rawpixel.com - br.freepik.com {"\n"}
-          Disponivel em: https://br.freepik.com/fotos-vetores-gratis/fundo
-        </Text>
+        <TouchableOpacity
+          onPress={() =>
+            props.navigation.navigate("WebView", {
+              link: "https://br.freepik.com"
+            })
+          }
+        >
+          <Text style={styles.texto}>
+            Logo: Designed by rawpixel.com / Freepik{"\n"}
+            Disponivel em: https://br.freepik.com
+          </Text>
+        </TouchableOpacity>
       </ScrollView>
     </View>
   );

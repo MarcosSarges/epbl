@@ -6,7 +6,9 @@ import {
   Text,
   StatusBar,
   ActivityIndicator,
-  Alert
+  Alert,
+  TouchableOpacity,
+  ToastAndroid
 } from "react-native";
 import { colors, fonts, metrics } from "../../Styles";
 import { NavigationScreenProps } from "react-navigation";

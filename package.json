@@ -28,7 +28,6 @@
     "@types/react-navigation-material-bottom-tabs": "^0.3.1",
     "@types/react-test-renderer": "^16.8.1",
     "babel-jest": "^24.7.1",
-    "babel-plugin-transform-remove-console": "^6.9.4",
     "jest": "^24.7.1",
     "metro-react-native-babel-preset": "^0.53.1",
     "react-native-html-to-pdf": "^0.7.0",

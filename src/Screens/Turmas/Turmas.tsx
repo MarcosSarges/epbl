@@ -5,7 +5,8 @@ import {
   FlatList,
   Text,
   StatusBar,
-  ActivityIndicator
+  ActivityIndicator,
+  Alert
 } from "react-native";
 import { colors, fonts, metrics } from "../../Styles";
 import { NavigationScreenProps } from "react-navigation";
@@ -64,9 +65,21 @@ export default class Turmas extends Component<Props> {
                     <CardFlatList
                       turmas={true}
                       deletar={() => {
-                        //@ts-ignore
-                        TurmaSQLite.deletarTurma(item.turma_id);
-                        this.context.listarTurmas();
+                        Alert.alert(
+                          "Confirmação",
+                          "Você realmente quer deletar essa turma?",
+                          [
+                            { text: "Não" },
+                            {
+                              text: "Sim",
+                              onPress: () => {
+                                //@ts-ignore
+                                TurmaSQLite.deletarTurma(item.turma_id);
+                                this.context.listarTurmas();
+                              }
+                            }
+                          ]
+                        );
                       }}
                       item={item}
                       onPress={() =>

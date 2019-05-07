@@ -53,7 +53,7 @@ export default class DetalhesManual extends Component<Props, State> {
 
 const styles = StyleSheet.create({
   container: {
-    padding: metrics.basePadding,
+    padding: metrics.basePadding + 8,
     backgroundColor: colors.backgroundColor,
     flex: 1
   },

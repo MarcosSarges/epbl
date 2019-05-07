@@ -137,7 +137,7 @@ export default class CadastrarTutoria extends Component<Props> {
                       }}
                     >
                       <Input
-                        maxLength={17}
+                        maxLength={30}
                         placeholder="Titulo da Tarefa"
                         value={this.state.addTarefa}
                         onChangeText={text =>
@@ -199,7 +199,7 @@ export default class CadastrarTutoria extends Component<Props> {
                 )}
               </View>
             </Modal>
-            <ScrollView style={styles.container}>
+            <View style={styles.container}>
               <Title title="Tutorias" />
               {this.state.listaTutoria.length > 0 ? (
                 <FlatList
@@ -233,11 +233,11 @@ export default class CadastrarTutoria extends Component<Props> {
               ) : (
                 <Title title="Você deve adcionar pelo menos uma tutoria" />
               )}
-            </ScrollView>
+            </View>
 
             <View style={styles.viewInput}>
               <Input
-                maxLength={17}
+                maxLength={30}
                 custom={styles.input}
                 onSubmitEditing={this.onSubmit}
                 value={this.state.addTutoria}
@@ -329,8 +329,8 @@ CadastrarTutoria.contextType = Context;
 const styles = StyleSheet.create({
   container: {
     padding: metrics.basePadding,
-    backgroundColor: colors.backgroundColor
-    //flex: 1
+    backgroundColor: colors.backgroundColor,
+    flex: 1
   },
   viewButton: {
     marginTop: metrics.baseMargin,

@@ -24,7 +24,7 @@ export default class Manual extends Component<Props> {
         <Header
           {...this.props}
           hiddenButton
-          titulo="Manul"
+          titulo="Manual"
           conteudo="O manual contem topicos relacionado ao PBL."
         />
         <View style={styles.container}>

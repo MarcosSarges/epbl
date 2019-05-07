@@ -1,11 +1,14 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 
 import {
   View,
   StatusBar,
   CheckBox,
   Text,
-  ActivityIndicator
+  ActivityIndicator,
+  TouchableOpacity,
+  Modal,
+  Alert
 } from "react-native";
 import { Context } from "../../Provider/GlobalState";
 import { colors, fonts, metrics } from "../../Styles";
@@ -18,12 +21,20 @@ import { FlatList } from "react-native-gesture-handler";
 import Title from "../../Components/Title";
 import PlanodeAula from "../../Database/PlanodeAula";
 import FontAwesome5Icon from "react-native-vector-icons/FontAwesome5";
+import Input from "../../Components/Input";
+import Button from "../../Components/Button";
 
 type Props = {} & NavigationScreenProps;
 
 export default class VisualizarTutoria extends Component<Props> {
   state = {
-    Tutorias: []
+    Tutorias: [],
+    tutoria: {},
+    novoTextoTuto: "",
+    atividade: {},
+    novoTextoAtivi: "",
+    modalTutoria: false,
+    modalAtividade: false
   };
 
   static navigationOptions: NavigationBottomTabScreenOptions = {
@@ -34,6 +45,8 @@ export default class VisualizarTutoria extends Component<Props> {
   };
 
   componentWillMount() {
+    console.log("aqui", this.props.navigation.state.params);
+
     this.setState({
       Tutorias: this.context.listaTutorias
     });
@@ -125,6 +138,233 @@ export default class VisualizarTutoria extends Component<Props> {
           onPress={() => this.props.navigation.navigate("Turmas")}
         />
         <Title title="Check-List Tutorias" />
+
+        <Modal
+          visible={this.state.modalTutoria}
+          animated
+          animationType="fade"
+          transparent
+          onRequestClose={() =>
+            this.setState({ modalTutoria: !this.state.modalTutoria })
+          }
+        >
+          {this.state.modalTutoria ? (
+            <Fragment>
+              {this.state.tutoria.titulo.length > 0 ? (
+                <View
+                  style={{
+                    backgroundColor: "rgba(0,0,0,0.3)",
+                    flex: 1,
+                    justifyContent: "center",
+                    paddingHorizontal: metrics.basePadding
+                  }}
+                >
+                  <View
+                    style={{
+                      backgroundColor: colors.backgroundColor,
+                      position: "relative",
+                      elevation: 2
+                    }}
+                  >
+                    <View
+                      style={{
+                        backgroundColor: colors.primaryColor,
+                        padding: metrics.basePadding
+                      }}
+                    >
+                      <Title
+                        //@ts-ignore
+                        title={this.state.tutoria.titulo.toUpperCase()}
+                        custom={{ textAlign: "justify" }}
+                      />
+                    </View>
+                    <View
+                      style={{
+                        padding: metrics.basePadding
+                      }}
+                    >
+                      <Input
+                        maxLength={17}
+                        placeholder=""
+                        value={this.state.novoTextoTuto}
+                        onChangeText={text =>
+                          this.setState({ novoTextoTuto: text })
+                        }
+                      />
+                      <View
+                        style={{
+                          flexDirection: "row",
+                          justifyContent: "space-around",
+                          marginTop: metrics.baseMargin
+                        }}
+                      >
+                        <Button
+                          title="Cancelar"
+                          typeIcon="times"
+                          type="danger"
+                          onPress={() =>
+                            this.setState({
+                              modalTutoria: false,
+                              tutoria: {},
+                              novoTextoTuto: ""
+                            })
+                          }
+                        />
+                        <Button
+                          title="Atualizar"
+                          typeIcon="save"
+                          onPress={() => {
+                            if (this.state.novoTextoTuto.length > 0) {
+                              const { tutoria, novoTextoTuto } = this.state;
+                              PlanodeAula.atualizarTutoria(
+                                tutoria.planoTuto_id,
+                                novoTextoTuto
+                              ).then(rs => {
+                                console.log(rs);
+                                this.context
+                                  .buscarTutorias(tutoria.turma_id)
+                                  .then(el => {
+                                    console.log("aqui", el.Tutorias);
+                                    this.setState({
+                                      tutoria: {},
+                                      novoTextoTuto: "",
+                                      modalTutoria: false,
+                                      Tutorias: el.Tutorias
+                                    });
+                                  });
+                              });
+                            } else {
+                              Alert.alert("Ops!", "Digite alguma coisa");
+                            }
+                          }}
+                        />
+                      </View>
+                    </View>
+                  </View>
+                </View>
+              ) : (
+                false
+              )}
+            </Fragment>
+          ) : (
+            false
+          )}
+        </Modal>
+
+        <Modal
+          visible={this.state.modalAtividade}
+          animated
+          animationType="fade"
+          transparent
+          onRequestClose={() =>
+            this.setState({ modalAtividade: !this.state.modalAtividade })
+          }
+        >
+          {this.state.modalAtividade ? (
+            <Fragment>
+              {this.state.atividade.titulo.length > 0 ? (
+                <View
+                  style={{
+                    backgroundColor: "rgba(0,0,0,0.3)",
+                    flex: 1,
+                    justifyContent: "center",
+                    paddingHorizontal: metrics.basePadding
+                  }}
+                >
+                  <View
+                    style={{
+                      backgroundColor: colors.backgroundColor,
+                      position: "relative",
+                      elevation: 2
+                    }}
+                  >
+                    <View
+                      style={{
+                        backgroundColor: colors.primaryColor,
+                        padding: metrics.basePadding
+                      }}
+                    >
+                      <Title
+                        //@ts-ignore
+                        title={this.state.atividade.titulo.toUpperCase()}
+                        custom={{ textAlign: "justify" }}
+                      />
+                    </View>
+                    <View
+                      style={{
+                        padding: metrics.basePadding
+                      }}
+                    >
+                      <Input
+                        maxLength={17}
+                        placeholder=""
+                        value={this.state.novoTextoAtivi}
+                        onChangeText={text =>
+                          this.setState({ novoTextoAtivi: text })
+                        }
+                      />
+                      <View
+                        style={{
+                          flexDirection: "row",
+                          justifyContent: "space-around",
+                          marginTop: metrics.baseMargin
+                        }}
+                      >
+                        <Button
+                          title="Cancelar"
+                          typeIcon="times"
+                          type="danger"
+                          onPress={() =>
+                            this.setState({
+                              modalAtividade: false,
+                              atividade: {},
+                              novoTextoAtivi: ""
+                            })
+                          }
+                        />
+                        <Button
+                          title="Atualizar"
+                          typeIcon="save"
+                          onPress={() => {
+                            if (this.state.novoTextoAtivi.length > 0) {
+                              const { atividade, novoTextoAtivi } = this.state;
+                              PlanodeAula.atualizarAtividade(
+                                atividade.planoTarefas_id,
+                                novoTextoAtivi
+                              ).then(rs => {
+                                const {
+                                  turma
+                                } = this.props.navigation.state.params;
+
+                                this.context
+                                  .buscarTutorias(turma.turma_id)
+                                  .then(el => {
+                                    console.log("aqui", el.Tutorias);
+                                    this.setState({
+                                      atividade: {},
+                                      novoTextoAtivi: "",
+                                      modalAtividade: false,
+                                      Tutorias: el.Tutorias
+                                    });
+                                  });
+                              });
+                            } else {
+                              Alert.alert("Ops!", "Digite alguma coisa");
+                            }
+                          }}
+                        />
+                      </View>
+                    </View>
+                  </View>
+                </View>
+              ) : (
+                false
+              )}
+            </Fragment>
+          ) : (
+            false
+          )}
+        </Modal>
         {this.state.Tutorias.length === 0 ? (
           <ActivityIndicator />
         ) : (
@@ -140,7 +380,15 @@ export default class VisualizarTutoria extends Component<Props> {
                   padding: metrics.basePadding
                 }}
               >
-                <View style={{ flexDirection: "row", alignItems: "center" }}>
+                <View
+                  style={{
+                    flexDirection: "row",
+                    alignItems: "center",
+                    justifyContent: "space-between",
+                    borderBottomWidth: 1,
+                    paddingVertical: metrics.basePadding
+                  }}
+                >
                   <CheckBox
                     value={item.estado === 0 ? false : true}
                     onValueChange={value =>
@@ -160,6 +408,30 @@ export default class VisualizarTutoria extends Component<Props> {
                   >
                     {item.titulo}
                   </Text>
+                  <TouchableOpacity
+                    style={{
+                      height: 30,
+                      width: 30,
+                      alignItems: "center",
+                      justifyContent: "center"
+                    }}
+                    onPress={() => {
+                      this.setState({
+                        tutoria: item,
+                        novoTextoTuto: item.titulo,
+                        modalTutoria: true
+                      });
+                    }}
+                  >
+                    <FontAwesome5Icon
+                      name="edit"
+                      style={{
+                        fontSize: fonts.regular,
+                        color: colors.primaryTextColor,
+                        fontWeight: "bold"
+                      }}
+                    />
+                  </TouchableOpacity>
                 </View>
                 <FlatList
                   contentContainerStyle={{ marginLeft: 20 }}
@@ -167,30 +439,62 @@ export default class VisualizarTutoria extends Component<Props> {
                   keyExtractor={item => `${item.planoTuto_id}${Math.random()}`}
                   renderItem={props => (
                     <View
-                      style={{ flexDirection: "row", alignItems: "center" }}
+                      style={{
+                        flexDirection: "row",
+                        alignItems: "center",
+                        justifyContent: "space-between",
+                        paddingVertical: metrics.basePadding
+                      }}
                     >
-                      <CheckBox
-                        value={props.item.estado === 0 ? false : true}
-                        onValueChange={value =>
-                          this.checkBoxTarefa(
-                            index,
-                            props.index,
-                            props.item.planoTarefas_id,
-                            value
-                          )
-                        }
-                      />
-                      <Text
+                      <View
+                        style={{ flexDirection: "row", alignItems: "center" }}
+                      >
+                        <CheckBox
+                          value={props.item.estado === 0 ? false : true}
+                          onValueChange={value =>
+                            this.checkBoxTarefa(
+                              index,
+                              props.index,
+                              props.item.planoTarefas_id,
+                              value
+                            )
+                          }
+                        />
+                        <Text
+                          style={{
+                            fontSize: fonts.small,
+                            color:
+                              props.item.estado === 0
+                                ? colors.primaryTextColor
+                                : colors.success
+                          }}
+                        >
+                          {props.item.titulo}
+                        </Text>
+                      </View>
+                      <TouchableOpacity
                         style={{
-                          fontSize: fonts.small,
-                          color:
-                            props.item.estado === 0
-                              ? colors.primaryTextColor
-                              : colors.success
+                          height: 30,
+                          width: 30,
+                          alignItems: "center",
+                          justifyContent: "center"
+                        }}
+                        onPress={() => {
+                          this.setState({
+                            atividade: props.item,
+                            modalAtividade: true,
+                            novoTextoAtivi: props.item.titulo
+                          });
                         }}
                       >
-                        {props.item.titulo}
-                      </Text>
+                        <FontAwesome5Icon
+                          name="edit"
+                          style={{
+                            fontSize: fonts.small,
+                            color: colors.primaryTextColor
+                          }}
+                        />
+                      </TouchableOpacity>
                     </View>
                   )}
                 />

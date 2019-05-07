@@ -20,13 +20,14 @@ export default class Provider extends Component {
   };
 
   buscarTutorias = async (id: any) => {
+    let rs = {};
     await PlanodeAula.listarTutorias(id).then(el => {
       this.setState({
         listaTutorias: el
       });
-      return true;
+      rs = el;
     });
-    return false;
+    return rs;
   };
 
   buscarPlanoDeAula = async (id: number) => {

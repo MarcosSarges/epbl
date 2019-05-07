@@ -144,6 +144,34 @@ const salvarPlano = (
   );
 };
 
+const atualizarTutoria = (id: number, titulo: string) => {
+  return new Promise((res, rej) => {
+    db.transaction((ts: Transaction) => {
+      ts.executeSql(
+        "UPDATE PlanoTutoria SET titulo=:titulo WHERE planoTuto_id=:id",
+        [titulo, id],
+        (ts, rs) => {
+          res(rs);
+        }
+      );
+    });
+  });
+};
+
+const atualizarAtividade = (id: number, titulo: string) => {
+  return new Promise((res, rej) => {
+    db.transaction((ts: Transaction) => {
+      ts.executeSql(
+        "UPDATE PlanoTarefas SET titulo=:titulo WHERE planoTarefas_id=:id",
+        [titulo, id],
+        (ts, rs) => {
+          res(rs);
+        }
+      );
+    });
+  });
+};
+
 const listarTudo = (id: number): any => {
   const Problemas: any = [];
   const Objetivos: any = [];
@@ -312,5 +340,7 @@ export default {
   listarTudo,
   listarTutorias,
   updateTutoria,
-  updateTarefa
+  updateTarefa,
+  atualizarTutoria,
+  atualizarAtividade
 };

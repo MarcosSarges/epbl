@@ -41,14 +41,19 @@ export default class CadastrarObjetivo extends Component<Props> {
           backgroundColor={colors.primaryDarkColor}
         />
 
-        <Header navigation={this.props.navigation} back />
+        <Header
+          navigation={this.props.navigation}
+          back
+          titulo="O que é a descrição do objetivo?"
+          conteudo="Esse campo você deve digitar qual sera o objetivo do problema."
+        />
 
         <ScrollView contentContainerStyle={styles.container}>
           <Input
             custom={{ marginBottom: metrics.baseMargin }}
             value={this.state.titulo}
             multiline={true}
-            placeholder="Descrição da objetivo"
+            placeholder="Descrição do objetivo"
             onChangeText={(txt: string) => this.setState({ titulo: txt })}
           />
           {/* <View style={styles.viewInput}>

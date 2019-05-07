@@ -21,7 +21,12 @@ export default class Manual extends Component<Props> {
           barStyle="light-content"
           backgroundColor={colors.primaryDarkColor}
         />
-        <Header {...this.props} />
+        <Header
+          {...this.props}
+          hiddenButton
+          titulo="Manul"
+          conteudo="O manual contem topicos relacionado ao PBL."
+        />
         <View style={styles.container}>
           <FlatList
             contentContainerStyle={styles.flatlist}

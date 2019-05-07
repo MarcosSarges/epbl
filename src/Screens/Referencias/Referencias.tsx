@@ -43,7 +43,11 @@ export default class Referencias extends Component<Props> {
           barStyle="light-content"
           backgroundColor={colors.primaryDarkColor}
         />
-        <Header navigation={this.props.navigation} />
+        <Header
+          navigation={this.props.navigation}
+          titulo="O que é a referencia?"
+          conteudo="São links, nomes de livros ou artigos, etc. em resumo qual quer coisa que servirar como base para bibliografica para elaboração das soluções do problema."
+        />
         <View style={styles.container}>
           {/* <Input onChangeText={this.filter} placeholder="Filtrar..." /> */}
           {this.context.listaReferencias.length > 0 ? (

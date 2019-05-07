@@ -43,7 +43,11 @@ export default class Objetivos extends Component<Props> {
           barStyle="light-content"
           backgroundColor={colors.primaryDarkColor}
         />
-        <Header navigation={this.props.navigation} />
+        <Header
+          navigation={this.props.navigation}
+          titulo="O que é um objetivo?"
+          conteudo="Os objetivos são as metas a serem completadas na resolução do problema apresentado pelo tutor. Para que sejam satisfeitas estas metas, é fundamental que as tarefas sejam bem definidas e realizadas. Um problema pode ter um ou vários objetivos."
+        />
         <View style={styles.container}>
           {/* <Input onChangeText={this.filter} placeholder="Filtrar..." /> */}
           {this.context.listaObjetivos.length > 0 ? (

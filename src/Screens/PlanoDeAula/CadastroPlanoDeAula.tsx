@@ -147,7 +147,12 @@ export default class CadastroPlanoDeAula extends Component<Props> {
           barStyle="light-content"
           backgroundColor={colors.primaryDarkColor}
         />
-        <Header navigation={this.props.navigation} back />
+        <Header
+          navigation={this.props.navigation}
+          back
+          titulo="O que devo fazer aqui?"
+          conteudo="Nesse ponto você pode criar os problemas, objetivos e referencias e também selecionalos para a turma que você estar criando."
+        />
         <ScrollView contentContainerStyle={styles.container}>
           <Title
             title="Selecione os detalhes do plano de aula"

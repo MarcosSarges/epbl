@@ -41,7 +41,12 @@ export default class CadastrarReferencia extends Component<Props> {
           barStyle="light-content"
           backgroundColor={colors.primaryDarkColor}
         />
-        <Header navigation={this.props.navigation} back />
+        <Header
+          navigation={this.props.navigation}
+          back
+          titulo="O que é a descrição da referencia?"
+          conteudo="Esse campo você deve digitar qual sera a referencia do problema."
+        />
 
         <ScrollView contentContainerStyle={styles.container}>
           <Input

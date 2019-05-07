@@ -43,7 +43,11 @@ export default class Problemas extends Component<Props> {
           barStyle="light-content"
           backgroundColor={colors.primaryDarkColor}
         />
-        <Header navigation={this.props.navigation} />
+        <Header
+          navigation={this.props.navigation}
+          titulo="O que é um problema?"
+          conteudo="O problema é uma situação real, selecionada do ambiente profissional ao qual os alunos serão apresentados futuramente. Ele é o ponto principal da matéria aplicada através da metodologia PBL. É com base neste problema que os objetivos e tarefas dos alunos serão desenvolvidas. Uma matéria pode ter um ou vários problemas."
+        />
         <View style={styles.container}>
           {/* <Input onChangeText={this.filter} placeholder="Filtrar..." /> */}
           {this.context.listaProblema.length > 0 ? (

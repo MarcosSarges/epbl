@@ -80,7 +80,16 @@ export default class CadastrarTutoria extends Component<Props> {
           barStyle="light-content"
           backgroundColor={colors.primaryDarkColor}
         />
-        <Header navigation={this.props.navigation} back />
+        <Header
+          navigation={this.props.navigation}
+          back
+          titulo="O que seria uma tutoria?"
+          conteudo="No contexto desse aplicativo uma tutoria pode representar uma aula completa ou fragmentos de uma aula contendo pequenas metas a serem alcançadas a fim de monitorar o seu andamento."
+          subTitulo="Exemplos:"
+          subConteudo={`“Introdução da metodologia e da disciplina”\n“Avaliar pesquisas realizadas”\n“Avaliar propostas de solução”\n`}
+          terceiroConteudo={`Tarefas representam os pequenos passos a serem concluídos para o encerramento de uma tutoria alguns exemplos são:\n“Explicar conceitos gerais da disciplina e exemplificar”\n“Descrever o problema que será utilizado nas atividades”\n“Tirar dúvidas dos alunos”`}
+          terceiroTitulo="Tarefas"
+        />
         {this.state.load ? (
           <ActivityIndicator size="large" color={colors.primaryColor} />
         ) : (

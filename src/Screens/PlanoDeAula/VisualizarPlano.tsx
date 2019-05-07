@@ -103,6 +103,7 @@ export default class VisualizarPlano extends Component<Props> {
         <Header
           navigation={this.props.navigation}
           back
+          hiddenButton
           onPress={() => this.props.navigation.navigate("Turmas")}
         />
         <ScrollView

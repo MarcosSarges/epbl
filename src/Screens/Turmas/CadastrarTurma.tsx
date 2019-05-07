@@ -26,7 +26,12 @@ export default class CadastrarTurma extends Component<Props> {
           barStyle="light-content"
           backgroundColor={colors.primaryDarkColor}
         />
-        <Header navigation={this.props.navigation} back />
+        <Header
+          navigation={this.props.navigation}
+          back
+          titulo="Como eu devo preencer?"
+          subTitulo="Os campos são para identificação das turmas, detro do fluxo isso não causará impacto."
+        />
         <ScrollView contentContainerStyle={styles.container}>
           <Input
             custom={styles.inputStyle}

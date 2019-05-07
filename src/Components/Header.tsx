@@ -9,10 +9,13 @@ import ConteudoBotao from "../Screens/Manual/ConteudoBotao";
 type Props = {
   back?: boolean;
   onPress?: () => void;
-  titulo: string;
+  titulo?: string;
   subTitulo?: string;
-  conteudo: string;
+  conteudo?: string;
   subConteudo?: string;
+  hiddenButton?: boolean;
+  terceiroTitulo?: string;
+  terceiroConteudo?: string;
 };
 
 export default (props: Props & NavigationScreenProps) => {
@@ -38,7 +41,8 @@ export default (props: Props & NavigationScreenProps) => {
               elevation: 4,
               margin: metrics.baseMargin,
               padding: metrics.basePadding,
-              paddingTop: 16,
+              paddingBottom: 20,
+              marginBottom: 20,
               borderRadius: 20,
               backgroundColor: "#FFF",
               position: "relative"
@@ -67,7 +71,7 @@ export default (props: Props & NavigationScreenProps) => {
                 fontWeight: "bold",
                 textTransform: "uppercase",
                 fontSize: fonts.big,
-                marginTop: 40
+                marginTop: 35
               }}
             >
               {props.titulo}
@@ -84,7 +88,7 @@ export default (props: Props & NavigationScreenProps) => {
                     fontWeight: "bold",
                     textTransform: "uppercase",
                     fontSize: fonts.big,
-                    marginTop: 40
+                    marginTop: 8
                   }}
                 >
                   {props.subTitulo}
@@ -92,6 +96,33 @@ export default (props: Props & NavigationScreenProps) => {
                 <Text style={{ fontSize: fonts.regular, textAlign: "center" }}>
                   {props.subConteudo}
                 </Text>
+                {props.terceiroTitulo ? (
+                  <React.Fragment>
+                    <Text
+                      style={{
+                        textAlign: "center",
+                        color: colors.primaryTextColor,
+                        fontWeight: "bold",
+                        textTransform: "uppercase",
+                        fontSize: fonts.big,
+                        marginTop: 8
+                      }}
+                    >
+                      {props.terceiroTitulo}
+                    </Text>
+                    <Text
+                      style={{
+                        fontSize: fonts.regular,
+                        textAlign: "center",
+                        marginBottom: 10
+                      }}
+                    >
+                      {props.terceiroConteudo}
+                    </Text>
+                  </React.Fragment>
+                ) : (
+                  false
+                )}
               </React.Fragment>
             ) : (
               false
@@ -123,14 +154,20 @@ export default (props: Props & NavigationScreenProps) => {
       )}
       <Text style={styles.title}>{props.navigation.state.routeName}</Text>
       {props.back ? (
-        <Icon
-          style={{ marginRight: metrics.baseMargin }}
-          name="question"
-          solid
-          color={colors.primaryTextColor}
-          size={fonts.regular}
-          onPress={() => setVisible(!visible)}
-        />
+        <React.Fragment>
+          {props.hiddenButton ? (
+            false
+          ) : (
+            <Icon
+              style={{ marginRight: metrics.baseMargin }}
+              name="question"
+              solid
+              color={colors.primaryTextColor}
+              size={fonts.regular}
+              onPress={() => setVisible(!visible)}
+            />
+          )}
+        </React.Fragment>
       ) : (
         <View style={{ flexDirection: "row" }}>
           <Icon

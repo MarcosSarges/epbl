@@ -21,7 +21,7 @@ export default class DetalhesManual extends Component<Props, State> {
           barStyle="light-content"
           backgroundColor={colors.primaryDarkColor}
         />
-        <Header {...this.props} back />
+        <Header navigation={this.props.navigation} back hiddenButton />
         <View style={styles.container}>
           <Title title={this.state.item.titulo} />
           <View

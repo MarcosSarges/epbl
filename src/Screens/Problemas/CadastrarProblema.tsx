@@ -42,7 +42,14 @@ export default class CadastrarProblemas extends Component<Props> {
           barStyle="light-content"
           backgroundColor={colors.primaryDarkColor}
         />
-        <Header navigation={this.props.navigation} back />
+        <Header
+          navigation={this.props.navigation}
+          back
+          titulo="Como preencer os campos?"
+          conteudo={`No primeiro campo deve ser passado um titulo para o problema, é indicado colocar o nome do projeto que deseja executar.\nNo campo da historia, você deve descrever o cenario do problema.`}
+          subTitulo="Como selecionar um problema?"
+          subConteudo={`Antes de apresentar um problema para a turma, é importante que o tutor esteja atualizado sobre os conhecimentos prévios dos alunos. O problema selecionado deve condizer com o nível de instrução desses alunos, para que não se torne um desafio muito além das capacidades dos mesmos. Também é necessário observar a frequência com que esse problema ocorre em situações reais, e a relevância dele para o meio de onde foi escolhido.\nMais detalhes no manual.`}
+        />
 
         <ScrollView contentContainerStyle={styles.container}>
           <Input

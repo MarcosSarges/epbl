@@ -28,10 +28,10 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
-            new RNHTMLtoPDFPackage(),
+          new RNHTMLtoPDFPackage(),
           new SQLitePluginPackage(),
-            new VectorIconsPackage(),
-            new RNGestureHandlerPackage()
+          new VectorIconsPackage(),
+          new RNGestureHandlerPackage()
       );
     }
 

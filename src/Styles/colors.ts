@@ -6,11 +6,11 @@ export default {
   secondaryColor: "#ffd180",
   secondaryLightColor: "#ffffb1",
   secondaryDarkColor: "#caa052",
-  primaryTextColor: "#000",
-  secondaryTextColor: "#FFF",
+  primaryTextColor: "#333",
+  secondaryTextColor: "#fff",
 
   border: "#eaeaea",
-  success: "#28a745",
-  danger: "#dc3545",
+  success: "#4ec84e",
+  danger: "#bf3930",
   warning: "#ffc107"
 };

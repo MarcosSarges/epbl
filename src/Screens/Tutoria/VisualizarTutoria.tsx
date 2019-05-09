@@ -184,7 +184,7 @@ export default class VisualizarTutoria extends Component<Props> {
                       }}
                     >
                       <Input
-                        maxLength={17}
+                        maxLength={60}
                         placeholder=""
                         value={this.state.novoTextoTuto}
                         onChangeText={text =>
@@ -382,6 +382,7 @@ export default class VisualizarTutoria extends Component<Props> {
               >
                 <View
                   style={{
+                    flexWrap: "wrap",
                     flexDirection: "row",
                     alignItems: "center",
                     justifyContent: "space-between",
@@ -443,11 +444,16 @@ export default class VisualizarTutoria extends Component<Props> {
                         flexDirection: "row",
                         alignItems: "center",
                         justifyContent: "space-between",
-                        paddingVertical: metrics.basePadding
+                        paddingVertical: metrics.basePadding,
+                        flexWrap: "wrap"
                       }}
                     >
                       <View
-                        style={{ flexDirection: "row", alignItems: "center" }}
+                        style={{
+                          flexDirection: "row",
+                          alignItems: "center",
+                          flexWrap: "wrap"
+                        }}
                       >
                         <CheckBox
                           value={props.item.estado === 0 ? false : true}

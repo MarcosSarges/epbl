@@ -67,12 +67,31 @@ export default class CadastrarReferencia extends Component<Props> {
           </View> */}
           <View style={styles.viewButton}>
             <Button
+              type="danger"
+              typeIcon="times"
+              title="Cancelar"
+              onPress={() => {
+                Alert.alert("Ops!", "Você quer realmente sair?", [
+                  { text: "Não" },
+                  {
+                    text: "Sim",
+                    onPress: () => {
+                      this.props.navigation.goBack();
+                    }
+                  }
+                ]);
+              }}
+            />
+            <Button
               type="success"
               typeIcon="save"
               title={this.state.editar ? "Editar" : "Salvar"}
               onPress={() => {
                 if (this.state.titulo.length > 0) {
                   Alert.alert("Confirmação", `Titulo: ${this.state.titulo}`, [
+                    {
+                      text: "Cancelar"
+                    },
                     {
                       text: "Confirmar",
                       onPress: () => {
@@ -92,30 +111,11 @@ export default class CadastrarReferencia extends Component<Props> {
                           this.props.navigation.goBack();
                         }
                       }
-                    },
-                    {
-                      text: "Cancelar"
                     }
                   ]);
                 } else {
                   Alert.alert("Ops!", "Você deve preencer todos os campos");
                 }
-              }}
-            />
-            <Button
-              type="danger"
-              typeIcon="times"
-              title="Cancelar"
-              onPress={() => {
-                Alert.alert("Ops!", "Você quer realmente sair?", [
-                  {
-                    text: "Sim",
-                    onPress: () => {
-                      this.props.navigation.goBack();
-                    }
-                  },
-                  { text: "Não" }
-                ]);
               }}
             />
           </View>

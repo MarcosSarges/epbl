@@ -137,7 +137,7 @@ export default class CadastrarTutoria extends Component<Props> {
                       }}
                     >
                       <Input
-                        maxLength={30}
+                        maxLength={60}
                         placeholder="Titulo da Tarefa"
                         value={this.state.addTarefa}
                         onChangeText={text =>
@@ -237,7 +237,7 @@ export default class CadastrarTutoria extends Component<Props> {
 
             <View style={styles.viewInput}>
               <Input
-                maxLength={30}
+                maxLength={60}
                 custom={styles.input}
                 onSubmitEditing={this.onSubmit}
                 value={this.state.addTutoria}
@@ -260,13 +260,13 @@ export default class CadastrarTutoria extends Component<Props> {
                 title="Cancelar"
                 onPress={() => {
                   Alert.alert("Ops!", "Você quer realmente sair?", [
+                    { text: "Não" },
                     {
                       text: "Sim",
                       onPress: () => {
                         this.props.navigation.pop(3);
                       }
-                    },
-                    { text: "Não" }
+                    }
                   ]);
                 }}
               />
@@ -277,6 +277,9 @@ export default class CadastrarTutoria extends Component<Props> {
                 onPress={() => {
                   if (this.state.listaTutoria.length > 0) {
                     Alert.alert("Confirmação", `Deseja finzalizar?`, [
+                      {
+                        text: "Não"
+                      },
                       {
                         text: "Sim",
                         onPress: async () => {
@@ -304,9 +307,6 @@ export default class CadastrarTutoria extends Component<Props> {
                           this.context.listarTurmas();
                           this.props.navigation.pop(3);
                         }
-                      },
-                      {
-                        text: "Não"
                       }
                     ]);
                   } else {

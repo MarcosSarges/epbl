@@ -275,13 +275,13 @@ export default class CadastroPlanoDeAula extends Component<Props> {
             title="Cancelar"
             onPress={() => {
               Alert.alert("Ops!", "Você quer realmente sair?", [
+                { text: "Não" },
                 {
                   text: "Sim",
                   onPress: () => {
                     this.props.navigation.pop(2);
                   }
-                },
-                { text: "Não" }
+                }
               ]);
             }}
           />
@@ -297,6 +297,9 @@ export default class CadastroPlanoDeAula extends Component<Props> {
               ) {
                 Alert.alert("Confirmação", "Deseja avançar?", [
                   {
+                    text: "Não"
+                  },
+                  {
                     text: "Sim",
                     onPress: () => {
                       this.props.navigation.navigate("Tutoria", {
@@ -307,9 +310,6 @@ export default class CadastroPlanoDeAula extends Component<Props> {
                         referencias: this.state.referenciaisSelecionados
                       });
                     }
-                  },
-                  {
-                    text: "Não"
                   }
                 ]);
               } else {

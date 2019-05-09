@@ -1,5 +1,12 @@
 import React from "react";
-import { View, TouchableOpacity, Text, Alert, Image } from "react-native";
+import {
+  View,
+  TouchableOpacity,
+  Text,
+  Alert,
+  Image,
+  StyleSheet
+} from "react-native";
 import { colors, fonts, metrics } from "../Styles";
 import FontAwesome5Icon from "react-native-vector-icons/FontAwesome5";
 //@ts-ignore
@@ -21,19 +28,21 @@ export default ({
       flexDirection: "row"
     }}
   >
-    <Text
-      style={{
-        flex: 1,
-        textAlign: "center",
-        color: colors.primaryTextColor,
-        margin: metrics.baseMargin,
-        fontSize: fonts.regular
-      }}
-    >
-      {item.titulo.length > 17
-        ? `${item.titulo.substring(0, 17)}...`
-        : item.titulo}
-    </Text>
+    <View style={{ flex: 1 }}>
+      <Text style={styles.text}>
+        Titulo:
+        {item.titulo.length > 20
+          ? `${item.titulo.substring(0, 20)}...`
+          : item.titulo}
+      </Text>
+      {turmas && (
+        <React.Fragment>
+          <Text style={styles.text}>Ano:{item.ano}</Text>
+          <Text style={styles.text}>Semestre:{item.semestre}</Text>
+        </React.Fragment>
+      )}
+    </View>
+
     <TouchableOpacity
       onPress={onPress}
       style={{
@@ -45,16 +54,6 @@ export default ({
         alignItems: "center"
       }}
     >
-      {/* <FontAwesome5Icon
-        name="edit"
-        style={{
-          textAlign: "center",
-          textAlignVertical: "center",
-          color: colors.secondaryTextColor,
-          margin: metrics.baseMargin,
-          fontSize: fonts.regular
-        }}
-      /> */}
       {turmas ? (
         <FontAwesome5Icon
           name="tasks"
@@ -101,3 +100,13 @@ export default ({
     </TouchableOpacity>
   </View>
 );
+
+const styles = StyleSheet.create({
+  text: {
+    textAlignVertical: "center",
+    flex: 1,
+    color: colors.primaryTextColor,
+    padding: metrics.basePadding,
+    fontSize: fonts.regular
+  }
+});

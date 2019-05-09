@@ -68,6 +68,22 @@ export default class CadastrarProblemas extends Component<Props> {
           </View>
           <View style={styles.viewButton}>
             <Button
+              type="danger"
+              typeIcon="times"
+              title="Cancelar"
+              onPress={() => {
+                Alert.alert("Ops!", "Você quer realmente sair?", [
+                  { text: "Não" },
+                  {
+                    text: "Sim",
+                    onPress: () => {
+                      this.props.navigation.goBack();
+                    }
+                  }
+                ]);
+              }}
+            />
+            <Button
               type="success"
               typeIcon="save"
               title={this.state.editar ? "Editar" : "Salvar"}
@@ -82,6 +98,9 @@ export default class CadastrarProblemas extends Component<Props> {
                       this.state.titulo
                     } - Hitoria: ${this.state.historia.slice(0, 40)}...`,
                     [
+                      {
+                        text: "Cancelar"
+                      },
                       {
                         text: "Confirmar",
                         onPress: () => {
@@ -106,31 +125,12 @@ export default class CadastrarProblemas extends Component<Props> {
                             this.props.navigation.goBack();
                           }
                         }
-                      },
-                      {
-                        text: "Cancelar"
                       }
                     ]
                   );
                 } else {
                   Alert.alert("Ops!", "Você deve preencer todos os campos");
                 }
-              }}
-            />
-            <Button
-              type="danger"
-              typeIcon="times"
-              title="Cancelar"
-              onPress={() => {
-                Alert.alert("Ops!", "Você quer realmente sair?", [
-                  {
-                    text: "Sim",
-                    onPress: () => {
-                      this.props.navigation.goBack();
-                    }
-                  },
-                  { text: "Não" }
-                ]);
               }}
             />
           </View>

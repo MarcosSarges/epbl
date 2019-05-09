@@ -61,12 +61,14 @@ export default class CadastrarTurma extends Component<Props> {
               onPress={() => {
                 Alert.alert("Ops!", "Você quer realmente sair?", [
                   {
+                    text: "Não"
+                  },
+                  {
                     text: "Sim",
                     onPress: () => {
                       this.props.navigation.goBack();
                     }
-                  },
-                  { text: "Não" }
+                  }
                 ]);
               }}
             />
@@ -87,6 +89,9 @@ export default class CadastrarTurma extends Component<Props> {
                     } - Ano: ${this.state.ano}.`,
                     [
                       {
+                        text: "Cancelar"
+                      },
+                      {
                         text: "Confirmar",
                         onPress: () => {
                           this.props.navigation.navigate(
@@ -96,9 +101,6 @@ export default class CadastrarTurma extends Component<Props> {
                             }
                           );
                         }
-                      },
-                      {
-                        text: "Cancelar"
                       }
                     ]
                   );

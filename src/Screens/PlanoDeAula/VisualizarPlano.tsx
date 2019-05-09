@@ -179,7 +179,14 @@ export default class VisualizarPlano extends Component<Props> {
               </View>
             </React.Fragment>
           )}
-          <View style={{ margin: metrics.baseMargin }}>
+          <View
+            style={{
+              position: "absolute",
+              bottom: 0,
+              right: metrics.baseMargin,
+              left: metrics.baseMargin
+            }}
+          >
             <Button
               title="Exporta em PDF"
               onPress={this.createPDF}

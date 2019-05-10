@@ -42,12 +42,12 @@ let db = SQLiteConfig;
 const createTable = () => {
   db.transaction((txn: any) => {
     txn.executeSql(
-      "CREATE TABLE IF NOT EXISTS Turmas(turma_id INTEGER PRIMARY KEY AUTOINCREMENT, titulo VARCHAR(40),ano VARCHAR(10),semestre VARCHAR(10))",
+      "CREATE TABLE IF NOT EXISTS Turmas(turma_id INTEGER PRIMARY KEY AUTOINCREMENT, titulo VARCHAR(100),ano VARCHAR(10),semestre VARCHAR(10))",
       [],
       (tx: Transaction, rs: ResultSet) => {
         console.log(rs);
         tx.executeSql(
-          "CREATE TABLE IF NOT EXISTS PlanoProb(planoProb_id INTEGER PRIMARY KEY AUTOINCREMENT, titulo VARCHAR(40),historia VARCHAR(5000),turma_id INTEGER NOT NULL)",
+          "CREATE TABLE IF NOT EXISTS PlanoProb(planoProb_id INTEGER PRIMARY KEY AUTOINCREMENT, titulo VARCHAR(100),historia VARCHAR(5000),turma_id INTEGER NOT NULL)",
           [],
           (tx: Transaction, rs: ResultSet) => {
             console.log(rs);

@@ -24,22 +24,12 @@ export default class DetalhesManual extends Component<Props, State> {
         <Header navigation={this.props.navigation} back hiddenButton />
         <View style={styles.container}>
           <Title title={this.state.item.titulo} />
-          <ScrollView
-            contentContainerStyle={{
-              marginTop: metrics.baseMargin,
-              elevation: 3,
-              borderColor: colors.border,
-              backgroundColor: colors.backgroundColor,
-              padding: metrics.basePadding,
-              paddingBottom: metrics.basePadding + 10
-            }}
-          >
+          <ScrollView>
             <Text
               style={{
                 fontSize: fonts.regular,
                 color: colors.primaryTextColor,
-                textAlign: "justify",
-                fontFamily: "Arial"
+                textAlign: "left"
               }}
             >
               {this.state.item.conteudo}
@@ -53,7 +43,7 @@ export default class DetalhesManual extends Component<Props, State> {
 
 const styles = StyleSheet.create({
   container: {
-    padding: metrics.basePadding + 8,
+    padding: metrics.basePadding + 10,
     backgroundColor: colors.backgroundColor,
     flex: 1
   },

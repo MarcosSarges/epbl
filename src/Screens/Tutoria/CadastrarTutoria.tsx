@@ -20,6 +20,7 @@ import CardFlatListTutoria from "../../Components/CardFlatListTutoria";
 import PlanodeAula from "../../Database/PlanodeAula";
 import TurmaSQLite from "../../Database/TurmaSQLite";
 import { Context } from "../../Provider/GlobalState";
+import removeSpace from "../../util/removeSpace";
 
 // import { Container } from './styles';
 
@@ -137,11 +138,12 @@ export default class CadastrarTutoria extends Component<Props> {
                       }}
                     >
                       <Input
-                        maxLength={60}
+                        maxLength={100}
+                        multiline
                         placeholder="Titulo da Tarefa"
                         value={this.state.addTarefa}
                         onChangeText={text =>
-                          this.setState({ addTarefa: text })
+                          this.setState({ addTarefa: removeSpace(text) })
                         }
                       />
                       <View
@@ -237,12 +239,15 @@ export default class CadastrarTutoria extends Component<Props> {
 
             <View style={styles.viewInput}>
               <Input
-                maxLength={60}
+                maxLength={100}
+                multiline
                 custom={styles.input}
                 onSubmitEditing={this.onSubmit}
                 value={this.state.addTutoria}
                 placeholder="Adicionar tutoria rapidamente"
-                onChangeText={text => this.setState({ addTutoria: text })}
+                onChangeText={text =>
+                  this.setState({ addTutoria: removeSpace(text) })
+                }
               />
               <Icon
                 name="check-circle"
@@ -357,6 +362,7 @@ const styles = StyleSheet.create({
     borderColor: "#FFF",
     borderBottomWidth: 0,
     margin: 0,
-    padding: 0
+    padding: 0,
+    paddingRight: 10
   }
 });

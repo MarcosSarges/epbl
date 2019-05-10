@@ -23,6 +23,7 @@ import { Context } from "../../Provider/GlobalState";
 import FontAwesome5Icon from "react-native-vector-icons/FontAwesome5";
 import RNHTMLtoPDF from "react-native-html-to-pdf";
 import templetePDF from "../../util/templetePDF";
+import ButtonPlus from "../../Components/ButtonPlus";
 
 type Props = {} & NavigationScreenProps;
 
@@ -179,20 +180,13 @@ export default class VisualizarPlano extends Component<Props> {
               </View>
             </React.Fragment>
           )}
-          <View
-            style={{
-              position: "absolute",
-              bottom: 0,
-              right: metrics.baseMargin,
-              left: metrics.baseMargin
-            }}
-          >
-            <Button
-              title="Exporta em PDF"
-              onPress={this.createPDF}
-              color={colors.primaryColor}
-            />
-          </View>
+
+          <ButtonPlus
+            exp={true}
+            title="Exporta em PDF"
+            onPress={this.createPDF}
+            color={colors.primaryColor}
+          />
         </ScrollView>
       </View>
     );

@@ -6,7 +6,8 @@ import {
   ScrollView,
   Text,
   Image,
-  TouchableOpacity
+  TouchableOpacity,
+  TextInput
 } from "react-native";
 import { colors, metrics, fonts } from "../../Styles";
 import { NavigationScreenProps } from "react-navigation";
@@ -41,9 +42,7 @@ export default (props: Props) => {
           Universidade do Estado do Pará – UEPA, para conclusão do curso de Tec.
           em Anál. E Desenvolvimento de Sistemas pelos discentes responsáveis.
         </Text>
-
         <Text style={styles.title}>Discentes</Text>
-
         <Text style={styles.texto}>Letícia Moura de Almeida</Text>
         <Text style={styles.texto}>Marcos Paulo Sarges Rolim</Text>
         <Text style={styles.texto}>Rodrigo Oliveira da Silva</Text>

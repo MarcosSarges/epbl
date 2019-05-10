@@ -7,6 +7,7 @@ import Header from "../../Components/Header";
 import Button from "../../Components/Button";
 import ProblemaSQLite from "../../Database/ProblemaSQLite";
 import { Context } from "../../Provider/GlobalState";
+import removeSpace from "../../util/removeSpace";
 
 type Props = {} & NavigationScreenProps;
 
@@ -106,8 +107,8 @@ export default class CadastrarProblemas extends Component<Props> {
                         onPress: () => {
                           if (this.state.editar) {
                             ProblemaSQLite.atualizarProblema(
-                              this.state.titulo,
-                              this.state.historia,
+                              removeSpace(this.state.titulo.trim()),
+                              removeSpace(this.state.historia),
                               this.state.id
                             ).then(res => {
                               console.log(res);
@@ -117,8 +118,8 @@ export default class CadastrarProblemas extends Component<Props> {
                             this.props.navigation.goBack();
                           } else {
                             ProblemaSQLite.saveProblema(
-                              this.state.titulo,
-                              this.state.historia
+                              removeSpace(this.state.titulo),
+                              removeSpace(this.state.historia.trim())
                             );
 
                             this.context.listarProblemas();

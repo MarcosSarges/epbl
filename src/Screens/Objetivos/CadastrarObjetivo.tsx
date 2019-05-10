@@ -7,6 +7,7 @@ import Header from "../../Components/Header";
 import Button from "../../Components/Button";
 import { Context } from "../../Provider/GlobalState";
 import ObjetivoSQLite from "../../Database/ObjetivoSQLite";
+import removeSpace from "../../util/removeSpace";
 
 type Props = {} & NavigationScreenProps;
 
@@ -97,7 +98,7 @@ export default class CadastrarObjetivo extends Component<Props> {
                       onPress: () => {
                         if (this.state.editar) {
                           ObjetivoSQLite.atualizarObjetivos(
-                            this.state.titulo,
+                            removeSpace(this.state.titulo),
                             this.state.id
                           ).then(res => {
                             console.log(res);
@@ -106,7 +107,9 @@ export default class CadastrarObjetivo extends Component<Props> {
                           this.context.listarProblemas();
                           this.props.navigation.goBack();
                         } else {
-                          ObjetivoSQLite.saveObjetivo(this.state.titulo);
+                          ObjetivoSQLite.saveObjetivo(
+                            removeSpace(this.state.titulo)
+                          );
                           this.context.listarObjetivos();
                           this.props.navigation.goBack();
                         }

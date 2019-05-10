@@ -8,6 +8,7 @@ import Input from "../../Components/Input";
 import { NavigationScreenProps } from "react-navigation";
 import Button from "../../Components/Button";
 import TurmaSQLite from "../../Database/TurmaSQLite";
+import removeSpace from "../../util/removeSpace";
 
 // import { Container } from './styles';
 
@@ -94,10 +95,15 @@ export default class CadastrarTurma extends Component<Props> {
                       {
                         text: "Confirmar",
                         onPress: () => {
+                          const { titulo, ano, semestre } = this.state;
                           this.props.navigation.navigate(
                             "Criar plano de aula",
                             {
-                              turma: this.state
+                              turma: {
+                                titulo: removeSpace(titulo),
+                                ano: removeSpace(ano),
+                                semestre: removeSpace(semestre)
+                              }
                             }
                           );
                         }

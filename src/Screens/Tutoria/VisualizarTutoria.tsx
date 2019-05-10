@@ -23,6 +23,7 @@ import PlanodeAula from "../../Database/PlanodeAula";
 import FontAwesome5Icon from "react-native-vector-icons/FontAwesome5";
 import Input from "../../Components/Input";
 import Button from "../../Components/Button";
+import removeSpace from "../../util/removeSpace";
 
 type Props = {} & NavigationScreenProps;
 
@@ -44,7 +45,7 @@ export default class VisualizarTutoria extends Component<Props> {
     )
   };
 
-  componentWillMount() {
+  async componentDidMount() {
     console.log("aqui", this.props.navigation.state.params);
 
     this.setState({
@@ -184,11 +185,12 @@ export default class VisualizarTutoria extends Component<Props> {
                       }}
                     >
                       <Input
-                        maxLength={60}
+                        maxLength={100}
+                        multiline
                         placeholder=""
                         value={this.state.novoTextoTuto}
                         onChangeText={text =>
-                          this.setState({ novoTextoTuto: text })
+                          this.setState({ novoTextoTuto: removeSpace(text) })
                         }
                       />
                       <View
@@ -296,11 +298,12 @@ export default class VisualizarTutoria extends Component<Props> {
                       }}
                     >
                       <Input
-                        maxLength={17}
+                        maxLength={100}
+                        multiline
                         placeholder=""
                         value={this.state.novoTextoAtivi}
                         onChangeText={text =>
-                          this.setState({ novoTextoAtivi: text })
+                          this.setState({ novoTextoAtivi: removeSpace(text) })
                         }
                       />
                       <View
@@ -365,8 +368,8 @@ export default class VisualizarTutoria extends Component<Props> {
             false
           )}
         </Modal>
-        {this.state.Tutorias.length === 0 ? (
-          <ActivityIndicator />
+        {this.state.Tutorias.length < 1 ? (
+          <ActivityIndicator color={colors.primaryDarkColor} size="large" />
         ) : (
           <FlatList
             contentContainerStyle={{ paddingBottom: 100 }}
@@ -397,18 +400,20 @@ export default class VisualizarTutoria extends Component<Props> {
                       this.checkBoxTutoria(index, item.planoTuto_id, value)
                     }
                   />
-                  <Text
-                    style={{
-                      fontSize: fonts.regular,
-                      color:
-                        item.estado === 0
-                          ? colors.primaryTextColor
-                          : colors.success,
-                      fontWeight: "bold"
-                    }}
-                  >
-                    {item.titulo}
-                  </Text>
+                  <View style={{ flex: 1 }}>
+                    <Text
+                      style={{
+                        fontSize: fonts.regular,
+                        color:
+                          item.estado === 0
+                            ? colors.primaryTextColor
+                            : colors.success,
+                        fontWeight: "bold"
+                      }}
+                    >
+                      {item.titulo}
+                    </Text>
+                  </View>
                   <TouchableOpacity
                     style={{
                       height: 30,
@@ -448,24 +453,18 @@ export default class VisualizarTutoria extends Component<Props> {
                         flexWrap: "wrap"
                       }}
                     >
-                      <View
-                        style={{
-                          flexDirection: "row",
-                          alignItems: "center",
-                          flexWrap: "wrap"
-                        }}
-                      >
-                        <CheckBox
-                          value={props.item.estado === 0 ? false : true}
-                          onValueChange={value =>
-                            this.checkBoxTarefa(
-                              index,
-                              props.index,
-                              props.item.planoTarefas_id,
-                              value
-                            )
-                          }
-                        />
+                      <CheckBox
+                        value={props.item.estado === 0 ? false : true}
+                        onValueChange={value =>
+                          this.checkBoxTarefa(
+                            index,
+                            props.index,
+                            props.item.planoTarefas_id,
+                            value
+                          )
+                        }
+                      />
+                      <View style={{ flex: 1 }}>
                         <Text
                           style={{
                             fontSize: fonts.small,

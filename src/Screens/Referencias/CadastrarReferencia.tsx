@@ -8,6 +8,7 @@ import Button from "../../Components/Button";
 import ProblemaSQLite from "../../Database/ProblemaSQLite";
 import { Context } from "../../Provider/GlobalState";
 import ReferenciaSQLite from "../../Database/ReferenciaSQLite";
+import removeSpace from "../../util/removeSpace";
 
 type Props = {} & NavigationScreenProps;
 
@@ -97,7 +98,7 @@ export default class CadastrarReferencia extends Component<Props> {
                       onPress: () => {
                         if (this.state.editar) {
                           ReferenciaSQLite.atualizarReferencias(
-                            this.state.titulo,
+                            removeSpace(this.state.titulo),
                             this.state.id
                           ).then(res => {
                             console.log(res);
@@ -106,7 +107,9 @@ export default class CadastrarReferencia extends Component<Props> {
                           this.context.listarProblemas();
                           this.props.navigation.goBack();
                         } else {
-                          ReferenciaSQLite.saveReferencia(this.state.titulo);
+                          ReferenciaSQLite.saveReferencia(
+                            removeSpace(this.state.titulo)
+                          );
                           this.context.listarReferencias();
                           this.props.navigation.goBack();
                         }

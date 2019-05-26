@@ -84,11 +84,11 @@ export default class CadastrarTutoria extends Component<Props> {
         <Header
           navigation={this.props.navigation}
           back
-          titulo="O que seria uma tutoria?"
-          conteudo="No contexto desse aplicativo uma tutoria pode representar uma aula completa ou fragmentos de uma aula contendo pequenas metas a serem alcançadas a fim de monitorar o seu andamento."
+          titulo="O que é uma tutoria?"
+          conteudo="No PBL uma tutoria pode representar uma aula completa, ou fragmentos de uma aula, contendo atividades ou dinâmicas para auxiliar o aprendizado da turma."
           subTitulo="Exemplos:"
           subConteudo={`“Introdução da metodologia e da disciplina”\n“Avaliar pesquisas realizadas”\n“Avaliar propostas de solução”\n`}
-          terceiroConteudo={`Tarefas representam os pequenos passos a serem concluídos para o encerramento de uma tutoria alguns exemplos são:\n“Explicar conceitos gerais da disciplina e exemplificar”\n“Descrever o problema que será utilizado nas atividades”\n“Tirar dúvidas dos alunos”`}
+          terceiroConteudo={`As tarefas representam etapas a serem concluídas para o encerramento de uma tutoria, alguns exemplos são:\n“Explicar e exemplificar conceitos gerais da disciplina”\n“Descrever o problema que será utilizado nas atividades”\n“Tirar dúvidas dos alunos”\n\n(A criação de tarefas é opcional)`}
           terceiroTitulo="Tarefas"
         />
         {this.state.load ? (

@@ -45,8 +45,8 @@ export default class CadastrarReferencia extends Component<Props> {
         <Header
           navigation={this.props.navigation}
           back
-          titulo="O que é a descrição da referencia?"
-          conteudo="Esse campo você deve digitar qual sera a referencia do problema."
+          titulo="O que fazer nessa tela?"
+          conteudo="Esse campo deve ser preenchido com a referência utilizada."
         />
 
         <ScrollView contentContainerStyle={styles.container}>

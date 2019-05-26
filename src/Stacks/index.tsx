@@ -1,9 +1,7 @@
 import {
   createAppContainer,
   createStackNavigator,
-  createDrawerNavigator,
-  createTabNavigator,
-  createBottomTabNavigator
+  createDrawerNavigator
 } from "react-navigation";
 import React from "react";
 import Turmas from "../Screens/Turmas/Turmas";
@@ -24,7 +22,7 @@ import CadastrarTutoria from "../Screens/Tutoria/CadastrarTutoria";
 import VisualizarPlano from "../Screens/PlanoDeAula/VisualizarPlano";
 import VisualizarTutoria from "../Screens/Tutoria/VisualizarTutoria";
 import { createMaterialBottomTabNavigator } from "react-navigation-material-bottom-tabs";
-import WebView from "../Screens/WebView";
+import Inicio from "../Screens/Inicio/Inicio";
 
 const planoTab = createMaterialBottomTabNavigator(
   {
@@ -40,6 +38,14 @@ const planoTab = createMaterialBottomTabNavigator(
 
 const Router = createDrawerNavigator(
   {
+    Inicio: {
+      screen: Inicio,
+      navigationOptions: {
+        drawerIcon: (props: any) => (
+          <Icon name="home" size={16} color={props.tintColor} />
+        )
+      }
+    },
     Turmas: {
       screen: createStackNavigator(
         {
@@ -78,11 +84,11 @@ const Router = createDrawerNavigator(
         )
       }
     },
-    Referencias: {
+    Referências: {
       screen: createStackNavigator(
         {
-          Referencias: Referencias,
-          "Cadastrar referencia": CadastrarReferencia
+          Referências: Referencias,
+          "Cadastrar referência": CadastrarReferencia
         },
         {
           defaultNavigationOptions: { header: null }
@@ -141,22 +147,18 @@ const Router = createDrawerNavigator(
           <Icon name="question" size={16} color={props.tintColor} />
         )
       }
-    },
-    WebView: {
-      screen: WebView,
-      navigationOptions: {
-        drawerLabel: null,
-        drawerIcon: null,
-        title: ""
-      }
     }
   },
   {
-    initialRouteName: "Turmas",
+    initialRouteName: "Inicio",
     backBehavior: "initialRoute",
     drawerPosition: "right",
     drawerBackgroundColor: colors.backgroundColor,
+    contentOptions: {
+      activeTintColor: colors.primaryColor
+    },
     defaultNavigationOptions: {
+      
       header: null
     }
   }

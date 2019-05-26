@@ -46,10 +46,10 @@ export default class Turmas extends Component<Props> {
         />
         <Header
           navigation={this.props.navigation}
-          titulo="Nesse ponto o que é a Turma?"
-          conteudo={`Nessa tela temos a lista de turmas, no qual serve somente para distinguir suas turmas para melhorar e controle delas`}
-          subTitulo="O que pode ser feito nessa tela?"
-          subConteudo={`A funcionalidade basica aqui é a criação da turma juntamento com o plano de aula. \n Clicando no botão flutuante você entrará no fluxo prinicipal da aplicação que é a criação de uma turma.`}
+          titulo="O que fazer nessa tela?"
+          conteudo={`Você pode cadastrar turmas, clicando no botão flutuante (+), e vizualizá-las em forma de uma lista, que terá tópicos contendo as principais informações das turmas.\nVocê também pode vizualizar os detalhes da turma ou apagá-la.`}
+          // subTitulo="O que pode ser feito nessa tela?"
+          // subConteudo={`A funcionalidade básica é a criação da turma, assim como, o plano de aula.\nClicando no botão flutuante (+) você entrará no fluxo prinicipal da aplicação que é a criação de uma turma.`}
         />
         <View style={styles.container}>
           {/* <Input onChangeText={this.filter} placeholder="Filtrar..." /> */}
@@ -69,7 +69,7 @@ export default class Turmas extends Component<Props> {
                       deletar={() => {
                         Alert.alert(
                           "Confirmação",
-                          "Você realmente quer deletar essa turma?",
+                          "Tem certeza que quer deletar essa turma?",
                           [
                             { text: "Não" },
                             {

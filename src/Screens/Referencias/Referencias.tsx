@@ -45,8 +45,10 @@ export default class Referencias extends Component<Props> {
         />
         <Header
           navigation={this.props.navigation}
-          titulo="O que é a referencia?"
-          conteudo="São links, nomes de livros ou artigos, etc. em resumo qual quer coisa que servirar como base para bibliografica para elaboração das soluções do problema."
+          titulo="O que é a referência?"
+          conteudo="São links, livros, artigos, vídeos, etc, que serviram como base para elaboração da solução do problema."
+          subTitulo="O que fazer nessa tela?"
+          subConteudo="Você pode cadastrar referências clicando no botão flutuante (+), editá-las ou apagá-las."
         />
         <View style={styles.container}>
           {/* <Input onChangeText={this.filter} placeholder="Filtrar..." /> */}
@@ -65,7 +67,7 @@ export default class Referencias extends Component<Props> {
                   }}
                   item={item}
                   onPress={() => {
-                    this.props.navigation.navigate("Cadastrar referencia", {
+                    this.props.navigation.navigate("Cadastrar referência", {
                       referencia: item,
                       editar: true
                     });
@@ -87,7 +89,7 @@ export default class Referencias extends Component<Props> {
           )}
           <ButtonPlus
             onPress={() => {
-              this.props.navigation.navigate("Cadastrar referencia", {
+              this.props.navigation.navigate("Cadastrar referência", {
                 editar: false
               });
             }}

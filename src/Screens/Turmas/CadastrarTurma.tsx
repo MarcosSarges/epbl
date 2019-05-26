@@ -30,8 +30,8 @@ export default class CadastrarTurma extends Component<Props> {
         <Header
           navigation={this.props.navigation}
           back
-          titulo="Como eu devo preencer?"
-          conteudo="Os campos são para identificação das turmas, detro do fluxo isso não causará impacto."
+          titulo="O que fazer nessa tela?"
+          conteudo="Você deve preencher os campos com as principais informações da turma, para que possa identificá-la na lista."
         />
         <ScrollView contentContainerStyle={styles.container}>
           <Input

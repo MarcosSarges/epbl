@@ -3,8 +3,6 @@ import { View, Text, Alert, ScrollView, StyleSheet, Modal } from "react-native";
 import Icon from "react-native-vector-icons/FontAwesome5";
 import { colors, metrics, fonts } from "./../Styles";
 import { NavigationScreenProps } from "react-navigation";
-import Title from "./Title";
-import ConteudoBotao from "../Screens/Manual/ConteudoBotao";
 
 type Props = {
   back?: boolean;
@@ -76,7 +74,10 @@ export default (props: Props & NavigationScreenProps) => {
             >
               {props.titulo}
             </Text>
-            <Text style={{ fontSize: fonts.regular, textAlign: "center" }}>
+            <Text
+              selectable={true}
+              style={{ fontSize: fonts.regular, textAlign: "center" }}
+            >
               {props.conteudo}
             </Text>
             {props.subTitulo ? (
@@ -93,7 +94,10 @@ export default (props: Props & NavigationScreenProps) => {
                 >
                   {props.subTitulo}
                 </Text>
-                <Text style={{ fontSize: fonts.regular, textAlign: "center" }}>
+                <Text
+                  selectable={true}
+                  style={{ fontSize: fonts.regular, textAlign: "center" }}
+                >
                   {props.subConteudo}
                 </Text>
                 {props.terceiroTitulo ? (
@@ -111,6 +115,7 @@ export default (props: Props & NavigationScreenProps) => {
                       {props.terceiroTitulo}
                     </Text>
                     <Text
+                      selectable={true}
                       style={{
                         fontSize: fonts.regular,
                         textAlign: "center",

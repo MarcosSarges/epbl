@@ -7,11 +7,13 @@ import {
   Text,
   Image,
   TouchableOpacity,
-  TextInput
+  Linking,
+  ToastAndroid
 } from "react-native";
 import { colors, metrics, fonts } from "../../Styles";
 import { NavigationScreenProps } from "react-navigation";
 import Header from "../../Components/Header";
+import openLink from "../../util/openLink";
 type Props = {} & NavigationScreenProps;
 
 export default (props: Props) => {
@@ -22,21 +24,20 @@ export default (props: Props) => {
         backgroundColor={colors.primaryDarkColor}
       />
       <Header {...props} />
-
       <ScrollView contentContainerStyle={styles.container}>
         <Image
           source={require("./../../Assets/img/uepa.png")}
           style={{ resizeMode: "contain", height: 100, width: "100%" }}
         />
         <Text style={styles.title}>Finalidade</Text>
-        <Text style={styles.texto}>
+        <Text selectable style={styles.texto}>
           Este aplicativo tem a finalidade de auxiliar docentes na aplicação da
           metodologia PBL – Problem Based Learning em suas turmas
           universitárias, fornecendo o apoio necessário para que essa aplicação
           seja feita de forma satisfatória e efetiva.
         </Text>
         <Text style={styles.title}>Motivação</Text>
-        <Text style={styles.texto}>
+        <Text style={styles.texto} selectable>
           O aplicativo foi desenvolvido como a ferramenta resultante das
           pesquisas para o trabalho de conclusão de curso apresentado na
           Universidade do Estado do Pará – UEPA, para conclusão do curso de Tec.
@@ -53,14 +54,12 @@ export default (props: Props) => {
         </Text>
 
         <Text style={styles.title}>Referencias</Text>
-        <TouchableOpacity
-          onPress={() =>
-            props.navigation.navigate("WebView", {
-              link: "https://br.freepik.com"
-            })
-          }
-        >
-          <Text style={styles.texto}>
+        <TouchableOpacity onPress={() => openLink("https://br.freepik.com")}>
+          <Text
+            selectable
+            selectionColor={colors.secondaryLightColor}
+            style={styles.texto}
+          >
             Logo: Designed by rawpixel.com / Freepik{"\n"}
             Disponivel em: https://br.freepik.com
           </Text>

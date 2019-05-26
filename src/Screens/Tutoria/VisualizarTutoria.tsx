@@ -135,7 +135,7 @@ export default class VisualizarTutoria extends Component<Props> {
           navigation={this.props.navigation}
           back
           titulo="O que eu devo fazer aqui?"
-          conteudo="Nessa tela você pode realizar o Check-in, editar e deletar das tutorias e atividades já realizadas."
+          conteudo="Nessa tela você pode editar, apagar ou fazer o Check-in das tutorias e atividades."
           onPress={() => this.props.navigation.navigate("Turmas")}
         />
         <Title title="Check-List Tutorias" />

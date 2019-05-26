@@ -1,6 +1,6 @@
 export default [
   {
-    titulo: "Que tal ver primeiro um exemplo?",
+    titulo: "Que tal ver um exemplo primeiro?",
     conteudo: `Projeto: UI e UX\n\nProblema:\n Interface de usuário amigável para um software de contrato de serviços;\nUma empresa de prestação de serviços resolveu contratar uma pequena empresa de produção de softwares\n\nPlano de aula:\n\nIntrodução da metodologia e da disciplina:\nInformar sobre a divisão das aulas;\nExplicar o processo que será usado;\nExplicar conceitos gerais da disciplina e exemplificar;\nDescrever o problema que será utilizado nas atividades.\n\nApresentar ferramentas:\nApresentar ferramentas utilizadas para construção de interfaces;\nmostrar onde fazer o download da ferramenta;\nMostrar a utilização da ferramenta.\n\nAtividades básicas:\nQuestionar os alunos sobre como solucionar o problema;\nConstruir uma lista de requisitos funcionais com todos os alunos;\nValidar requisitos com todos os alunos;\nTirar dúvidas dos alunos;\nSolicitar a criação das interfaces.\n\nApresentação das soluções:\nSolicitar a apresentação de seminário;\nApresentar um modelo de como deve ser a apresentação;\nTirar dúvidas dos alunos;\nAvaliar apresentações.\n\nFinalizacão:\nSolicitar que os alunos avaliem os métodos, as ferramentas e a didática que foi utilizada;\nAvaliar o que pode melhorar na disciplina.`,
     key: 1
   },
@@ -42,7 +42,7 @@ export default [
   {
     titulo: "Como selecionar um problema?",
     conteudo:
-      "Antes de apresentar um problema para a turma, é importante que o tutor esteja atualizado sobre os conhecimentos prévios dos alunos. O problema selecionado deve condizer com o nível de instrução desses alunos, para que não se torne um desafio muito além das capacidades dos mesmos. Também é necessário observar a frequência com que esse problema ocorre em situações reais, e a relevância dele para o meio de onde foi escolhido.",
+      "Antes de apresentar um problema para a turma, é importante que o tutor saiba dialogar com os alunos para que possa escolher problemas com que eles se identifiquem. Por isso é importante que o problema selecionado condiga com o nível de instrução desses alunos, para que não se torne um desafio muito além de suas capacidades. Também é necessário observar a frequência com que esse problema ocorre em situações reais, e a relevância dele para o meio de onde foi escolhido.",
     key: 8
   },
   {

@@ -11,6 +11,7 @@ import {
 import { NavigationScreenProps } from "react-navigation";
 import Icon from "react-native-vector-icons/FontAwesome5";
 import { colors, fonts, metrics } from "../../Styles";
+import Title from "../../Components/Title";
 
 const Inicio = (props: {} & NavigationScreenProps) => {
   return (
@@ -42,15 +43,18 @@ const Inicio = (props: {} & NavigationScreenProps) => {
         </Text>
       </View>
       <ScrollView
+        showsVerticalScrollIndicator={false}
         style={{
-          borderRadius: 20,
+          borderTopLeftRadius: 10,
+          borderBottomRightRadius: 10,
           flex: 1,
           backgroundColor: colors.backgroundColor
         }}
+        contentContainerStyle={{ padding: metrics.basePadding }}
       >
         <View
           style={{
-            marginTop:16,
+            marginTop: 16,
             position: "relative",
             alignSelf: "center"
           }}
@@ -75,6 +79,35 @@ const Inicio = (props: {} & NavigationScreenProps) => {
           />
           <Icon name="user" size={70} color={colors.primaryColor} />
         </View>
+        <Title title="PBL" />
+        <Text style={{ fontSize: fonts.regular }} selectable={true}>
+          A metodologia Problem-Based Learning (Aprendizado Baseado em Problemas
+          - ABP) consiste em utilizar cenários reais como apoio ao aprendizado.
+          Nesta metodologia, problemas existentes são incorporados à matéria,
+          desafiando alunos a buscar soluções para situações verdadeiras do
+          dia-a-dia do mercado de trabalho ou da academia em que estarão
+          inseridos.
+        </Text>
+        <Title title="Problema" />
+        <Text style={{ fontSize: fonts.regular }} selectable={true}>
+          Ela é a principal estratégia da metodologia de ensino PBL, que visa o
+          aprendizado do aluno através da interação da matéria com uma
+          situação-problema vivenciado no dia-a-dia.
+        </Text>
+        <Title title="Exemplo" />
+        <Text style={{ fontSize: fonts.regular }} selectable={true}>
+          Para entender o que seria o Problema dentro da metodologia logo a
+          baixo criamos um exemplo.{`\n`}Problema: minha empresa tem muitos
+          registros e não estamos conseguindo lidar com a busca, armazenamento e
+          atualização.{`\n`}A partir desse problema criamos os objetivos e
+          selecionamos as referências.{`\n`}Objetivos:{`\n`}1) Identificar os
+          requisitos para desenvolver uma solução;{`\n`}2) Elaborar protótipos
+          da solução;{`\n`}3) Familiarizar com os conceitos de prototipagem;
+          {`\n`}4) Familiarizar com as ferramentas de prototipagem;{`\n`}
+          Referências:{`\n`}Como elaborar uma entrevista
+          (https://www.devmedia.com.br/tecnicas-para-levantamento-de-requisitos/9151);
+          {`\n`}Livro PMBOK;{`\n`}Ferramenta: Adobe XD;
+        </Text>
       </ScrollView>
 
       <View
@@ -93,7 +126,7 @@ const Inicio = (props: {} & NavigationScreenProps) => {
               style={{
                 flexDirection: "row",
                 padding: 8,
-               justifyContent: "space-around",
+                justifyContent: "space-around",
                 alignItems: "center"
               }}
             >
@@ -117,7 +150,7 @@ const Inicio = (props: {} & NavigationScreenProps) => {
               style={{
                 flexDirection: "row",
                 padding: 8,
-               justifyContent: "space-around",
+                justifyContent: "space-around",
                 alignItems: "center"
               }}
             >
@@ -141,7 +174,7 @@ const Inicio = (props: {} & NavigationScreenProps) => {
               style={{
                 flexDirection: "row",
                 padding: 8,
-               justifyContent: "space-around",
+                justifyContent: "space-around",
                 alignItems: "center"
               }}
             >
@@ -167,7 +200,7 @@ const Inicio = (props: {} & NavigationScreenProps) => {
               style={{
                 flexDirection: "row",
                 padding: 8,
-               justifyContent: "space-around",
+                justifyContent: "space-around",
                 alignItems: "center"
               }}
             >
@@ -191,7 +224,7 @@ const Inicio = (props: {} & NavigationScreenProps) => {
               style={{
                 flexDirection: "row",
                 padding: 8,
-               justifyContent: "space-around",
+                justifyContent: "space-around",
                 alignItems: "center"
               }}
             >

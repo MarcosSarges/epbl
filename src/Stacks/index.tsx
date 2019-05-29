@@ -41,6 +41,7 @@ const Router = createDrawerNavigator(
     Inicio: {
       screen: Inicio,
       navigationOptions: {
+        drawerLockMode: "unlocked",
         drawerIcon: (props: any) => (
           <Icon name="home" size={16} color={props.tintColor} />
         )
@@ -158,7 +159,6 @@ const Router = createDrawerNavigator(
       activeTintColor: colors.primaryColor
     },
     defaultNavigationOptions: {
-      
       header: null
     }
   }

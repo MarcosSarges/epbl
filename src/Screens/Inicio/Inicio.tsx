@@ -6,7 +6,8 @@ import {
   SafeAreaView,
   StatusBar,
   TouchableNativeFeedback,
-  ScrollView
+  ScrollView,
+  Image
 } from "react-native";
 import { NavigationScreenProps } from "react-navigation";
 import Icon from "react-native-vector-icons/FontAwesome5";
@@ -20,27 +21,40 @@ const Inicio = (props: {} & NavigationScreenProps) => {
         barStyle="light-content"
         backgroundColor={colors.primaryDarkColor}
       />
-      <View style={{ padding: metrics.basePadding }}>
-        <Text
-          style={{
-            textAlign: "center",
-            color: colors.secondaryTextColor,
-            fontWeight: "bold",
-            fontSize: fonts.big
-          }}
-        >
-          E-PBL
-        </Text>
-        <Text
-          style={{
-            textAlign: "center",
-            color: colors.secondaryTextColor,
-            fontWeight: "bold",
-            fontSize: fonts.regular
-          }}
-        >
-          O que é o PBL?
-        </Text>
+      <View
+        style={{
+          padding: metrics.basePadding,
+          flexDirection: "row",
+          justifyContent: "space-around",
+          alignItems: "center"
+        }}
+      >
+        <View>
+          <Text
+            style={{
+              textAlign: "center",
+              color: colors.secondaryTextColor,
+              fontWeight: "bold",
+              fontSize: fonts.big
+            }}
+          >
+            E-PBL
+          </Text>
+          <Text
+            style={{
+              textAlign: "center",
+              color: colors.secondaryTextColor,
+              fontWeight: "bold",
+              fontSize: fonts.regular
+            }}
+          >
+            O que é o PBL?
+          </Text>
+        </View>
+        <Image
+          source={require("./../../Assets/img/uepa.png")}
+          style={{ resizeMode: "cover", height: 50, width: 50 }}
+        />
       </View>
       <ScrollView
         showsVerticalScrollIndicator={false}

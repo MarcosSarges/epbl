@@ -26,7 +26,7 @@ export default class CadastrarObjetivo extends Component<Props> {
       if (editar) {
         const { objetivo }: any = this.props.navigation.state.params;
         this.setState({
-          id: objetivo.problema_id,
+          id: objetivo.objetivo_id,
           titulo: objetivo.titulo,
           editar: true
         });
@@ -104,7 +104,7 @@ export default class CadastrarObjetivo extends Component<Props> {
                             console.log(res);
                           });
 
-                          this.context.listarProblemas();
+                          this.context.listarObjetivos();
                           this.props.navigation.goBack();
                         } else {
                           ObjetivoSQLite.saveObjetivo(

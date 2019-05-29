@@ -185,7 +185,7 @@ export default class VisualizarTutoria extends Component<Props> {
                       }}
                     >
                       <Input
-                        maxLength={100}
+                        maxLength={200}
                         multiline
                         placeholder=""
                         value={this.state.novoTextoTuto}
@@ -298,7 +298,7 @@ export default class VisualizarTutoria extends Component<Props> {
                       }}
                     >
                       <Input
-                        maxLength={100}
+                        maxLength={200}
                         multiline
                         placeholder=""
                         value={this.state.novoTextoAtivi}

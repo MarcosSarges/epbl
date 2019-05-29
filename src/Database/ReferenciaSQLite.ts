@@ -41,10 +41,11 @@ const deletarReferencia = async (id: number) => {
 
 const atualizarReferencias = async (titulo: string, id: number) => {
   createTable();
+  console.log(titulo, id);
   db.transaction(
     (tx: Transaction) => {
       tx.executeSql(
-        "UPDATE `Referencias` SET titulo=:titulo WHERE referencia_id = :id",
+        "UPDATE `Referencias` SET titulo=:titulo WHERE referencia_id=:id",
         [titulo, id]
       );
     },

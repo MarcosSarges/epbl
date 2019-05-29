@@ -26,8 +26,9 @@ export default class CadastrarReferencia extends Component<Props> {
     if (typeof editar != "undefined") {
       if (editar) {
         const { referencia }: any = this.props.navigation.state.params;
+        console.log(referencia);
         this.setState({
-          id: referencia.problema_id,
+          id: referencia.referencia_id,
           titulo: referencia.titulo,
           editar: true
         });
@@ -104,7 +105,7 @@ export default class CadastrarReferencia extends Component<Props> {
                             console.log(res);
                           });
 
-                          this.context.listarProblemas();
+                          this.context.listarReferencias();
                           this.props.navigation.goBack();
                         } else {
                           ReferenciaSQLite.saveReferencia(

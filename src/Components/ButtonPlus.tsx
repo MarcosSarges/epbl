@@ -8,7 +8,12 @@ import {
 import Icon from "react-native-vector-icons/FontAwesome5";
 import { colors, metrics, fonts } from "./../Styles";
 
-export default ({ onPress = () => {}, exp = false, title = "" }: any) => (
+export default ({
+  onPress = () => {},
+  exp = false,
+  title = "",
+  custom = {}
+}: any) => (
   <TouchableNativeFeedback
     background={TouchableNativeFeedback.SelectableBackground()}
     onPress={onPress}
@@ -22,7 +27,8 @@ export default ({ onPress = () => {}, exp = false, title = "" }: any) => (
         borderRadius: 100,
         position: "absolute",
         right: metrics.baseMargin,
-        bottom: metrics.baseMargin
+        bottom: metrics.baseMargin,
+        ...custom
         // elevation: 2
       }}
     >

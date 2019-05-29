@@ -180,14 +180,17 @@ export default class VisualizarPlano extends Component<Props> {
               </View>
             </React.Fragment>
           )}
-
-          <ButtonPlus
-            exp={true}
-            title="Exporta em PDF"
-            onPress={this.createPDF}
-            color={colors.primaryColor}
-          />
         </ScrollView>
+        <ButtonPlus
+          custom={{
+            right: metrics.baseMargin,
+            bottom: metrics.baseMargin + 50
+          }}
+          exp={true}
+          title="Exporta em PDF"
+          onPress={this.createPDF}
+          color={colors.primaryColor}
+        />
       </View>
     );
   }

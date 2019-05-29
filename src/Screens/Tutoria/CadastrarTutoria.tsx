@@ -21,7 +21,7 @@ import PlanodeAula from "../../Database/PlanodeAula";
 import TurmaSQLite from "../../Database/TurmaSQLite";
 import { Context } from "../../Provider/GlobalState";
 import removeSpace from "../../util/removeSpace";
-
+import MaterialIcon from "react-native-vector-icons/MaterialIcons";
 // import { Container } from './styles';
 
 type Props = {} & NavigationScreenProps;
@@ -239,7 +239,7 @@ export default class CadastrarTutoria extends Component<Props> {
 
             <View style={styles.viewInput}>
               <Input
-                maxLength={100}
+                maxLength={200}
                 multiline
                 custom={styles.input}
                 onSubmitEditing={this.onSubmit}
@@ -249,9 +249,9 @@ export default class CadastrarTutoria extends Component<Props> {
                   this.setState({ addTutoria: removeSpace(text) })
                 }
               />
-              <Icon
-                name="check-circle"
-                solid
+
+              <MaterialIcon
+                name="send"
                 color={colors.success}
                 size={fonts.regular}
                 onPress={this.onSubmit}
@@ -349,6 +349,7 @@ const styles = StyleSheet.create({
     // left: 0,
     // right: 0,
     padding: metrics.basePadding,
+
     borderWidth: 1,
     borderRadius: 30,
     paddingLeft: metrics.basePadding,
@@ -359,6 +360,7 @@ const styles = StyleSheet.create({
     alignItems: "center"
   },
   input: {
+    maxWidth: 340,
     borderColor: "#FFF",
     borderBottomWidth: 0,
     margin: 0,

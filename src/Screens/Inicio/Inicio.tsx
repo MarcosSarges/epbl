@@ -110,13 +110,13 @@ const Inicio = (props: {} & NavigationScreenProps) => {
         </Text>
         <Title title="Exemplo" />
         <Text style={{ fontSize: fonts.regular }} selectable={true}>
-          Para entender o que seria o Problema dentro da metodologia logo a
-          baixo criamos um exemplo.{`\n`}Problema: minha empresa tem muitos
-          registros e não estamos conseguindo lidar com a busca, armazenamento e
-          atualização.{`\n`}A partir desse problema criamos os objetivos e
-          selecionamos as referências.{`\n`}Objetivos:{`\n`}1) Identificar os
-          requisitos para desenvolver uma solução;{`\n`}2) Elaborar protótipos
-          da solução;{`\n`}3) Familiarizar com os conceitos de prototipagem;
+          Para entender o que seria o Problema dentro da metodologia, criamos um
+          exemplo.{`\n`}Problema: "Minha empresa tem muitos registros e não
+          estamos conseguindo lidar com a busca, armazenamento e atualização."
+          {`\n`}A partir desse problema criamos os objetivos e selecionamos as
+          referências.{`\n`}Objetivos:{`\n`}1) Identificar os requisitos para
+          desenvolver uma solução;{`\n`}2) Elaborar protótipos da solução;{`\n`}
+          3) Familiarizar com os conceitos de prototipagem;
           {`\n`}4) Familiarizar com as ferramentas de prototipagem;{`\n`}
           Referências:{`\n`}Como elaborar uma entrevista
           (https://www.devmedia.com.br/tecnicas-para-levantamento-de-requisitos/9151);

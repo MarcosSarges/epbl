@@ -48,8 +48,6 @@ export default class CadastrarProblemas extends Component<Props> {
           back
           titulo="Como preencer os campos?"
           conteudo={`O primeiro campo deve ser preenchido com o título do problema, é indicado colocar o nome do projeto que deseja executar.\nNo campo da história, você deve descrever o cenário do problema.`}
-          subTitulo="Como selecionar um problema?"
-          subConteudo={``}
         />
 
         <ScrollView contentContainerStyle={styles.container}>
@@ -97,7 +95,7 @@ export default class CadastrarProblemas extends Component<Props> {
                     "Confirmação",
                     `Titulo: ${
                       this.state.titulo
-                    } - Hitoria: ${this.state.historia.slice(0, 40)}...`,
+                    } - Historia: ${this.state.historia.slice(0, 40)}...`,
                     [
                       {
                         text: "Cancelar"

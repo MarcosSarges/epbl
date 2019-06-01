@@ -30,14 +30,14 @@ export default (props: Props) => {
           style={{ resizeMode: "contain", height: 100, width: "100%" }}
         />
         <Text style={styles.title}>Finalidade</Text>
-        <Text selectable style={styles.texto}>
+        <Text selectable={true} style={styles.texto}>
           Este aplicativo tem a finalidade de auxiliar docentes na aplicação da
           metodologia PBL – Problem Based Learning em suas turmas
           universitárias, fornecendo o apoio necessário para que essa aplicação
           seja feita de forma satisfatória e efetiva.
         </Text>
         <Text style={styles.title}>Motivação</Text>
-        <Text style={styles.texto} selectable>
+        <Text style={styles.texto} selectable={true}>
           O aplicativo foi desenvolvido como a ferramenta resultante das
           pesquisas para o trabalho de conclusão de curso apresentado na
           Universidade do Estado do Pará – UEPA, para conclusão do curso de Tec.
@@ -56,7 +56,7 @@ export default (props: Props) => {
         <Text style={styles.title}>Referencias</Text>
         <TouchableOpacity onPress={() => openLink("https://br.freepik.com")}>
           <Text
-            selectable
+            selectable={true}
             selectionColor={colors.secondaryLightColor}
             style={styles.texto}
           >

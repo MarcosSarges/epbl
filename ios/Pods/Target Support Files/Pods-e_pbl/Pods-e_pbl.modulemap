@@ -1,0 +1,6 @@
+framework module Pods_e_pbl {
+  umbrella header "Pods-e_pbl-umbrella.h"
+
+  export *
+  module * { export * }
+}

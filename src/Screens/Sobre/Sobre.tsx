@@ -44,14 +44,24 @@ export default (props: Props) => {
           em Anál. E Desenvolvimento de Sistemas pelos discentes responsáveis.
         </Text>
         <Text style={styles.title}>Discentes</Text>
-        <Text style={styles.texto}>Letícia Moura de Almeida</Text>
-        <Text style={styles.texto}>Marcos Paulo Sarges Rolim</Text>
-        <Text style={styles.texto}>Rodrigo Oliveira da Silva</Text>
+        <Text style={styles.texto}>
+          Letícia Moura de Almeida {"<Analista>"}
+        </Text>
+        <Text style={styles.texto}>Email: leticiamalmeida27@gmail.com</Text>
+        <Text style={styles.texto}>
+          Marcos Paulo Sarges Rolim {"<Desenvolvedor>"}
+        </Text>
+        <Text style={styles.texto}>Email: marcosbook98@gmail.com</Text>
+        <Text style={styles.texto}>
+          Rodrigo Oliveira da Silva {"<Desenvolvedor>"}
+        </Text>
+        <Text style={styles.texto}>Email: rodrigo.silva112@hotmail.com</Text>
 
         <Text style={styles.title}>Orientador</Text>
         <Text style={styles.texto}>
           Prof. Me. Anderson Jorge Serra da Costa.
         </Text>
+        <Text style={styles.texto}>Email: andersonjrc@gmail.com</Text>
 
         <Text style={styles.title}>Referencias</Text>
         <TouchableOpacity onPress={() => openLink("https://br.freepik.com")}>
